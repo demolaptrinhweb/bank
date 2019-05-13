@@ -1,23 +1,24 @@
 <?php
 
-session_start();
+@session_start();
 ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <?php 
 require ("DBconnect.php");
 	
 	$passerr="";
 	 $dem = 0 ;
-if(isset($_POST["taikhoan"]) and $_POST["taikhoan"] != "" ) $taikhoanid =$_POST["taikhoan"];
+if(isset($_GET["taikhoan"]) and $_GET["taikhoan"] != "" ) $taikhoanid =$_GET["taikhoan"];
 else {
-   	   $sql11 = "select * from taikhoan where id_taikhoan = $_SESSION[taikhoanid]";
-		$q = $control->query($sql11);
-		$p = $control->fetch_arr($q);   
-	   $taikhoanid =$p["taikhoanid"]; 
+   	      
+	   $taikhoanid =$_SESSION["taikhoan_id"]; 
 }
 
    
     $sql = "select * from taikhoantietkiem where taikhoanid ='$taikhoanid'";		
-  echo $sql ;
+  
    $results_1 = $control->query($sql);	
 
    if($rowsacc_1 = $control->fetch_arr($results_1))
@@ -25,7 +26,7 @@ else {
 					
 						
    
-	if (isset($_POST["pay"])){
+	if (isset($_GET["pay"])){
 		
 		$sql11 = "select * from taikhoan where taikhoanid = '$taikhoanid'" ;
 		$j = $control->query($sql11);
@@ -34,28 +35,28 @@ else {
 		
 		
 		
-		if ($i["sodu"] >= $_POST["gui_amt"] and $_POST["gui_amt"] != 0 ){
+		if ($i["sodu"] >= $_GET["gui_amt"] and $_GET["gui_amt"] != 0 ){
 		
 		$demthanhcong = 0 ;	
 	
-		$sql1 = "update taikhoantietkiem set tiengui = tiengui + $_POST[gui_amt] where taikhoanid = '$taikhoanid'" ;
+		$sql1 = "update taikhoantietkiem set tiengui = tiengui + $_GET[gui_amt] where taikhoanid = '$taikhoanid'" ;
 		$d = $control->query($sql1);
 	    $c = $control->row_affected();
 			if($c == 1 ) $demthanhcong++; 
 			
-		$sql1 = "update taikhoantietkiem set sodu = sodu - $_POST[gui_amt] where taikhoanid = '$taikhoanid'" ;
+		$sql1 = "update taikhoantietkiem set sodu = sodu - $_GET[gui_amt] where taikhoanid = '$taikhoanid'" ;
 		$d = $control->query($sql1);
 	    $c = $control->row_affected();
 			if($c == 1 )$demthanhchong++ ; 
 			
 			
-		if($demthanhcong == 2 ) header("Location: formchuyentien3.php"); 
+		if($demthanhcong == 2 ) header("Location: formchuyentien3.php?kq=ct"); 
 		 
 		}
 		
 			
-		if ($i["sodu"] < $_POST["gui_amt"]) $passerr .= "số tiền trong tài khoản không đủ";
-		if ($_POST["gui_amt"] == 0) $passerr .= "chưa nhập số tiền gửi";
+		if ($i["sodu"] < $_GET["gui_amt"]) $passerr .= "số tiền trong tài khoản không đủ";
+		if ($_GET["gui_amt"] == 0) $passerr .= "chưa nhập số tiền gửi";
  		
 	}
    }
@@ -63,11 +64,12 @@ else $dem = 1 ;
 ?>
 
 
-          <form id="form2" name="form2" method="post" action="themtienvaotaikhoantietkiem.php">
+          <form id="form2" name="form2" method="get" action="acctrangchu.php">
 	  <table>
 			<tr>
         	      <td><strong>CHỌN TÀI KHOẢN NGUỒN  </strong></td>
         	   <td><label>
+				   <input type="hidden"  name="ts" value="tk2"/>
         	       <select name="taikhoan" id="taikhoan"  onchange="form2.submit()" > 
 					        <option value="">tài khoản mặc định &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
 				   <?php  
@@ -75,11 +77,11 @@ else $dem = 1 ;
                         $results_1 = $control->query($sql);			
                         
 					  while ($rowsacc = $control->fetch_arr($results_1)){
-						  if (isset($_POST["id_tietkiem"])) echo $_POST["taikhoan"] ;
+						  if (isset($_GET["id_tietkiem"])) echo $_GET["taikhoan"] ;
 					     ?>
 				   <option value="<?php echo $rowsacc["taikhoanid"];?>" <?php 
 						  
-						  if (isset($_POST["taikhoan"]) and $_POST["taikhoan"] == $rowsacc['taikhoanid']) echo "selected ='selected'" ;?> > 
+						  if (isset($_GET["taikhoan"]) and $_GET["taikhoan"] == $rowsacc['taikhoanid']) echo "selected ='selected'" ;?> > 
 					   
 					   <?php echo $rowsacc["taikhoanid"] ?>
 					   
@@ -96,7 +98,7 @@ else $dem = 1 ;
 			  
 			  </table>
 	</form>
-<form id="form1" name="form1" method="post" action="themtienvaotaikhoantietkiem.php">
+<form id="form1" name="form1" method="get" action="acctrangchu.php">
   
      	<h2>THÊM TIỀN VÀO TÀI KHOẢN TIẾT KIỆM </h2>
 	<?php if ($dem != 1){ ?>
@@ -116,6 +118,7 @@ else $dem = 1 ;
         	   <td><label>
         	        <?php echo $rowsacc_1["tiengui"] ;?>
       	        </label>
+				    <input type="hidden"  name="ts" value="tk2"/>
 					<input type="hidden" name="taikhoan" value="<?php echo $taikhoanid;?>"/>
 					
 					</td>

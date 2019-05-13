@@ -10,6 +10,7 @@
 	   <?php require("Header.php") 
 		?>	
 		<?php require("Menu.php")?>
+		
 		<?php if (isset($_GET['ts']))
 				  switch($_GET['ts'])
 				  {
@@ -18,7 +19,8 @@
 					  case "ndt": include("NhaDauTu.php");break;
 					  case "dn" : include("DoanhNghiep.php");break;
 					  case "td" : include ("TuyenDung.php");break;
-					  case "tt" : include("TinTuc.php");break;	  
+					  case "tt" : include("TinTuc.php");break;	
+					  case "bk" : include("internetbanking.php");break;	  
 				  }				  
 				else  include("MainIndex.php")?>
 		

@@ -1,7 +1,10 @@
 <?php
 
-session_start();
+@session_start();
 ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <!doctype html>
 <html>
 <head>
@@ -26,6 +29,7 @@ session_start();
 	<div id="khung" >
 		<?php require("Header.php") ;?>
 	 <?php require ("accmenu.php") ;
+		require("accheader.php");
 		require ("DBconnect.php");
 		 ?>
 	<?php	if(isset($_POST["pay"]))
@@ -34,7 +38,7 @@ $_SESSION['nguoinhan'] = $_POST["huongid"];
 $payamt = $_POST["pay_amt"];
 $taikhoanchuyen = $_POST["taikhoanid"];
 	$code = taocode(4);
-	$mail = new guimail($_SESSION["id_khachhang"]);
+	$mail = new guimail($_SESSION["email"]);
 	$mail->gui($conn,$code);
 	$passerr ="" ;
 	echo $code ;
@@ -57,10 +61,13 @@ $taikhoanchuyen = $_POST["taikhoanid"];
       $arrpayment1 = $control->fetch_arr($results_3);
    
   
-    
-		
-		
-	if($_POST["trpass"] == $arrpayment1["passchuyenkhoan"] and $_POST["email"] == $_POST["code"])
+    //chuyen phai nguoi dung nhap sang harsh-password
+	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);	
+   $tongtien=0;
+		foreach  ($_SESSION['nguoinhan'] as $nguoinhan_1){
+			$tongtien = $tongtien + $_POST["amt"];
+		}
+	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien)
 	{   
 		$tien = new chuyentien($_POST["taikhoanid"]);
 		$tien->setCon($conn);
@@ -77,20 +84,26 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 				 if ($_POST["nguoichiuphi"] == 1)$b = @			$tien->trutiennguoichuyen();
 	             else $b = $tien->trutiennguoinhan($nguoinhan_1);   
 	             if (  $b == 1) $demtruphi++;
+				  
+				  $sql4= "update khachhang set max_chuyentien = max_chuyentien - $_POST[amt] where id_khachhang = $_SESSION[id_khachhang]";
+			      $control->query($sql4);
+			      $_SESSION["max"] = $_SESSION["max"] - $_POST["amt"];
 		            }   
 		}
 		if ($demchuyentienthanhcong == $demnguoinhan and $demtruphi == $demnguoinhan){
 			unset($_SESSION['nguoinhan']);
-			header("Location: formchuyentien3.php");}
+			header("Location: formchuyentien3.php?kq=ct");}
 																					 
 	}
 	else
 	{
 		$err1 = "";
 		$err2 = "";
-	if ($_POST["trpass"] != $arrpayment1["passchuyenkhoan"]) $err1 = "<b>mật khẩu chuyển khoản không đúng</b>";
-	if ($_POST["email"] != $_POST["code"])	$err2 = "<b> mã xác nhận email không đúng</b>";
-	$passerr = $err1." ; ".$err2." <br>vui lòng nhập lại";
+	if (!$auth) $passerr.= "<b> <br>mật khẩu chuyển khoản không đúng</b>";
+	if ($_POST["email"] != $_POST["code"])	$passerr.= "<b>  <br>mã xác nhận email không đúng</b>";
+    if($_SESSION["max"] < $tongtien) $passerr.=  "<b>  <br>vượt quá số lượng chuyển tối đa trong ngày</b>";
+		 $passerr.="tong tien $tongtien ; $_SESSION[max]";
+	$passerr.=" <br>vui lòng nhập lại";
 
 	
 	$payamt = $_POST["amt"];
@@ -112,7 +125,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 			if ($dem2 == 0) $loi++;
 		}
 		else $loi++;
-		if ($payamt == 0) $loi++; 
+		if (@$payamt == 0) $loi++; 
 ?>
 	
    <?php  if ($loi != 1)
@@ -151,7 +164,8 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 						
 		            }   
 		            }
-		
+		      if(isset($_SESSION["max"])) echo $_SESSION["max"];
+	          else echo "sai";
 	
                   ?>
                   

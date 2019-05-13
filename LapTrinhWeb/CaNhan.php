@@ -1,6 +1,6 @@
 <div id="khaccenter">
 			<div id="khacleft">
-				<span><marquee>Giá vàng giao ngay thế giới 9h15' ngày 21/11: 147,32&nbsp;USD/chỉ. Giá vàng 9999 tại Hà Nội 8h57' ngày 21/11 mua: 3.643&nbsp;nghìn đồng/chỉ, bán: 3.661&nbsp;nghìn đồng/chỉ. Chỉ số chứng khoán ngày 21/11: VN-Index: 922,56</marquee></span>
+				
 				<div id="khacleft1">
 					<img src="hinh/canhan.jpg">
 				</div>

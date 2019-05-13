@@ -1,16 +1,16 @@
-<?php session_start(); ?>
-	
+<?php @session_start(); ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>	
 <?php require("DBconnect.php") ;?>
 	
 
 <?php 
         
         
-        $sql = "SELECT * FROM taikhoan where id_taikhoan = $_SESSION[taikhoanid] ";
-		$results = $control->query($sql);
-        $arr = $control->fetch_arr($results);
         
-	    $sql = "SELECT * FROM chuyentien where (id_chuyen = '$arr[taikhoanid]' or id_nhan = '$arr[taikhoanid]')";
+        
+	    $sql = "SELECT * FROM chuyentien where (id_chuyen = '$_SESSION[taikhoan_id]' or id_nhan = '$_SESSION[taikhoan_id]')";
 				  
 				  
 		$kq = $control->query($sql);
@@ -61,7 +61,7 @@
 				 
 			
 				  if (isset($_GET["timkiem"]) and $_GET["timkiem"] != "" ) { 
-					 $sql .=  " and id_chuyentien like '%$_GET[timkiem]%'";
+					 $sql .=  " and chuyentienid like '%$_GET[timkiem]%'";
 					 $truyendulieu .= "&timkiem=$_GET[timkiem]";
 				 }
 				 
@@ -74,7 +74,7 @@
 	
 	
   $kq = $control->query($sql);
-  $tsp = mysqli_num_rows($kq);
+  $tsp = @mysqli_num_rows($kq);
   $sd = 5 ;
   $sn = 5 ;
   
@@ -126,8 +126,8 @@
 					 
 					
 					 
-					if(isset($_GET["timkiem"]))$HL=highlightKeywords($giaodich["id_chuyentien"],$_GET["timkiem"]);
-	                else $HL=$giaodich["id_chuyentien"];
+					if(isset($_GET["timkiem"]))$HL=highlightKeywords($giaodich["chuyentienid"],$_GET["timkiem"]);
+	                else $HL=$giaodich["chuyentienid"];
 	   
 	   
 					 echo "

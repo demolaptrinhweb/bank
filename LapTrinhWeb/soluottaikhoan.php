@@ -1,8 +1,10 @@
 <?php
 
-session_start();
+@session_start();
 ?>
-	
+	<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 
 	<?php require("DBconnect.php") ;?>
 	
@@ -22,7 +24,23 @@ session_start();
 		$taikhoanid = $arrow["taikhoanid"];
 		$i = 1;
 	}
-	?>		
+	?>	
+
+     <div align="center"  >
+     		 <h2>&nbsp;</h2>
+     		 <table width="560" border="1"  align="center">
+     		   <tr>
+     		     <th colspan="2" scope="col">KHÁCH HÀNG </th>
+   		     </tr>
+     		<tr>
+     		     <td height="37">GIỚI HẠN GIAO DỊCH </td>
+     		     <td>&nbsp;<?php echo $_SESSION["max"] ; ?></td>
+   		     </tr>
+     		 
+		
+	</div> 
+
+
 	 <div align="center"  >
      		 <h2>&nbsp;</h2>
      		 <table width="560" border="1"  align="center">
@@ -58,7 +76,7 @@ session_start();
                   <th width="144" scope="col">NỘI DUNG</th>
       </tr>
 				<?php
-				 $sql ="SELECT * FROM chuyentien where id_nhan = $_SESSION[taikhoanid] or id_chuyen = $_SESSION[taikhoanid] order by ngaytao desc limit 0,3";
+				 $sql ="SELECT * FROM chuyentien where id_nhan = '$_SESSION[taikhoan_id]' or id_chuyen = '$_SESSION[taikhoan_id]' order by ngaytao desc limit 0,3";
 					 $results = $control->query($sql);
 				 while($taikhoan = $control->fetch_arr($results)){
 					 
@@ -66,7 +84,7 @@ session_start();
 					 
 					 echo "
                    <tr>
-                    <td>&nbsp;$taikhoan[id_chuyentien]</td>     
+                    <td>&nbsp;$taikhoan[chuyentienid]</td>     
                     <td>&nbsp;$taikhoan[ngaytao]</td>
                     <td>&nbsp;$taikhoan[id_chuyen]</td>
                     <td>&nbsp;$taikhoan[id_nhan]</td>

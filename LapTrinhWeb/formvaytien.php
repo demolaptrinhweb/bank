@@ -1,7 +1,10 @@
 <?php
 
-session_start();
+@session_start();
 ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <?php 
 require ("DBconnect.php");
 	
@@ -19,7 +22,7 @@ require ("DBconnect.php");
 
 <form id="form1" name="form1" method="post" action="formvaytien2.php">
   
-     	<h2>VAY</h2>
+     	<h2>VAY TIỀN</h2>
            	  <table width="591" height="177" border="1">
         	    <tr>
         	      <td><strong>LOẠI VAY</strong></td>
@@ -40,7 +43,7 @@ require ("DBconnect.php");
         	    <tr>
         	      <td><strong>SỐ LƯỢNG VAY </strong></td>
         	      <td><label>
-        	        <input type="text" name="vay_amt" id="vay_amt" size="25" />
+        	        <input type="number" name="vay_amt" id="vay_amt" size="25" />
       	        </label></td>
       	      </tr>
         	    <tr>

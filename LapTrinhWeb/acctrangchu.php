@@ -1,4 +1,5 @@
 <!doctype html>
+<?php session_start(); ?>
 <html>
 <head>
 <meta charset="utf-8">
@@ -23,8 +24,12 @@
 	
 <body bgcolor="lightblue" >
 	<div id="khung" >
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>	
 	<?php require("Header.php") ;?>
 	 <?php require ("accmenu.php") ;?>
+		<?php require("accheader.php");?>
 	 <?php if (isset($_GET['ts']))
 				  switch($_GET['ts']) 
 				  {
@@ -34,7 +39,7 @@
 						  break;
 					  case "ck" : require("chuyenkhoan.php");
 						  break;
-					  case "tn"	: require ("trano.php");  
+					  case "tn"	: require ("formtrano.php");  
 						  break;
 					  case "md" : require("caitaikhoanmacdinh.php");
 						  break;
@@ -66,6 +71,8 @@
 						  break;
 					  case "tkh" :require("themtaikhoanhuong.php");
 						  break ;
+					  case "ttn" :require("formtrano.php");
+						  break;
 				  }
 		 else require("soluottaikhoan.php");
 		?>

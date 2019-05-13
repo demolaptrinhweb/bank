@@ -1,8 +1,10 @@
 <?php
 
-session_start();
+@session_start();
 ?>
-
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <!doctype html>
 <html>
 <head>
@@ -68,7 +70,7 @@ $passerr="";
 		
 		$c = $control->row_affected();
 		if($c == 1 ) $dem++; 
-		if ($dem == 2) header("Location: formchuyentien3.php");
+		if ($dem == 2) header("Location: formchuyentien3.php?kq=tktk");
 		}
 		
 		

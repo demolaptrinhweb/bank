@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php @session_start(); ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <?php 
 require ("DBconnect.php");
 	    
@@ -9,18 +12,22 @@ require ("DBconnect.php");
 		$sql = "select * from khachhang  where id_khachhang =$_SESSION[id_khachhang]";
 		$a = $control->query($sql);
 		$b = $control->fetch_arr($a);
-	 if($_POST["pass"] == $b["pass"] and $_POST["email"] == $_POST["code"] and $_POST["passmoi"]==$_POST["passlai"]){	
-		 $sql = "UPDATE khachhang SET pass = $_POST[passmoi] where id_khachhang = $_SESSION[id_khachhang]";
+		
+		$auth = password_verify($_POST["pass"],$b["pass"]);
+		
+	 if($auth and $_POST["email"] == $_POST["code"] and $_POST["passmoi"]==$_POST["passlai"]){	
+		 $passmoi = $control->passharsh($_POST["passmoi"]);
+		 $sql = "UPDATE khachhang SET pass = '$passmoi' where id_khachhang = $_SESSION[id_khachhang]";
 		$a = $control->query($sql);
-		if ($control->row_affected() == 1)header("Location: formchuyentien3.php");
-		else echo "co gi sai";																						
+		if ($control->row_affected() == 1)header("Location: formchuyentien3.php?kq=dp");
+																					
 																									
 																									
 		 }
 	 else {
 		 
 		 $code = $_POST["code"];
-		 if ($_POST["pass"] != $b["pass"]) $passerr+="mật khẩu cũ sai"."<br>";
+		 if (!$auth) $passerr+="mật khẩu cũ sai"."<br>";
 		 if ($_POST["email"] != $_POST["code"]) $passerr+="mã xác nhận email sai"."<br>";
 		 if ($_POST["passmoi"]!=$_POST["passlai"]) $passer+="nhập lại mật khẩu không trùng";
 	 }	
@@ -28,7 +35,7 @@ require ("DBconnect.php");
 	else {
 		$passerr = "";
 		$code = taocode(4);
-		$mail = new guimail("11");
+		$mail = new guimail($_SESSION["email"]);
 	@$mail->gui($conn,$code);
 		echo $code;
 	}

@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php @session_start(); ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 	<?php require("DBconnect.php") ?>
 	<?php 
 	    $sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang]";

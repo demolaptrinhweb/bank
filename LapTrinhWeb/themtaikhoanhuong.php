@@ -1,7 +1,10 @@
-<?php
+t<?php
 
-session_start();
+@session_start();
 ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <?php 
 require ("DBconnect.php");
 	
@@ -9,12 +12,12 @@ require ("DBconnect.php");
 		
 	if (isset($_POST["pay"])){
 		$passerr="";
-		$sql= "select * from taikhoan where taikhoanid = $_POST[id_them]";
+		$sql= "select * from taikhoan where taikhoanid = '$_POST[id_them]'";
 		$c =$control->query($sql);
 		$h = $control->fetch_arr($c);
 		
 		
-		$sql1 = "select taikhoanhuongid from taikhoanhuong where taikhoanhuongid = $_POST[id_them]" ;
+		$sql1 = "select taikhoanhuongid from taikhoanhuong where taikhoanhuongid = '$_POST[id_them]'" ;
 		$d = $control->query($sql1);
 		$j = $control->fetch_arr($d);
 		
@@ -22,7 +25,7 @@ require ("DBconnect.php");
 		if($h and !$j and $h["trangthai"] == 2){
 		$a = new themtaikhoanhuong($_SESSION["id_khachhang"]);
 		$a->them($conn,$_POST["id_them"]);
-	   
+	    if( $control->row_affected() == 1 ) header("location:formchuyentien3.php?kq=tkh");
 		 
 		}
 		

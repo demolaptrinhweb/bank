@@ -1,5 +1,7 @@
-<?php session_start(); ?>
-	
+<?php @session_start(); ?>
+	<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <?php require("DBconnect.php") ;?>
 	
 	<?php 
@@ -17,7 +19,7 @@
 	}
 	?>		
 <div align="center" >
-	
+	  
      		 <h2>&nbsp;</h2>
      		 <table width="560" border="1"  align="center">
      		   <tr>

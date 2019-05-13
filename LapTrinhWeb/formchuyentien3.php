@@ -3,11 +3,25 @@
               <table width="517" height="220" border="1">
                 <tr>
                   <td width="439" align="center"><h4><?php 
-				  
-				  echo "Transaction successfull..
-				  <br>
-				  Branch manager will verify your account..."; 
-				  
+					  $tem="";
+				  if ($_GET["kq"]){
+					  
+					  switch($_GET["kq"]){
+						  case "ct" : $tem ="giao dịch thanh công";	  
+							break;  
+						  case "dp"	: $tem ="đổi pass thành công";  
+							 break ; 
+						  case "tktk" : $tem = "mở tài khoản tiết kiệm thành công";
+							 break; 
+						  case "tkh"  : $tem = "thêm tài khoản hưởng thành công";  
+							  break;
+						  case "xtkh" : $tem = "xoá tài khoản hưởng thành công";
+							  break ;
+					  }  
+					  
+				  echo $tem ;
+				 
+				  }
 				  ?>
                   <br />
                   

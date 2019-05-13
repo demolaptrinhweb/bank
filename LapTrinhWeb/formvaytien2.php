@@ -1,8 +1,10 @@
 <?php
 
-session_start();
+@session_start();
 ?>
-
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <!doctype html>
 <html>
 <head>
@@ -28,6 +30,7 @@ session_start();
 	<div id="khung" >
 		<?php require("Header.php") ;?>
 	 <?php require ("accmenu.php") ;
+		reuire("accheader.php");
 		require ("DBconnect.php");
 		?>
 	<?php	if(isset($_POST["pay"]))
@@ -36,7 +39,7 @@ session_start();
     $vayamt = $_POST["vay_amt"];
     $taikhoanvay = $_POST["taikhoanid"];
 	$code = taocode(4);
-	$mail = new guimail($_SESSION["id_khachhang"]);
+	$mail = new guimail($_SESSION["email"]);
 	$mail->gui($conn,$code);
 	$passerr ="" ;
 	echo $code ;
@@ -59,9 +62,10 @@ session_start();
   {   $results_3 = mysqli_query($conn,"SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]");
       $arrpayment1 = mysqli_fetch_assoc($results_3);	
    
+   //chuyen phai nguoi dung nhap sang harsh-password
+	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);	
    
-   
-	if($_POST["trpass"] == $arrpayment1["passchuyenkhoan"] and $_POST["email"] == $_POST["code"])
+	if($auth and $_POST["email"] == $_POST["code"])
 		
 		
 		
@@ -76,7 +80,7 @@ session_start();
 	    if ($a == 1)$demthanhcong++;
 	 
 	 
-	    if ($demthanhcong == 2) header("Location: formchuyentien3.php");
+	    if ($demthanhcong == 2) header("Location: formchuyentien3.php?kq=ct");
 	}
    
    
@@ -87,9 +91,9 @@ session_start();
 		$err2 = "";
 		
 		
-	if ($_POST["trpass"] != $arrpayment1["passchuyenkhoan"]) $err1 = "<b>mật khẩu chuyển khoản không đúng</b>";
-	if ($_POST["email"] != $_POST["code"])	$err2 = "<b> mã xác nhận email không đúng</b>";
-	$passerr = $err1." ; ".$err2." <br>vui lòng nhập lại";
+	if (!$auth) $err1 = "<b> <br>mật khẩu chuyển khoản không đúng</b>";
+	if ($_POST["email"] != $_POST["code"])	$err2 = "<b> <br> mã xác nhận email không đúng</b>";
+	$passerr = $err1.$err2." <br>vui lòng nhập lại";
 
 		
 		

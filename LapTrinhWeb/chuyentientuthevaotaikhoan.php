@@ -1,5 +1,7 @@
-<?php session_start(); ?>
-
+<?php @session_start(); ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <!doctype html>
 <html>
 <head>
@@ -53,7 +55,7 @@ require ("DBconnect.php");
 		if($c1 == 1 ) $demthanhcong++; 	
 			
 			
-		if($demthanhcong == 2 ) header("Location: formchuyentien3.php"); 
+		if($demthanhcong == 2 ) header("Location: formchuyentien3.php?kq=ct"); 
 		 
 		}
 		

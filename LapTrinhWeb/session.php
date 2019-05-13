@@ -1,4 +1,4 @@
-<?php session_start();
+<?php @session_start();
 require ("DBconnect.php");?>
 <!doctype html>
 <html>
@@ -14,7 +14,10 @@ require ("DBconnect.php");?>
 		
 		if (!isset($_SESSION["taikhoanid"])) $_SESSION["taikhoanid"] =  $arrow["taikhoanmacdinh"];
 		
-		
+		$sql = "select * from taikhoan where id_taikhoan = $arrow[taikhoanmacdinh]";
+		$kq = $control->query($sql);
+		$arr = $control->fetch_arr($kq);
+		if(!isset($_SESSION["taikhoan_id"])) $_SESSION["taikhoan_id"] = $arr ["taikhoanid"];
 		
 		
 	}?>

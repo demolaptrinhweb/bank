@@ -1,8 +1,10 @@
 <?php
 
-session_start();
+@session_start();
 ?>
-	
+	<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <?php 
 require ("DBconnect.php");
 	$passerr="";
@@ -67,8 +69,8 @@ require ("DBconnect.php");
 		$j = $control->query($sql11);
 		$i = $control->row_affected();
 		if ($i == 1) $demthanhcong++;
-		if ($kt == 1 and $demthanhcong == 3 ) header("Location: formchuyentien3.php");
-		if ($demthanhcong == 2 ) header("Location: formchuyentien3.php");
+		if ($kt == 1 and $demthanhcong == 3 ) header("Location: formchuyentien3.php?kq=ct");
+		if ($demthanhcong == 2 ) header("Location: formchuyentien3.php?kq=ct");
 	}
    }
 	 else $dem=1 ;

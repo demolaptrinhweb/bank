@@ -22,6 +22,7 @@
 			       <ul>
 					<li> <a href="acctrangchu.php?ts=xn">xem nợ</a></li>
 					<li><a href="acctrangchu.php?ts=vt">vay</a> </li>
+					 <li> <a href="acctrangchu.php?ts=ttn">trả nợ</a></li>  
 					</ul>
 			</div>	
 			

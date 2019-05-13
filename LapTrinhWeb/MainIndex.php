@@ -1,3 +1,4 @@
+<?php require("DBconnect.php"); ?>
 <div id="center">
 			<div id="left">
 				<div id="left_1">
@@ -169,86 +170,20 @@
 					</div>
 					<div id="right_333">
 						<table>
+							
+							<?php
+							$sql = "select kyhan_chu,laixuat from kyhanguitien ";
+							$kq =$control->query($sql);
+							while($arr= $control->fetch_arr($kq)){
+								
+							
+							
+							?>
 							<tr class="right_33tr">
-								<td>Không thời hạn</td>
-								<td>0,10</td>
+								<td style="min-width: 200px"><?php echo $arr["kyhan_chu"]; ?></td>
+								<td style="min-width: 50px"><?php echo $arr["laixuat"]; ?></td>
 							</tr>
-							<tr>
-								<td>Dưới 1 tháng</td>
-								<td>0,50</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>1 tháng đến dưới 2 tháng</td>
-								<td>4,50</td>
-							</tr>
-							<tr>
-								<td>2 tháng đến dưới 3 tháng</td>
-								<td>4,50</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>3 tháng đến dưới 4 tháng</td>
-								<td>5,00</td>
-							</tr>
-							<tr>
-								<td>4 tháng đến dưới 5 tháng</td>
-								<td>5,00</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>5 tháng đến dưới 6 tháng</td>
-								<td>5,00</td>
-							</tr>
-							<tr>
-								<td>6 tháng đến dưới 7 tháng</td>
-								<td>5,50</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>7 tháng đến dưới 8 tháng</td>
-								<td>5,50</td>
-							</tr>
-							<tr>
-								<td>8 tháng đến dưới 9 tháng</td>
-								<td>5,50</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>9 tháng đến dưới 10 tháng</td>
-								<td>5,50</td>
-							</tr>
-							<tr>
-								<td>10 tháng đến dưới 11 tháng</td>
-								<td>5,50</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>11 tháng đến dưới 363 ngày</td>
-								<td>5,50</td>
-							</tr>
-							<tr>
-								<td>364 ngày</td>
-								<td>6,60</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>12 tháng</td>
-								<td>6,80</td>
-							</tr>
-							<tr>
-								<td>Trên 12 tháng đến dưới 18 tháng</td>
-								<td>6,60</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>18 tháng đến dưới 24 tháng</td>
-								<td>6,70</td>
-							</tr>
-							<tr>
-								<td>24 tháng đến dưới 36 tháng</td>
-								<td>6,80</td>
-							</tr>
-							<tr class="right_33tr">
-								<td>36 tháng</td>
-								<td>6,90</td>
-							</tr>
-							<tr>
-								<td>Trên 36 tháng</td>
-								<td>7,00</td>
-							</tr>
+							<?php } ?>
 						</table>
 					</div>
 				</div>

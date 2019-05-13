@@ -1,5 +1,7 @@
-<?php session_start(); ?>
-
+<?php @session_start(); ?>
+<?php		if(!isset($_SESSION['id_khachhang'])) {
+	header("Location: InDex.php?ts=bk");
+}?>
 <!doctype html>
 
 <html>
@@ -21,18 +23,21 @@
 	width: 290px;
 		height: 35px; }</style>
 </head>
-	<body>
+	<body bgcolor="lightblue" >
+	<div id="khung" >
 		<?php require("Header.php") ;?>
 	 <?php require ("accmenu.php") ;
+		require("accheader.php");
 		require ("DBconnect.php");
 		?>
 	<?php	if(isset($_POST["pay"]))
 {
+	// gan cac bien can thiet 
 $nguoinhan = $_POST["payto"];
 $payamt = $_POST["pay_amt"];
 $taikhoanchuyen = $_POST["taikhoanid"];
 	$code = taocode(4);
-	$mail = new guimail($_SESSION["id_khachhang"]);
+	$mail = new guimail($_SESSION["email"]);
 	$mail->gui($conn,$code);
 	$passerr ="" ;
 	echo $code ;
@@ -55,21 +60,20 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	  $sql3 = "SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
 	  $results_3 = $control->query($sql3);
       $arrpayment1 = $control->fetch_arr($results_3);
+       
    
-   
-   
-   
-   
-   
+   //lay tai khoan khach hang muon su dung  
     $sql11 = "select * from taikhoan where taikhoanid = '$_POST[taikhoanid]'" ;
 		$j = $control->query($sql11);
 		$i = $control->fetch_arr($j);
-    
+		   
+    //chuyen phai nguoi dung nhap sang harsh-password
+	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);
+			
 		
-		
-	if($_POST["trpass"] == $arrpayment1["passchuyenkhoan"] and $_POST["email"] == $_POST["code"] and		 $i["sodu"] >= $_POST["amt"])
+	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max_chuyentien"] >= $_["amt"])
 	{  
-		
+		//chuyen tien 
 		$tien = new chuyentien($_POST["taikhoanid"]);
 	    $tien->setCon($conn);
 	    $tien->setphichuyen($_POST["phichuyentien"]);
@@ -78,19 +82,27 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	    else $b = $tien->trutiennguoinhan($_POST["payto3"]);
 	    
 	 
-	    if ($a == 1 and $b == 1) header("Location: formchuyentien3.php");
+	    if ($a == 1 and $b == 1){
+			$sql4= "update khachhang set max_chuyentien = max_chuyentien - $_POST[amt] where id_khachhang = $_SESSION[id_khachhang]";
+			$control->query($sql4);
+			$_SESSION["max_chuyentien"] = $_SESSION["max_chuyentien"] - $_POST["amt"];
+			header("Location: formchuyentien3.php?kq=ct");}
 	}
 	else
 	{   
-		echo "loi day ";
+		// neu co loi xuat loi ra 
+		
 		$err1 = "";
 		$err2 = "";
-	if ($_POST["trpass"] != $arrpayment1["passchuyenkhoan"]) $err1 = "<b>mật khẩu chuyển khoản không đúng</b>";
-	if ($_POST["email"] != $_POST["code"])	$err2 = "<b> mã xác nhận email không đúng</b>";
-	$passerr = $err1." ; ".$err2." <br>vui lòng nhập lại";
-    if ($i["sodu"] < $_POST["amt"]) $passerr.=" số tiền trong tài khoản không đủ";
+	if (!$auth) $passerr.= "<br> <b>mật khẩu chuyển khoản không đúng</b>";
+	if ($_POST["email"] != $_POST["code"])	$passerr.= "<br> <b> mã xác nhận email không đúng</b>";
+	
+    if ($i["sodu"] < $_POST["amt"]) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
+	
+		if($_SESSION["max_chuyentien"] < $_["amt"]) $passerr.="<br> <b> vượt quá số lượng chuyển tối đa trong ngày</b>";
 		
-		
+		$passerr .= "<br>vui lòng nhập lại";
+		// gan lai bien 
 	$nguoinhan = $_POST["payto3"];
 	$payamt = $_POST["amt"];
 	$taikhoanchuyen = $_POST["taikhoanid"];
@@ -106,7 +118,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		$array = $control->fetch_arr($results_1);
 		if (!isset($array["taikhoanid"]))
 		{
-			 echo "loi 1" ;
+			
 		$loi++ ;
 		}
 		else {
@@ -192,8 +204,9 @@ $taikhoanchuyen = $_POST["taikhoanid"];
                 </tr>
               </table>
 		<?php }
-		else echo " da xay ra loi xin hay kiem tra lai thong tin nhap "; 
+		else echo " đã xảy ra lỗi xin hãy kiểm tra lại thông tin nhập "; 
 		?>
 		<?php require("Footer.php") ;?>
-  </body>
+ </div>
+</body>
 </html>

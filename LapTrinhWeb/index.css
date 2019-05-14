@@ -389,11 +389,12 @@ div#menu
 	width: 270px;
 	float: right;
 	background-color: lightblue;
+	
 }
 #khacright1
 {
 	width: 270px;
-	height: 250px;
+	min-height: 250px;
 }
 #khacright h1
 {
@@ -494,6 +495,7 @@ div#menu
 {
 	background-color: #106fa9;
 }
+
 #lefttin
 {
 	width: 770px;

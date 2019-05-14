@@ -1,46 +1,48 @@
+<?php  require("DBconnect.php")?>
+<?php if (isset($_GET["id"]))  $sql = "select * from news where theme = 4 and id = $_GET[id] ";
+       else {
+		   $sql = "select * from news where theme = 4 " ;}
+					      	?>
 <div id="khaccenter">
 			<div id="khacleft">
 				
 				<div id="khacleft1">
 					<img src="hinh/Doanhnghiep.jpg">
 				</div>
-				<ul type="none">
-					<li>TIỀN GỬI</li>
-					<li>CHO VAY</li>
-					<li>THANH TOÁN QUỐC TẾ & TÀI TRỢ THƯƠNG MẠI</li>
-					<li>THANH TOÁN VÀ QUẢN LÝ DÒNG TIỀN</li>
-					<li>KINH DOANH NGHOẠI TỆ VÀ THỊ TRƯỜNG VỐN</li>
-					<li>NGÂN HÀNG ĐIỆN TỬ</li>
-					<li>BẢO HIỂM NHÂN THỌ</li>
-					<li>BẢO HIỂM PHI NHÂN THỌ</li>
-					<li>SME CLUB</li>
-				</ul>
+				<?php   
+				$kq = $control->query($sql);
+				$arr = $control->fetch_arr($kq);
+			     echo $arr["body"];
+				?>
 			</div>
 			<div id="khacright">
-				<div id="khacright1">
-					<img src="hinh/efast.jpg">
-					<p>Chào mừng quý khách đến với <b>S&TBank eFast</b></p>
-					<form >
-						<input type="text" name="" placeholder="Tên đăng nhập"><br>
-						<input type="text" name="" placeholder="Mật khẩu">
-					</form>
-					<form style="margin-top: 2px;">
-						<input type="button" name="" value="Đăng nhập">
-					</form>
+				<div style="width: 270px; min-height: 200px"  ;>
+					<ul type="none" >
+						<?php $sql = "select * from news where theme = 4 ";
+					      $kq = $control->query($sql);
+					    while(  $arr = $control->fetch_arr($kq)){
+					 
+					?>
+					<li style=" border: solid;
+	border-color: blue;
+	border-width: 1px;
+	background-color: #29a0c7;
+	
+	text-align: center;
+	font-weight: bolder;
+	border-radius: 50px;
+	color: white;
+	min-width: 230px;
+	word-wrap: break-word;
+	"><a href="index.php?ts=dn&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
+					<?php }?>
+				</ul>
 				</div>	
 				<div id="right_2">
 					<img src="hinh/lienhe.jpg">
 				</div>
 				<div id="right_4">
-					<a href=""><h1>LỰA CHỌN DỊCH VỤ</h1></a>
-					<form>
-						<select>
-							<option value="chondichvu">Chọn dịch vụ</option>
-							<option value="the">Thẻ</option>
-							<option value="canhan">Dành cho cá nhân</option>
-							<option value="doanhnghiep">Dành cho doanh nghiệp</option>
-						</select>
-					</form>
+					
 				</div>
 			</div>
 		</div>	

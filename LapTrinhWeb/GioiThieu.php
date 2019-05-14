@@ -1,13 +1,15 @@
 <?php  require("DBconnect.php")?>
-<?php if (isset($_GET["id"])) $id = $_GET["id"];
-       else $id ="5";	?>
+<?php if (isset($_GET["id"]))  $sql = "select * from news where theme = 2 and id = $_GET[id] ";
+       else {
+		   $sql = "select * from news where theme = 2 " ;}
+					      	?>
 <div id="center">
 			<div id="lefttin">
 				<div id="lefttintuc">
 					
 				</div>
 				<div id="lefttinchu">
-					<?php $sql = "select * from news where theme = 2 and id = '$id'" ;
+					<?php 
 					      $kq = $control->query($sql);
 					      $arr = $control->fetch_arr($kq);
 					

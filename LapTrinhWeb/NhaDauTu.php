@@ -1,51 +1,73 @@
+<?php  require("DBconnect.php")?>
+<?php if (isset($_GET["id"]))  $sql = "select * from news where theme = 5 or theme 6 and id = $_GET[id] ";
+       else {
+		   $sql = "select * from news where theme = 2 " ;}
+					      	?>
 <div id="center">
 			<div id="lefttin">
 				<div id="lefttintuc">
 					
 				</div>
-				<div id="leftnhadautu">
+				<div id="leftnhadautu" style="min-height: 700px">
 					<img src="hinh/tintuc.jpg">
+					
+					<?php if (!isset($_GET["id"])) {?>
 					<div id="leftnhadautu1">
-						<h1>TIN MỚI NHẤT</h1>
+						<h1>Nhà đầu tư mới </h1>
 						<ul>
-							<a href=""><li>Công bố thông tin báo cáo kết quả phát hành thành công trái phiếu tăng vốn cấp 2 đợt 4 năm 2018 (riêng lẻ)</li></a>
-							<a href=""><li>Công bố thông tin về Người đại diện vốn nhà nước tại S&TBank</li></a>
-							<a href=""><li>S&TBank có tân Chủ tịch HĐQT và Quyền Tổng Giám đốc</li></a>
-							<a href=""><li>Thông báo về ngày đăng ký cuối cùng để tổ chức ĐHĐCĐ bất thường năm 2018</li></a>
-							<a href=""><li>Công bố thông tin tổ chức ĐHĐCĐ bất thường năm 2018</li></a>
+							<?php $sql = "select id,title from news where theme = 5  ";
+							      $kq  = $control->query($sql);
+							      while ($arr = $control->fetch_arr($kq)){		
+							?>
+							<li><a a href="index.php?ts=ndt&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
+					      <?php }?>
 						</ul>
 					</div>
 					<div id="leftnhadautu1">
-						<h1>TIN ĐƯỢC QUAN TÂM</h1>
+						<h1>Nhà đầu tư quan tâm</h1>
 						<ul>
-							<a href=""><li>Đại hội đồng cổ đông bất thường năm 2018</li></a>
-							<a href=""><li>Đại hội đồng cổ đông bất thường năm 2018</li></a>
-							<a href=""><li>Đại hội đồng cổ đông thường niên 2018</li></a>
-							<a href=""><li>Trả cổ tức năm 2016 bằng tiền mặt</li></a>
-							<a href=""><li>Đại hội đồng cổ đông thường niên năm 2017</li></a>
+							<?php $sql = "select id,title from news where theme = 6 ";
+							      $kq  = $control->query($sql);
+							      while ($arr = $control->fetch_arr($kq)){		
+							?>
+							<li><a a href="index.php?ts=ndt&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
+					      <?php }?>
 						</ul>
 					</div>
+					
+					<?php } 
+					else {
+						$sql = "select id,body,theme from news where id = $_GET[id]  ";
+					    $kq  = $control->query($sql);
+					    $arr = $control->fetch_arr($kq);
+						$theme_rem = $arr["theme"];
+						echo $arr["body"];
+						$id_remem = $arr["id"];
+					}
+					
+					?>
 				</div>
 			</div>
 			<div id="khacright">
-				<h2><a href="">CHUYÊN TRANG NHÀ ĐẦU TƯ</a></h2>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Tổng quan</b></a></h2>
-				<ul type="none">
-					<li><a href="">Sứ mệnh, Tầm nhìn, Giá trị cốt lõi</a></li>
-					<li><a href="">Thông điệp từ Chủ tịch</a></li>
-					<li><a href="Gioithieu.html">Giới thiệu VietinBank</a></li>
-					<li><a href="">Xếp hạng tín nhiệm</a></li>
-					<li><a href="">Giải thưởng</a></li>
-				</ul>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Tin tức</b></a></h2>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Thông tin dành cho cổ đông</b></a></h2>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Cổ phiếu CTG</b></a></h2>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Thông tin tài chính</b></a></h2>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Thông tin trái phiếu quốc tế</b></a></h2>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Quản trị doanh nghiệp</b></a></h2>
-				<h2 style="font-size: 20px; background-color: white; text-align: left; padding-left: 5px;"><a href=""><b>Tham khảo và liên hệ</b></a></h2>
-				<div id="ctg">
-					<img src="hinh/ctg.jpg">
+				
+					<img style ="min-height: 380px"src="hinh/ctg.jpg">
+			
 				</div>	
-			</div>
+			<div 	style="width: 270px;
+	                      float: right;
+	                      background-color: lightblue;
+			              min-height: 315px	
+						   " >
+	                    <?php if(isset($_GET["id"])) { ?>	<ul >
+							<?php $sql = "select id,title from news where theme = $theme_rem";
+							      $kq  = $control->query($sql);
+							      while ($arr = $control->fetch_arr($kq)){		
+							?>
+				<li style="<?php 
+			        if ($id_remem == $arr["id"])	
+				    echo "font-style:italic;";?>">
+					<a a href="index.php?ts=ndt&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
+					      <?php }?>
+						</ul>
+				<?php } ?></div>
 		</div>

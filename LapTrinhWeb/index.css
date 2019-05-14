@@ -97,7 +97,7 @@ div#menu
 #left
 {
 	width: 770px;
-	height: 930px;
+	min-height: 500px;
 	float: left;
 	background-color: lightblue;
 }

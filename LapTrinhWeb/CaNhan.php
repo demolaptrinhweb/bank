@@ -16,6 +16,7 @@
 				<?php   
 				$kq = $control->query($sql);
 				$arr = $control->fetch_arr($kq);
+				$id_remem = $arr["id"];
 			     echo $arr["body"];
 				?>
 			</div>
@@ -38,6 +39,10 @@
 	color: white;
 	min-width: 230px;
 	word-wrap: break-word;
+	<?php 
+			if ($id_remem == $arr["id"])	
+				 echo "font-style:italic;";
+	 ?>						   
 	"><a href="index.php?ts=cn&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
 					<?php }?>
 				</ul>

@@ -39,7 +39,7 @@ require ("DBconnect.php");
 	    $c = $control->row_affected();
 		if($c == 1 ) $demthanhcong++; 	
 		
-		$sql10 = "update taikhoan set sodu = sodu - $_POST[gui_amt] where taikhoanid = $_POST[taikhoanid]" ;	
+		$sql10 = "update taikhoan set sodu = sodu - $_POST[gui_amt] where id_taikhoan = $_POST[taikhoanid]" ;	
 		$d1 = $control->query($sql10);
 	    $c1 = $control->row_affected();
 		if($c1 == 1 ) $demthanhcong++; 	
@@ -117,7 +117,7 @@ else $dem = 1 ;
 						while($rowsacc = $control->fetch_arr($results_1))
 						{
 							
-							echo "<option value='$rowsacc[taikhoanid]'>$rowsacc[taikhoanid]</option>";
+							echo "<option value='$rowsacc[id_taikhoan]'>$rowsacc[taikhoanid]</option>";
 						}
 						?>
       	            </select>

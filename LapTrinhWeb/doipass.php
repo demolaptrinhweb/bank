@@ -19,7 +19,11 @@ require ("DBconnect.php");
 		 $passmoi = $control->passharsh($_POST["passmoi"]);
 		 $sql = "UPDATE khachhang SET pass = '$passmoi' where id_khachhang = $_SESSION[id_khachhang]";
 		$a = $control->query($sql);
-		if ($control->row_affected() == 1)header("Location: formchuyentien3.php?kq=dp");
+		if ($control->row_affected() == 1){
+			$gui = new guimail ($_SESSION["email"]);
+			$gui->gui1($conn,"đỗi pass ","tài khoản của bản đã được đổi pass");
+			
+			header("Location: formchuyentien3.php?kq=dp");}
 																					
 																									
 																									
@@ -34,10 +38,7 @@ require ("DBconnect.php");
 	}
 	else {
 		$passerr = "";
-		$code = taocode(4);
-		$mail = new guimail($_SESSION["email"]);
-	@$mail->gui($conn,$code);
-		echo $code;
+	
 	}
 ?>
 
@@ -72,10 +73,7 @@ require ("DBconnect.php");
       	      </tr>
 				 </tr>
 				  <tr>
-        	      <td><strong>MÃ XÁC NHẬN EMAIL </strong></td>
-        	      <td> <input type="text" name="email" id="email"></td>		
-					  <input type="hidden" name="code" value="<?php echo $code; ?>"  />
-      	      </tr>
+        	      
 				   
         	    <tr>
         	      <td colspan="2"><div align="right">

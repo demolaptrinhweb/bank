@@ -203,6 +203,16 @@ function id_vay (){
 
 mail($to,$subject,$txt,$headers);
 	  }
+	 public function gui1 ($con,$tieude,$noidung){
+		 $khach = $this->khachhangemail ;
+		  
+		  $to = $khach;
+          $subject = $tieudu;
+          $txt = $noidung;
+          $headers = "From: STB@mail.com" ;
+
+mail($to,$subject,$txt,$headers);
+	 }
  }
 ?>
 <?php 

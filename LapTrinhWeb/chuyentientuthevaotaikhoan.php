@@ -17,7 +17,7 @@ require ("DBconnect.php");
 	
 	$passerr="";
 	 $dem = 0 ;
-   $sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang]" ;				
+   $sql = "SELECT id_the FROM thenganhang where id_khachhang=$_SESSION[id_khachhang]" ;				
    $results_1 = $control->query($sql);			
    if($rowsacc = $control->fetch_arr($results_1))
 	{
@@ -49,7 +49,7 @@ require ("DBconnect.php");
 	    $c = $control->row_affected();
 		if($c == 1 ) $demthanhcong++; 	
 		
-		$sql10 = "update taikhoan set sodu = sodu + $_POST[gui_amt] where taikhoanid = $_POST[taikhoanid]" ;	
+		$sql10 = "update taikhoan set sodu = sodu + $_POST[gui_amt] where id_taikhoan = $_POST[taikhoanid]" ;	
 		$d1 = $control->query($sql10);
 	    $c1 = $control->row_affected();
 		if($c1 == 1 ) $demthanhcong++; 	
@@ -128,7 +128,7 @@ else $dem = 1 ;
 						while($rowsacc = $control->fetch_arr($results_1))
 						{
 							
-							echo "<option value='$rowsacc[taikhoanid]'>$rowsacc[taikhoanid]</option>";
+							echo "<option value='$rowsacc[id_taikhoan]'>$rowsacc[taikhoanid]</option>";
 						}
 						?>
       	            </select>
@@ -148,7 +148,7 @@ else $dem = 1 ;
        	        </tr>
       	    </table>
 <?php }
-	else  echo "khong co the ngan hang ";
+	else  echo "không có thẻ ngân hàng ";
 	
 	
 	

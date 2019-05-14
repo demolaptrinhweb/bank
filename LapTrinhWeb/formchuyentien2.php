@@ -51,7 +51,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 ?>
 		
 	<?php 
-	
+	$passerr="";
 
 	$loi = 0 ;
 	   if(isset($_POST["pay2"]))
@@ -71,7 +71,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);
 			
 		
-	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max_chuyentien"] >= $_["amt"])
+	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_["amt"])
 	{  
 		//chuyen tien 
 		$tien = new chuyentien($_POST["taikhoanid"]);
@@ -85,7 +85,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	    if ($a == 1 and $b == 1){
 			$sql4= "update khachhang set max_chuyentien = max_chuyentien - $_POST[amt] where id_khachhang = $_SESSION[id_khachhang]";
 			$control->query($sql4);
-			$_SESSION["max_chuyentien"] = $_SESSION["max_chuyentien"] - $_POST["amt"];
+			$_SESSION["max"] = $_SESSION["max"] - $_POST["amt"];
 			header("Location: formchuyentien3.php?kq=ct");}
 	}
 	else
@@ -99,7 +99,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	
     if ($i["sodu"] < $_POST["amt"]) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
 	
-		if($_SESSION["max_chuyentien"] < $_["amt"]) $passerr.="<br> <b> vượt quá số lượng chuyển tối đa trong ngày</b>";
+		if($_SESSION["max"] < $_POST["amt"]) $passerr.="<br> <b> vượt quá số lượng chuyển tối đa trong ngày</b>";
 		
 		$passerr .= "<br>vui lòng nhập lại";
 		// gan lai bien 

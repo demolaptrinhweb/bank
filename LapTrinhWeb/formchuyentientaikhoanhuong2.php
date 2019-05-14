@@ -97,8 +97,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	}
 	else
 	{
-		$err1 = "";
-		$err2 = "";
+	
 	if (!$auth) $passerr.= "<b> <br>mật khẩu chuyển khoản không đúng</b>";
 	if ($_POST["email"] != $_POST["code"])	$passerr.= "<b>  <br>mã xác nhận email không đúng</b>";
     if($_SESSION["max"] < $tongtien) $passerr.=  "<b>  <br>vượt quá số lượng chuyển tối đa trong ngày</b>";

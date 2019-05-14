@@ -1,37 +1,5 @@
-<?php
 
-@session_start();
-?>
-<?php		if(!isset($_SESSION['id_khachhang'])) {
-	header("Location: InDex.php?ts=bk");
-}?>
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-	<title>Ngân Hàng STbank</title>
-	<link rel="stylesheet" type="text/css" href="index.css">
-	<link rel="icon" type="img/ico" href="hinh/logo.ico">
-		<style>	
-	.account{border: solid;
-	border-color: blue;
-	border-width: 1px;
-	background-color: #29a0c7;
-	padding: 3px;
-	text-align: center;
-	font-weight: bolder;
-	border-radius: 50px;
-	color: white;
-	width: 290px;
-		height: 35px; }</style>
-</head>
-	
-		<body bgcolor="lightblue" >
-	<div id="khung" >
-		<?php require("Header.php") ;?>
-	 <?php require ("accmenu.php") ;
-		reuire("accheader.php");
-		require ("DBconnect.php");
+		<?php require ("DBconnect.php");
 		?>
 	<?php	if(isset($_POST["pay"]))
 {
@@ -71,10 +39,11 @@
 		
 	{   $demthanhcong=0;
 		$vay = new vaytien($_POST["taikhoanid"]);
+	    $vay->setCon($conn);
 		$a=$vay->vay($conn,$_POST["amt"],$_POST["kieuvay"]);
 		if ($a == 1)$demthanhcong++;
 	 
-	    $sql = "update taikhoan set no = $_POST[amt] +($_POST[amt]*$array_4[laixuat]) where taikhoanid = $_POST[taikhoanid] ";
+	    $sql = "update taikhoan set no = $_POST[amt] +($_POST[amt]*$array_4[laixuat]) where taikhoanid = '$_POST[taikhoanid]' ";
 	    $resu = $control->query($sql);
 	    $a = $control->row_affected();
 	    if ($a == 1)$demthanhcong++;
@@ -114,7 +83,7 @@
 	
    <?php  if ($loi < 1)
 { ?>
-	<form id="form1" name="form1" method="post" action="formvaytien2.php">     
+	<form id="form1" name="form1" method="post" action="">     
      	
               <table width="564" height="220" border="1">
                 <?php

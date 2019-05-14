@@ -15,7 +15,7 @@
 
 
 	    
-		$results = mysqli_query($conn,"SELECT * FROM taikhoan where taikhoanid= $arr[taikhoanmacdinh]");
+		$results = mysqli_query($conn,"SELECT * FROM taikhoan where id_taikhoan = $arr[taikhoanmacdinh]");
 	while($arrow = mysqli_fetch_array($results,MYSQLI_ASSOC)){
 		$ngaytao = $arrow["ngaytao"];
 		$sodu = $arrow["sodu"];

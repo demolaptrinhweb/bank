@@ -8,6 +8,10 @@ require ("DBconnect.php");
 		
 		
 	if (isset($_POST["pay"])){
+		
+		
+		
+		
 		$sql = "UPDATE khachhang SET taikhoanmacdinh = '$_POST[taikhoanid]' where id_khachhang = '$_SESSION[id_khachhang]'";
 		$a = $control->query($sql);
 		if ($control->row_affected() == 1) {
@@ -37,7 +41,7 @@ require ("DBconnect.php");
 						
 						while($rowsacc = $control->fetch_arr($results_1))
 						{
-							echo "<option value='$rowsacc[taikhoanid]'>$rowsacc[taikhoanid]</option>";
+							echo "<option value='$rowsacc[id_taikhoan]'>$rowsacc[taikhoanid]</option>";
 						}
 						?>
       	            </select>

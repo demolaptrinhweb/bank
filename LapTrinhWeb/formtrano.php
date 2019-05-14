@@ -5,7 +5,31 @@
 <?php		if(!isset($_SESSION['id_khachhang'])) {
 	header("Location: InDex.php?ts=bk");
 }?>
-
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Ngân Hàng STbank</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="icon" type="img/ico" href="hinh/logo.ico">
+		<style>	
+	.account{border: solid;
+	border-color: blue;
+	border-width: 1px;
+	background-color: #29a0c7;
+	padding: 3px;
+	text-align: center;
+	font-weight: bolder;
+	border-radius: 50px;
+	color: white;
+	width: 290px;
+		height: 35px; }</style>
+</head>
+	<body bgcolor="lightblue" >
+	<div id="khung" >
+		<?php require("Header.php") ;?>
+	 <?php require ("accmenu.php") ;
+		require("accheader.php");?>
 	 <?php 
 		require ("DBconnect.php");
 		?>
@@ -16,12 +40,12 @@
 	$sql="SELECT * FROM vaytien where ";
 		
       if (isset($_GET["taikhoanvay"]))		
-	       $sql .= "taikhoanid='$_GET[taikhoanvay]'" ;	
+	       $sql .= " taikhoanid = '$_GET[taikhoanvay]' " ;	
 		
    else {
    if (!isset($_POST["taikhoanvay"]))		
-		$sql .="taikhoanid='$_SESSION[taikhoan_id]'"	;
-	else $sql .= "taikhoanid='$_POST[taikhoanvay]'" ;	
+		$sql .=" taikhoanid = '$_SESSION[taikhoanid]'"	;
+	else $sql .= " taikhoanid = '$_POST[taikhoanvay]'" ;	
    }
 	$kq = $control->query($sql);
 	$arr = $control->fetch_arr($kq);
@@ -40,10 +64,15 @@
 		   $arrpayment1 = mysqli_fetch_assoc($results_3);	
    //chuyen pass nguoi dung nhap sang harsh-password
 	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);	
+		   
 	$sql="select no from taikhoan where taikhoanid ='$_POST[taikhoanvay]'";
     $kq2 = $control->query($sql);
 	$arr2 = $control->fetch_arr($kq2);	   
-	if($auth and $_POST["trpass"] == $_POST["conftrpass"] and $_POST["payamt"] <= $arr2["no"] and $_POST["payamt"] > 0 )
+	
+	$sql = "select sodu from taikhoan where taikhoanid='$_POST[taikhoanid]'"	  ;
+	$kq3 = $control->query($sql);
+	$arr3 = $control->fetch_arr($kq3);	   
+	if($auth and $_POST["trpass"] == $_POST["conftrpass"] and $_POST["payamt"] <= $arr2["no"] and $_POST["payamt"] > 0 and $arr3["sodu"] >= $_POST["payamt"] )
 		
 		
 		
@@ -78,7 +107,8 @@
 	if (!$auth) $passerr .= "<b> <br>mật khẩu chuyển khoản không đúng</b>";
 	if ($_POST["trpass"] != $_POST["conftrpass"])	$passerr .= "<b> <br> mật khẩu xác nhận không đúng</b>";
 		
-    if ($_POST["payamt"] > $arr2["no"] or $_POST["payamt"] <= 0) $passerr .="<b><br> số tiền trả phải bé hơn hoặc bằng số nợ và lớn hơn 0";		
+    if ($_POST["payamt"] > $arr2["no"] or $_POST["payamt"] <= 0) $passerr .="<b><br> số tiền trả phải bé hơn hoặc bằng số nợ và lớn hơn 0 </b>";		
+	if ($arr3["sodu"] < $_POST["payamt"] ) $passerr .= "<b><br>số tiền trong tài khoản không đủ </b>";	
 	$passerr .= " <br>vui lòng nhập lại";
     
 		
@@ -92,16 +122,16 @@
 		
 		
 ?>
-	<form id="form2" name="form2" method="get" action="acctrangchu.php">
+	<form id="form2" name="form2" method="get" action="">
 	  <table>
-		  <input type="hidden" name="ts" value="ttn">
+		  <input type="hidden" name="ts" value="">
 			<tr>
         	      <td><strong>CHỌN TÀI KHOẢN  NỢ  </strong></td>
         	   <td><label>
         	       <select name="taikhoanvay" id="taikhoanvay"  onchange="form2.submit()" > 
 					        <option value="<?php echo $_SESSION["taikhoan_id"] ?>">tài khoản mặc định &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
 				   <?php  
-					    $sql = "SELECT * FROM taikhoan where id_khachhang=$_SESSION[id_khachhang] and no > 0" ;				
+					    $sql = "SELECT * FROM taikhoan where id_khachhang=$_SESSION[id_khachhang] and no > 0";				
                         $results_1 = $control->query($sql);			
                         
 					  while ($rowsacc = $control->fetch_arr($results_1)){
@@ -128,7 +158,7 @@
 	</form>
 		
    
-	<form id="form1" name="form1" method="post" action="formtrano.php">     
+	<form id="form1" name="form1" method="post" action="">     
      	<h2>THÔNG TIN NỢ</h2>
               <table width="564" height="220" border="1">
                 <?php
@@ -198,4 +228,6 @@
                   </div></td>
                 </tr>
               </table>
-		
+		</div>
+</body>
+</html>

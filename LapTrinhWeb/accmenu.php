@@ -13,6 +13,7 @@
 					<li> <a href="acctrangchu.php?ts=dp">đổi pass </a></li>
 					<li> <a href="acctrangchu.php?ts=md">cài đặt tài khoản mặc định </a></li>
 					<li>  <a href="acctrangchu.php?ts=tkh">thêm tài khoản hưởng</a></li>
+					<li><a href="acctrangchu.php?ts=xtkh">xoá tài khoản hưởng</a></li>	
 					</ul>	
 			   </div>
 			
@@ -22,7 +23,7 @@
 			       <ul>
 					<li> <a href="acctrangchu.php?ts=xn">xem nợ</a></li>
 					<li><a href="acctrangchu.php?ts=vt">vay</a> </li>
-					 <li> <a href="acctrangchu.php?ts=ttn">trả nợ</a></li>  
+					 <li> <a href="formtrano.php">trả nợ</a></li>  
 					</ul>
 			</div>	
 			

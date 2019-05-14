@@ -217,7 +217,7 @@ function taocode($length) {
 }
 ?>
 <?php 
- class vaytien  {
+ class vaytien extends control {
        private $khachhangid ;
 		public function setid($id){
 			$this->taikhoanid = $id ;
@@ -247,7 +247,8 @@ function taocode($length) {
 			    $kq = $this->query($sql);
 			}
 		  
-          $sql2 ="INSERT INTO vaytien VALUES('',$b,$tienvay,$c,now(),$khach)";
+          $sql2 ="INSERT INTO vaytien VALUES('','$id',$b,$tienvay,$c,now(),'$khach')";
+		  
           if (!mysqli_query($con,$sql1))
 				  {
 				  die('Error: ' . mysqli_error($con));

@@ -73,6 +73,8 @@
 						  break ;
 					  case "ttn" :require("formtrano.php");
 						  break;
+					  case "xtkh" : require("xoataikhoanhuong.php")	  ;
+						  break ;
 				  }
 		 else require("soluottaikhoan.php");
 		?>

@@ -31,7 +31,7 @@ class control {
 	
 $hostname = 'localhost:3306';
 $username = 'root';
-$password = '';
+$password = '19990604';
 $dbname = "test2";
 $conn = mysqli_connect($hostname, $username, $password,$dbname);
 if (!$conn) {

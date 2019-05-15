@@ -7,7 +7,7 @@
 			<div id="khacleft">
 				
 				<div id="khacleft1">
-					<img src="hinh/Doanhnghiep.jpg">
+					<img src="hinh/doanhnghiep.jpg">
 				</div>
 				<?php   
 				$kq = $control->query($sql);

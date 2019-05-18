@@ -9,9 +9,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-	<title>Ngân Hàng STbank</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<style>	
 	.account{border: solid;
 	border-color: blue;

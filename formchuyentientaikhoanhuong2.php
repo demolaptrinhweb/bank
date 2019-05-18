@@ -81,7 +81,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 				  echo $nguoinhan_1 ;
 				 $a= @$tien->chuyen($nguoinhan_1,$_POST["amt"],$_POST["noidung"]);
 				 if ($a == 1) $demchuyentienthanhcong++;	
-				 if ($_POST["nguoichiuphi"] == 1)$b = @			$tien->trutiennguoichuyen();
+				 if ($_POST["nguoichiuphi"] == 1)$b = @$tien->trutiennguoichuyen();
 	             else $b = $tien->trutiennguoinhan($nguoinhan_1);   
 	             if (  $b == 1) $demtruphi++;
 				  

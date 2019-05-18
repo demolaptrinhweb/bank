@@ -5,6 +5,7 @@
 	<title>Ngân Hàng STbank</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
+	
 </head>
 	<div id="khung">
 	   <?php require("Header.php") 

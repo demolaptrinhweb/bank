@@ -1,9 +1,10 @@
-<?php require("DBconnect.php"); ?>
+<?php require_once("DBconnect.php"); ?>
 <div id="center">
 			<div id="left" style="height: 700px;">
 				<div id="left_1">
 					
-					<iframe src="slide.html" style=" width: 770px;height: 400px; margin: auto; border: 0;" scrolling="no"></iframe>
+					<iframe src="slide.php" style=" width: 770px;height: 400px; margin: auto; border: 0;" scrolling="no">
+					</iframe>
 				</div>
 				<div id="left_2">
 					<div class="left_22">

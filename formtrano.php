@@ -92,7 +92,14 @@
 		$sql ="insert into trano values('',now(),$_POST[payamt],'$_POST[taikhoanvay]','$_POST[taikhoanid]')";
 		$control->query($sql);
 	    if ($a == 1)$demthanhcong++;
-	 
+	    
+		 $sql = "select no from taikhoan where taikhoanid = '$_POST[taikhoanvay]'";
+		 $resu = $control->query($sql);
+		 $arr = $control->fetch_arr($resu);
+	     
+		 if ($arr["no"] == 0) {
+	     $sql = "delete from vaytien where taikhoanid = '$_POST[taikhoanvay]'";
+		 $resu = $control->query($sql);}
 	    echo $a;
 	    if ($demthanhcong == 2) header("Location: formchuyentien3.php?kq=ct");
 	}

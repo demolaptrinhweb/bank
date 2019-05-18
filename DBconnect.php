@@ -293,7 +293,7 @@ class themtaikhoanhuong extends class_coban{
 		$a = new control ($con);
 		$a->setCon($con);
 		$idd = $this->getid();
-		$sql = "INSERT INTO taikhoanhuong VALUES('','$id_huong',$idd)";
+		$sql = "INSERT INTO taikhoanhuong VALUES('','$id_huong','$idd')";
 		$b = $a->query($sql);
 		if ($b)  header("Location: formchuyentien3.php");
 	}

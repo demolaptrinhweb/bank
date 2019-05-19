@@ -1,4 +1,4 @@
-<?php
+0.<?php
     include "validate_admin.php";
     include "DBconnect.php";
     include "user_navbar.php";

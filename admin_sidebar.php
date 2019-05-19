@@ -13,6 +13,8 @@
         <a href="customer_add.php">Thêm khách hàng</a>
         <a href="manage_customers.php">Quản lý khách hàng</a>
         <a href="#nx">Danh sách nợ xấu</a>
+		<a href="add_kieuvay.php"> thêm kiểu vay</a>
+		<a href="manage_kieuvay.php"> quản lý kiểu vay</a>
         <a id="label">Quản lý admin</a>
         <a href="post_news.php">Đăng báo</a>
     </div>

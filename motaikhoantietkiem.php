@@ -13,6 +13,9 @@
 	<title>Ngân Hàng STbank</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	
 	
 	<style>.account11{
 		border: solid;
@@ -26,7 +29,11 @@
 	color: white;
 	width: 290px;
 	min-height: 35px;
-	word-wrap: break-word;}</style>
+	word-wrap: break-word;
+		}
+		.account11 a{
+			color: aqua;
+		}
 </head>
 	
 <body bgcolor="lightblue" >

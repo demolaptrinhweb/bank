@@ -34,6 +34,7 @@
 		.account11 a{
 			color: aqua;
 		}
+	</style>
 </head>
 	
 <body bgcolor="lightblue" >

@@ -24,7 +24,7 @@
 					  case "tt" : include("TinTuc.php");break;	
 					  case "bk" : include("internetbanking.php");break;	  
 				  }				  
-				else  include("MainIndex.php")?>
+				else  include("Main_index.php")?>
 		
 	
 	

@@ -6,7 +6,7 @@
 require ("DBconnect.php");
 	    
 		
-		
+		$passerr = "";
 	if (isset($_POST["pay"])){
 		$passerr = "";
 		$sql = "select * from khachhang  where id_khachhang =$_SESSION[id_khachhang]";
@@ -30,10 +30,10 @@ require ("DBconnect.php");
 		 }
 	 else {
 		 
-		 $code = $_POST["code"];
-		 if (!$auth) $passerr+="mật khẩu cũ sai"."<br>";
-		 if ($_POST["email"] != $_POST["code"]) $passerr+="mã xác nhận email sai"."<br>";
-		 if ($_POST["passmoi"]!=$_POST["passlai"]) $passer+="nhập lại mật khẩu không trùng";
+		 
+		  if (!$auth)$passerr.="mật khẩu cũ sai"."<br>";
+		
+		 if ($_POST["passmoi"]!=$_POST["passlai"]) $passerr.="nhập lại mật khẩu không trùng";
 	 }	
 	}
 	else {

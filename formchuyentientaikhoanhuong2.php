@@ -9,9 +9,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-	<title>Ngân Hàng STbank</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<style>	
 	.account{border: solid;
 	border-color: blue;
@@ -23,7 +24,10 @@
 	border-radius: 50px;
 	color: white;
 	width: 290px;
-		height: 35px; }</style>
+		height: 35px; }
+	.account11 a{
+			color: aqua;
+		}</style>
 </head>
 	<body bgcolor="lightblue" >
 	<div id="khung" >
@@ -81,7 +85,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 				  echo $nguoinhan_1 ;
 				 $a= @$tien->chuyen($nguoinhan_1,$_POST["amt"],$_POST["noidung"]);
 				 if ($a == 1) $demchuyentienthanhcong++;	
-				 if ($_POST["nguoichiuphi"] == 1)$b = @			$tien->trutiennguoichuyen();
+				 if ($_POST["nguoichiuphi"] == 1)$b = @$tien->trutiennguoichuyen();
 	             else $b = $tien->trutiennguoinhan($nguoinhan_1);   
 	             if (  $b == 1) $demtruphi++;
 				  

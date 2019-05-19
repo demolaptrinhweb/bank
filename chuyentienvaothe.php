@@ -23,7 +23,7 @@ require ("DBconnect.php");
 		
 		
 		
-		$sql11 = "select * from thenganhang where thenganhangid = $_POST[theid]" ;
+		$sql11 = "select * from thenganhang where thenganhangid = '$_POST[theid]' and trangthai = 2" ;
 		$k = @$control->query($sql11);
 		$l = @$control->fetch_arr($k);
 		
@@ -34,7 +34,7 @@ require ("DBconnect.php");
 		if ($i["sodu"] >= $_POST["gui_amt"] and $_POST["gui_amt"] != 0 ){
 		$demthanhcong= 0;
 			
-		$sql1 = "update thenganhang set sodu = sodu + $_POST[gui_amt] where thenganhangid = $_POST[theid]" ;
+		$sql1 = "update thenganhang set sodu = sodu + $_POST[gui_amt] where thenganhangid = '$_POST[theid]'" ;
 		$d = $control->query($sql1);
 	    $c = $control->row_affected();
 		if($c == 1 ) $demthanhcong++; 	
@@ -57,7 +57,7 @@ require ("DBconnect.php");
 		else  {
 			
 			if (!$i)$passerr .= " không có tài khoản ;";
-			if (!$l)$passerr .= " không có thẻ ;";
+			if (!$l)$passerr .= " không có thẻ hoặc thẻ không hợp lệ;";
 			
 			  }
 		
@@ -89,7 +89,7 @@ else $dem = 1 ;
         	        <select name="theid" id="theid"   >
                              <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
         	 			<?php
-						$sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang]" ;
+						$sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang] and trangthai = 2" ;
 						
 						$results_1 = $control->query($sql);
 						

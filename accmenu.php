@@ -6,7 +6,7 @@
 			
 			    <div class = "account11">
 					<b> TÀI KHOẢN</b>
-					<ul>
+					<ul style="color: aliceblue">
 					<li><a href="acctrangchu.php?ts=dstk"> danh sách tài khoản </li>
 					<li> <a href="acctrangchu.php?ts=ctkh">chi tiết khách hàng</a></li>
 					<li><a href="acctrangchu.php?ts=ctgd">chi tiết giao dịch</a> </li>

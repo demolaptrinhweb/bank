@@ -9,9 +9,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-	<title>Ngân Hàng STbank</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<style>	
 	.account{border: solid;
 	border-color: blue;
@@ -23,7 +24,10 @@
 	border-radius: 50px;
 	color: white;
 	width: 290px;
-		height: 35px; }</style>
+		height: 35px; }
+	.account11 a{
+			color: aqua;
+		}</style>
 </head>
 	<body bgcolor="lightblue" >
 	<div id="khung" >
@@ -92,7 +96,14 @@
 		$sql ="insert into trano values('',now(),$_POST[payamt],'$_POST[taikhoanvay]','$_POST[taikhoanid]')";
 		$control->query($sql);
 	    if ($a == 1)$demthanhcong++;
-	 
+	    
+		 $sql = "select no from taikhoan where taikhoanid = '$_POST[taikhoanvay]'";
+		 $resu = $control->query($sql);
+		 $arr = $control->fetch_arr($resu);
+	     
+		 if ($arr["no"] == 0) {
+	     $sql = "delete from vaytien where taikhoanid = '$_POST[taikhoanvay]'";
+		 $resu = $control->query($sql);}
 	    echo $a;
 	    if ($demthanhcong == 2) header("Location: formchuyentien3.php?kq=ct");
 	}

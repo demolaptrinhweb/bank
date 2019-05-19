@@ -25,7 +25,7 @@
 <body bgcolor="lightblue" >
 	<div id="khung" >
 <?php		if(!isset($_SESSION['id_khachhang'])) {
-	header("Location: InDex.php?ts=bk");
+	header("Location: index.php?ts=bk");
 }?>	
 	<?php require("Header.php") ;?>
 	 <?php require ("accmenu.php") ;?>

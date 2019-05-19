@@ -88,7 +88,9 @@
 		 else require("soluottaikhoan.php");
 		?>
 		
- <?php require("Footer.php") ;?>
+<?php require("Footer.php") ;?>
 	</div>
+	
+ 
 </body>
 </html>

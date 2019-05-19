@@ -4,21 +4,19 @@
     include "user_navbar.php";
     include "admin_sidebar.php";
     include "session_hethan.php";
-$truyendulieu = "";
-    if (isset($_GET['search'])) {
+
+    if (isset($_POST['submit'])) {
         $back_button = TRUE;
-        $search = $_GET['search'];
-        $by = $_GET['by'];
-          
+        $search = $_POST['search'];
+        $by = $_POST['by'];
+
         if ($by == "name") {
             $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
             WHERE kieuvay LIKE '%".$search."%'";
-			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
         }
         else {
             $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
             WHERE id_kieuvay LIKE '%".$search."%'";
-			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
         }
     }
     else {
@@ -41,7 +39,7 @@ $truyendulieu = "";
         <div class="search-bar" id="the-search-bar">
             <div class="flex-item-search-bar" id="fi-search-bar">
 
-                <form class="search_form" action="" method="get">
+                <form class="search_form" action="" method="post">
                     <div class="flex-item-search">
                         <input name="search" size="30" type="text" placeholder="tìm kiếm kiểu vay" />
                     </div>
@@ -66,36 +64,6 @@ $truyendulieu = "";
         </div>
     </div>
  <div class="flex-container">
-	  <?php 
-	
-	
-	
-  $kq = $control->query($sql0);
-  $tsp = @mysqli_num_rows($kq);
-  $sd = 5 ;
-  $sn = 5 ;
-  
-  $tst = ceil($tsp/$sd);
-  
-  $tsn = ceil($tst/$sn);
-  
- 
-  if (isset($_GET["page"])){
-	  $page = $_GET["page"] ;
-	  
-	  }
-	  else {
-		  $page = 1 ;}
-		  
-		  
-	$vitri = ($page - 1) * $sd ;
-	
-	$sql0.= " limit $vitri , $sd ";
-				  
-	
-  ?>  
-				
-	 
         <?php
             $result = $conn->query($sql0);
 
@@ -126,45 +94,8 @@ $truyendulieu = "";
                         </div>
                     </div>
                 </div>	
-	 
-	 
-	 
-	  <?php }?>
-								  
-	<?php 
-  
-  if ($page != 1 and $page != 2) {
-  $dau = $page-2 ;
-   
-  }
-  else $dau = 1;
-	$cuoi = $page + 2; 
-  if ($cuoi > $tst) $cuoi = $tst ;
-  
-  
-  
-  ?>
-  <p align="center"> trang : <?php  if ($page != 1  ){
-	  ?>
-      <a href="manage_kieuvay.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
-      
-	  <?php 
-  }
-  
-  for($i=$dau;$i<=$cuoi;$i++){
-	     if ($page == $i) echo " <b> <i> $i </i> </b> &nbsp;";
-		 else {
-			 ?>
-	             
-	       <a href="manage_kieuvay.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
-            
-     <?php }
-  }
-   if ($page != $tsn ) {?> <a href="manage_kieuvay.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
-   }
-  ?></p>
-				
-           <?php }  else {  ?>
+	  <?php }
+            } else {  ?>
                 <p id="none"> No results found :(</p>
             <?php }
             if ($back_button) { ?>

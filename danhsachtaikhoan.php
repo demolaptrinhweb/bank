@@ -61,9 +61,18 @@
       	            </select>
       	        </label></td>
       	      </tr>
-				 
+				<tr>
+        	      <td><strong> SỐ TIỀN </strong></td>
+        	   <td><label>
+        	        <select name="sotien" id="sotien" onchange="form1.submit()"  >
+                             <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
+        	 			     <option value="1" <?php if (isset($_GET["sotien"]) and $_GET["sotien"] != "" and $_GET["sotien"] == 1) echo "selected ='selected'";?>> giảm dần </option>
+						    <option value="2" <?php if (isset($_GET["sotien"]) and $_GET["sotien"] != "" and $_GET["sotien"] == 2) echo "selected ='selected'";?>> tăng dần </option>
+      	            </select>
+      	        </label></td>
+      	      </tr> 
 	</table>
-					
+</form>				
 <div align="center" >
 	
      		 <h2>&nbsp;CHI TIẾT TÀI KHOẢN</h2>
@@ -101,6 +110,17 @@
 				 }
 				 
 				 
+				  if (isset($_GET["sotien"]) and $_GET["sotien"] != "") {
+					 if ($_GET["sotien"] == 1) {
+						 $sql .=  " order by sodu desc";
+					 $truyendulieu .= "&sotien=$_GET[sotien]";
+					 }
+					 if ($_GET["sotien"] == 2) {
+						 $sql .=  " order by sodu ASC";
+					 $truyendulieu .= "&sotien=$_GET[sotien]";
+					 }
+				 }
+				 
 				 
 				 ?> 
 				 
@@ -117,12 +137,8 @@
   
   $tsn = ceil($tst/$sn);
   
-  if (isset($_GET["gr"])){
-	  $gr = $_GET["gr"];
-	  $page = ($gr  - 1) * $sn + 1 ;
-	  
-	  }
-  else if (isset($_GET["page"])){
+
+  if (isset($_GET["page"])){
 	  $page = $_GET["page"] ;
 	  $gr =  ceil ($page / $sn);
 	  }

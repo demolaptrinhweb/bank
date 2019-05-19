@@ -32,7 +32,7 @@ require ("DBconnect.php");
 		
 		
 		
-		$sql12 = "select * from thenganhang where thenganhangid = $_POST[theid]";
+		$sql12 = "select * from thenganhang where thenganhangid = '$_POST[theid]' and trangthai = 2";
 		$k = $control->query($sql12);
 		$l = $control->fetch_arr($k);
 		
@@ -67,8 +67,8 @@ require ("DBconnect.php");
 		
 		else  {
 			
-			if (!$i)$passerr .= " không có tài khoản ;";
-			if (!$l)$passerr .= " không có thẻ ;";
+			 if (!$i)$passerr .= " không có tài khoản hoặc tài khoản không hợp lệ;";
+			if (!$l)$passerr .= " không có thẻ hoặc thẻ không hợp lệ";
 			
 			  }
 		

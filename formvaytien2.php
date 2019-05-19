@@ -24,7 +24,10 @@
 	border-radius: 50px;
 	color: white;
 	width: 290px;
-		height: 35px; }</style>
+		height: 35px; }
+	.account11 a{
+			color: aqua;
+		}</style>
 </head>
 	
 		<body bgcolor="lightblue" >

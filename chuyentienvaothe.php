@@ -23,7 +23,7 @@ require ("DBconnect.php");
 		
 		
 		
-		$sql11 = "select * from thenganhang where thenganhangid = $_POST[theid]" ;
+		$sql11 = "select * from thenganhang where thenganhangid = '$_POST[theid]' and trangthai == 2" ;
 		$k = @$control->query($sql11);
 		$l = @$control->fetch_arr($k);
 		
@@ -57,7 +57,7 @@ require ("DBconnect.php");
 		else  {
 			
 			if (!$i)$passerr .= " không có tài khoản ;";
-			if (!$l)$passerr .= " không có thẻ ;";
+			if (!$l)$passerr .= " không có thẻ hoặc thẻ không hợp lệ;";
 			
 			  }
 		

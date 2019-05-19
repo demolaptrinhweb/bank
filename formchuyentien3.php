@@ -21,7 +21,10 @@
 	color: white;
 	width: 290px;
 	min-height: 35px;
-	word-wrap: break-word;}</style>
+	word-wrap: break-word;}
+	.account11 a{
+			color: aqua;
+		}</style>
 </head>
 	
 <body bgcolor="lightblue" >

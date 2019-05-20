@@ -7,7 +7,7 @@ t<?php
 }?>
 <?php 
 require ("DBconnect.php");
-	
+	require_once("class_vs_function.php");
 	$passerr="";
 		
 	if (isset($_POST["pay"])){

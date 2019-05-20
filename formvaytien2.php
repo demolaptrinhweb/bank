@@ -36,6 +36,7 @@
 	 <?php require ("accmenu.php") ;
 		require("accheader.php");
 		require ("DBconnect.php");
+		require_once("class_vs_function.php");
 		?>
 	<?php	if(isset($_POST["pay"]))
 {

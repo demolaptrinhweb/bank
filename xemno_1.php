@@ -10,7 +10,7 @@
 
 
 include("DBconnect.php");
-
+require_once("class_vs_function.php");
 $sql = "select * from taikhoan where id_khachhang = $_SESSION[id_khachhang] and no > 0";
 $sql0="";
 

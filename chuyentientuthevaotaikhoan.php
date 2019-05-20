@@ -14,7 +14,7 @@
 	
 <?php 
 require ("DBconnect.php");
-	
+	require_once("class_vs_function.php");
 	$passerr="";
 	 $dem = 0 ;
    $sql = "SELECT id_the FROM thenganhang where id_khachhang=$_SESSION[id_khachhang]" ;				

@@ -2,7 +2,9 @@
 <?php		if(!isset($_SESSION['id_khachhang'])) {
 	header("Location: index.php?ts=bk");
 }?>	
-<?php require("DBconnect.php") ;?>
+<?php require("DBconnect.php") ;
+      require_once("class_vs_function.php");
+?>
 	
 
 <?php 

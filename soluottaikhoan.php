@@ -6,7 +6,9 @@
 	header("Location: index.php?ts=bk");
 }?>
 
-	<?php require("DBconnect.php") ;?>
+	<?php require("DBconnect.php") ;
+          require_once("class_vs_function.php"); 
+?>
 	
 	<?php 
           $sql = "select * from khachhang where id_khachhang = $_SESSION[id_khachhang]" ;

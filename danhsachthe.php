@@ -2,7 +2,8 @@
 <?php		if(!isset($_SESSION['id_khachhang'])) {
 	header("Location: index.php?ts=bk");
 }?>
-	<?php require("DBconnect.php") ?>
+	<?php require("DBconnect.php");
+require_once("class_vs_function.php");?>
 	<?php 
 	    $sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang]";
 		$results = $control->query($sql);

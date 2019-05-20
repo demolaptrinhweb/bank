@@ -2,6 +2,7 @@
 <?php @session_start(); ?>
 <?php		if(!isset($_SESSION['id_khachhang'])) {
 	header("Location: InDex.php?ts=bk");
+	require_once("class_vs_function.php");
 }?>
 <?php require("DBconnect.php") ;?>
 	

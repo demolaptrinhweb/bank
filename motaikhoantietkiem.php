@@ -43,7 +43,7 @@
 	 <?php require ("accmenu.php") ;?>
 	<?php 
 require ("DBconnect.php");	
-	
+require_once("class_vs_function.php");	
 ?>
 <?php  
 $passerr="";

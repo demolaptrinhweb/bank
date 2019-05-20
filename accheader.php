@@ -1,5 +1,5 @@
 <?php  @session_start();?>
-<div>
+<div style="background: #BFBFBF">
 khách hàng : <strong> <?php echo $_SESSION["ho"]." ".$_SESSION["ten"] ;?></strong> 
 <div class="box">
     <a href="logout.php">

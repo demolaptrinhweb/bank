@@ -7,6 +7,7 @@
 }?>
 <?php 
 require ("DBconnect.php");
+require_once("class_vs_function.php");
 	$passerr="";
 	 $dem = 0 ;
    if(isset($_POST["taikhoan"])  and $_POST["taikhoan"] != "") $taikhoanid = $_POST["taikhoan"];

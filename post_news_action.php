@@ -1,6 +1,6 @@
 <?php
     include "validate_admin.php";
-    include "DBconnect.php"
+    include "DBconnect.php";
     include "user_navbar.php";
     include "admin_sidebar.php";
     include "session_hethan.php";
@@ -18,24 +18,25 @@
     <div class="flex-container">
         <div class="flex-item">
             <?php
-            $headline = mysqli_real_escape_string($conn, $_POST["headline"]);
-            $news_details = mysqli_real_escape_string($conn, $_POST["news_details"]);
+            $tt = mysqli_real_escape_string($conn, $_POST["tt"]);
+            $nd = mysqli_real_escape_string($conn, $_POST["nd"]);
+            $tm = mysqli_real_escape_string($conn, $_POST["tm"]);
+            $url = mysqli_real_escape_string($conn, $_POST["url"]);
+           
+            $sql0 = "INSERT INTO news 
+            VALUES('',$tm,'$tt',NOW(),'$url','$nd')";
 
-            $sql0 = "INSERT INTO news (title, created)
-            VALUES('$headline', NOW())";
-
-            $sql1 = "INSERT INTO news_body (body)
-            VALUES('$news_details')"; ?>
+            ?>
 
             <?php
-            if (($conn->query($sql0) === TRUE) && ($conn->query($sql1) === TRUE)) { ?>
+            if (($control->query($sql0) === TRUE)) { ?>
                 <p id="info"><?php echo "Đăng báo thành công !\n"; ?></p>
             <?php
             } else { ?>
                 <p id="info"><?php
                 echo "Server Error !<br>";
-                echo "Error: " . $sql0 . "<br>" . $conn->error . "<br>";
-                echo "Error: " . $sql1 . "<br>" . $conn->error . "<br>"; ?></p>
+                echo "Error: " . $sql0 . "<br>" . "<br>";
+                 ?></p>
             <?php
             }
 

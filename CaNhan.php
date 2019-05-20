@@ -11,7 +11,12 @@
 			<div id="khacleft">
 				
 				<div id="khacleft1">
-					<img src="hinh/canhan.jpg">
+					<?php $sql1 = "select * from news where theme = 9 " ; 
+					   $kq1 = $control->query($sql1);
+				     $arr1 = $control->fetch_arr($kq1);
+					?>
+					
+					<img src="<?php echo $arr1["url_hinh"]?>">
 				</div>
 				<?php   
 				$kq = $control->query($sql);
@@ -48,7 +53,12 @@
 				</ul>
 				</div>	
 				<div id="right_2">
-					<img src="hinh/lienhe.jpg">
+					<?php  $sql1 = "select url_hinh from news where theme = 10 " ;
+					       $kq1 = $control->query($sql1);
+				           $arr1 = $control->fetch_arr($kq1);
+					       
+					?>
+					<img src="<?php echo $arr1["url_hinh"]; ?>">
 				</div>
 				<div id="right_4">
 					

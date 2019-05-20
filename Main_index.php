@@ -48,7 +48,11 @@
 			<div id="right" style="height: 700px">
 				
 				<div id="right_2">
-					<img src="hinh/lienhe.jpg">
+					<?php  $sql1 = "select url_hinh from news where theme = 10 " ;
+					       $kq1 = $control->query($sql1);
+				           $arr1 = $control->fetch_arr($kq1);
+					?>
+					<img src="<?php echo $arr1["url_hinh"]; ?>">
 				</div>
 				<div id="right_3">
 					<div>

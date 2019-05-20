@@ -16,7 +16,8 @@
 		<a href="add_kieuvay.php"> thêm kiểu vay</a>
 		<a href="manage_kieuvay.php"> quản lý kiểu vay</a>
         <a id="label">Quản lý admin</a>
-        <a href="post_news.php">Đăng báo</a>
+        <a href="post_news.php">Đăng bài</a>
+		<a href="post_news_manager.php">quản lí bài</a>
     </div>
 
 <script>

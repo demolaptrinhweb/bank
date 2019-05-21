@@ -126,7 +126,7 @@ else $dem = 1 ;
 				  <tr>
 				  <td><strong> SỐ TIỀN CHUYỂN </strong></td>
 					  <td><label>
-						  <input type="number" name="gui_amt" id="gui_amt">
+						  <input type="number" name="gui_amt" id="gui_amt" required>
 						  </label>
 					  </td>
 				  </tr>

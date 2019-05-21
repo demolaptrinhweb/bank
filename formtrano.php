@@ -222,15 +222,15 @@
 				  
 				   <tr>
                   <td><strong>SỐ TIỀN TRẢ</strong></td>
-                  <td><input name="payamt" type="number" id="payamt" size="35" /></td>
+                  <td><input name="payamt" type="number" id="payamt" size="35" step="any" required/></td>
                 </tr>
                 <tr>
                   <td><strong>NHẬP MẬT KHẨU CHUYỂN KHOẢN</strong></td>
-                  <td><input name="trpass" type="password" id="trpass" size="35" /></td>
+                  <td><input name="trpass" type="password" id="trpass" size="35" required/></td>
                 </tr>
                 <tr>
                   <td><strong>XÁC NHẬN MẬT KHẨU </strong></td>
-                  <td><input name="conftrpass" type="password" id="conftrpass" size="35" /></td>
+                  <td><input name="conftrpass" type="password" id="conftrpass" size="35" required/></td>
                 </tr>
 				  
                 <tr>

@@ -59,17 +59,17 @@ require ("DBconnect.php");
 				?>
         	    <tr>
         	      <td><strong>MẬT KHẨU CŨ </strong></td>
-        	      <td> <input type="password" name="pass" id="pass"></td>			
+        	      <td> <input type="password" name="pass" id="pass" required ></td>			
       	      </tr>
 				  <tr>
         	      <td><strong>MẬT KHẨU MỚI </strong></td>
-        	      <td> <input type="password" name="passmoi" id="passmoi"></td>
+        	      <td> <input type="password" name="passmoi" id="passmoi" required ></td>
 				  
 				
       	      </tr>
 				  <tr>
         	      <td><strong>NHẬP LẠI MẬT KHẨU MỚI </strong></td>
-        	      <td> <input type="password" name="passlai" id="passlai"></td>		
+        	      <td> <input type="password" name="passlai" id="passlai" required ></td>		
       	      </tr>
 				 </tr>
 				  <tr>

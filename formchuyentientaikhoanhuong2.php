@@ -195,15 +195,15 @@ $taikhoanchuyen = $_POST["taikhoanid"];
                 </tr>
                 <tr>
                   <td><strong>NHẬP MẬT KHẨU CHUYỂN KHOẢN</strong></td>
-                  <td><input name="trpass" type="password" id="trpass" size="35" /></td>
+                  <td><input name="trpass" type="password" id="trpass" size="35" required /></td>
                 </tr>
                 <tr>
                   <td><strong>XÁC NHẬN MẬT KHẨU </strong></td>
-                  <td><input name="conftrpass" type="password" id="conftrpass" size="35" /></td>
+                  <td><input name="conftrpass" type="password" id="conftrpass" size="35" required /></td>
                 </tr>
 				  <tr>
                   <td><strong>XÁC NHẬN EMAIL </strong></td>
-                  <td><input name="email" type="test" id="email" size="35" /></td>
+                  <td><input name="email" type="test" id="email" size="35" required /></td>
                 </tr>
                 <tr>
                   <td colspan="2"><div align="right">

@@ -55,7 +55,7 @@ require ("DBconnect.php");
         	    <tr>
         	      <td><strong>TÀI KHOẢN CẦN THÊM </strong></td>
         	      <td><label>
-        	        <input type="text" name="id_them" id="id_them" size="25" />
+        	        <input type="text" name="id_them" id="id_them" size="25" required/>
       	        </label></td>
       	      </tr>
         	    <tr>

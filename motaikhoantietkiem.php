@@ -152,7 +152,7 @@ $passerr="";
 				  <tr>
 				  <td><strong> SỐ TIỀN GỬI</strong></td>
 					  <td><label>
-						  <input type="number" name="gui_amt" id="gui_amt">
+						  <input type="number" name="gui_amt" id="gui_amt" required >
 						  </label>
 					  </td>
 				  </tr>

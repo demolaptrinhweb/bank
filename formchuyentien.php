@@ -18,14 +18,14 @@ require ("DBconnect.php");
         	    <tr>
         	      <td><strong>MÃ TÀI KHOẢN NHẬN</strong></td>
         	      <td><label>
-        	       <input type="text" name="payto" id="payto" size="25">
+        	       <input type="text" name="payto" id="payto" size="25" required >
       	            </select>
       	        </label></td>
       	      </tr>
         	    <tr>
         	      <td><strong>SỐ LƯỢNG CHUYỂN </strong></td>
         	      <td><label>
-        	        <input type="number" name="pay_amt" id="pay_amt" size="25" />
+        	        <input type="number" name="pay_amt" id="pay_amt" size="25" step="any" required />
       	        </label></td>
       	      </tr>
         	    <tr>

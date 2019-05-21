@@ -15,7 +15,7 @@ require ("DBconnect.php");
         	    <tr>
         	      <td><strong>SỐ LƯỢNG CHUYỂN </strong></td>
         	      <td><label>
-        	        <input type="number" name="pay_amt" id="pay_amt"  />
+        	        <input type="number" name="pay_amt" id="pay_amt"   step="any" required />
       	        </label></td>
       	      </tr>
 				  <tr>

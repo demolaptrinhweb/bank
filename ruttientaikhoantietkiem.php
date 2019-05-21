@@ -1,4 +1,4 @@
-<?php
+t<?php
 
 @session_start();
 ?>

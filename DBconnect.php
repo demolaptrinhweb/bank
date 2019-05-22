@@ -27,14 +27,9 @@ class control {
 		 $harsh = password_hash($str, PASSWORD_DEFAULT);
 		return $harsh;
 	}
-	public function autocommit($bool){
-		mysqli_autocommit($bool);
-	}
-	public function rollback(){
-		mysqli_rollback($conn);
-	}
-	public function commit(){
-		mysqli_commit($conn);
+	public function string_escape($str){
+		$conn = $this->con ;
+		return mysqli_real_escape_string($conn,$str);
 	}
 }
 	

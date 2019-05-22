@@ -44,7 +44,7 @@ require_once("class_vs_function.php");
         	       <td><strong>CHỌN TÀI KHOẢN HƯỞNG</strong></td>
         	      <td><label>
         	        <select name="huongid[]" id="huongid" multiple="multiple"  >
-                             <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
+                             <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;&nbsp; </option>
         	 			<?php
 						$sql = "SELECT * FROM taikhoanhuong where id_khachhang=$_SESSION[id_khachhang]" ;
 						
@@ -53,8 +53,13 @@ require_once("class_vs_function.php");
 						
 						while($rowsacc = $control->fetch_arr($results_1))
 						{
-							
-							echo "<option value='$rowsacc[id_taikhoanhuong]'>$rowsacc[taikhoanhuongid]</option>";
+							$sql = "select trangthai from taikhoan where taikhoanid = '$rowsacc[taikhoanhuongid]'";
+							$kq = $control->query($sql);
+							$arr = $control->fetch_arr($kq);
+							$tt = "";
+							if ($arr["trangthai"] == 2) $tt= "đang hoạt động";
+							else $tt = "tạm ngưng";
+							echo "<option value='$rowsacc[id_taikhoanhuong]'>$rowsacc[taikhoanhuongid] (trạng thái : $tt)</option>";
 						}
 						?>
       	            </select>

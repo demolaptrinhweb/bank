@@ -75,9 +75,9 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		   
     //chuyen phai nguoi dung nhap sang harsh-password
 	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);
-			
 		
-	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_["amt"])
+		
+	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2)
 	{  
 		//chuyen tien 
 		$tien = new chuyentien($_POST["taikhoanid"]);
@@ -106,7 +106,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
     if ($i["sodu"] < $_POST["amt"]) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
 	
 		if($_SESSION["max"] < $_POST["amt"]) $passerr.="<br> <b> vượt quá số lượng chuyển tối đa trong ngày</b>";
-		
+	if ($_POST["tt"] != 2) $passerr .= "<br> <b>tài khoản chuyển không hợp lệ </b>";	
 		$passerr .= "<br>vui lòng nhập lại";
 		// gan lai bien 
 	$nguoinhan = $_POST["payto3"];
@@ -162,7 +162,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 				  <?php
 				echo "<b>&nbsp;TÊN : </b>".$arrpayment["ho"]."  ".$arrpayment["ten"];
 				echo "<br><b>&nbsp;TÀI KHOẢN ID : </b>".$array["taikhoanid"];			
-				echo "<br><b>&nbsp;TRẠNG THÁI : </b>".$arrpayment["trangthai"];
+				echo "<br><b>&nbsp;TRẠNG THÁI : </b>".$array["trangthai"];
 	
                   ?>
                   
@@ -172,7 +172,9 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 <input type="hidden" name="code" value="<?php echo $code; ?>"  />	
 <input type="hidden" name="phichuyentien" value="<?php echo $phichuyentien; ?>"  />
 <input type="hidden" name="nguoichiuphi" value="<?php echo $nguoichiuphi; ?>"  />
-<input type="hidden" name="noidung" value="<?php echo $noidung; ?>"  />					  
+<input type="hidden" name="noidung" value="<?php echo $noidung; ?>"  />	
+<input type="hidden" name="tt" value="<?php echo $array["trangthai"];?>"  />	
+					  
 				  </td>
                 </tr>
                 <tr>

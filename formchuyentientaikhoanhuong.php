@@ -26,13 +26,17 @@ require ("DBconnect.php");
         	 			<?php
 						$sql = "SELECT * FROM taikhoanhuong where id_khachhang=$_SESSION[id_khachhang]" ;
 						
+						
 						$results_1 = $control->query($sql);
 						
 						
 						while($rowsacc = $control->fetch_arr($results_1))
 						{
+							$sql = "select trangthai from taikhoan where taikhoanid = '$rowsacc[taikhoanhuongid]'";
+							$kq = $control->query($sql);
+							$arr = $control->fetch_arr($kq);
 							
-							echo "<option value='$rowsacc[taikhoanhuongid]'>$rowsacc[taikhoanhuongid]</option>";
+							if ($arr["trangthai"] == 2)echo "<option value='$rowsacc[taikhoanhuongid]'>$rowsacc[taikhoanhuongid]</option>";
 						}
 						?>
       	            </select>

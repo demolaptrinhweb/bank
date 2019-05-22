@@ -16,8 +16,13 @@
 		<a href="add_kieuvay.php"> thêm kiểu vay</a>
 		<a href="manage_kieuvay.php"> quản lý kiểu vay</a>
         <a id="label">Quản lý admin</a>
+		<a href="manage_theme.php"> xem theme</a>
         <a href="post_news.php">Đăng bài</a>
 		<a href="post_news_manager.php">quản lí bài</a>
+		<?php if ($_SESSION["quyen"] == 1 ) { ?>
+		<a href="add_admin.php">thêm admin</a>
+		<a href="manage_admin.php">quản lí admin</a>
+		<?php } ?>
     </div>
 
 <script>

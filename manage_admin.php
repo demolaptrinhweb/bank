@@ -1,4 +1,12 @@
+
+
+
 <?php
+if(!isset($_SESSION)) {
+        session_start();
+    }
+if ($_SESSION["quyen"] == 1){
+
     include "validate_admin.php";
     include "DBconnect.php";
     include "user_navbar.php";
@@ -11,20 +19,20 @@ $truyendulieu = "";
         $by = $_GET['by'];
           
         if ($by == "name") {
-            $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
-            WHERE kieuvay LIKE '%".$search."%'";
+            $sql0 = "SELECT id,uname FROM admin
+            WHERE uname LIKE '%".$search."%'";
 			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
         }
         else {
-            $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
-            WHERE id_kieuvay LIKE '%".$search."%'";
+            $sql0 = "SELECT id,uname FROM admin
+            WHERE id LIKE '%".$search."%'";
 			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
         }
     }
     else {
         $back_button = FALSE;
 
-        $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
+        $sql0 = "SELECT id,uname FROM admin
             ";
     }
 ?>
@@ -110,17 +118,17 @@ $truyendulieu = "";
                         <p id="id"><?php echo $i . "."; ?></p>
                     </div>
                     <div class="flex-item-2">
-                        <p id="name"><?php echo $row["kieuvay"] ; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id_kieuvay"]; ?></p>
+                        <p id="name"><?php echo $row["uname"] ; ?></p>
+                        <p id="acno"><?php echo "Ac/No : " . $row["id"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">
                             
                           <button onclick="dropdown_func(<?php echo $i ?>)" class="dropbtn"></button>
                           <div id="dropdown<?php echo $i ?>" class="dropdown-content">
-                            <a href="edit_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>">View / Edit</a>
+                            <a href="edit_admin.php?id=<?php echo $row["id"]; ?>">View / Edit</a>
                           
-                            <a href="delete_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>"
+                            <a href="delete_admin.php?id=<?php echo $row["id"]; ?>"
                                  onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
                           </div>
                         </div>
@@ -254,3 +262,4 @@ $truyendulieu = "";
 
 </body>
 </html>
+<?php } ?>

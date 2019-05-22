@@ -52,7 +52,7 @@ if (mysqli_affected_rows($conn) == 1) {	?>
         </div>
         <div class="flex-container">
             <div class=container>
-                <label>theme<o></o> :</label><br>
+                <label>theme(theo theme quy định)<o></o> :</label><br>
                 <input name="tm" size="50" type="text" value="<?php echo $arr1["theme"]?>" required />
             </div>
         </div>	

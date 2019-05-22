@@ -25,9 +25,10 @@ $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>
   alert("thành công");
+		 location.replace("manage_kieuvay.php"); 
 </script>
 	 <?php  }
-		header("location:manage_kieuvay.php");
+		
 	   }
 	?>
 </body>

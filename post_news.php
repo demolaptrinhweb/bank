@@ -22,7 +22,7 @@
         </div>
         <div class="flex-container">
             <div class=container>
-                <label>theme<o></o> :</label><br>
+                <label>theme (theo theme quy định)<o></o> :</label><br>
                 <input name="tm" size="50" type="text" required />
             </div>
         </div>	

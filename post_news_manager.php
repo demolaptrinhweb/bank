@@ -161,7 +161,7 @@ $truyendulieu = "";
             
      <?php }
   }
-   if ($page != $tsn ) {?> <a href="post_news_manager.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   if ($page != $tst ) {?> <a href="post_news_manager.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
 				
@@ -175,7 +175,7 @@ $truyendulieu = "";
                     </div>
                 </div>
             <?php }
-            $conn->close(); ?>
+            ?>
     </div>
 
     <script>

@@ -23,11 +23,11 @@ include "DBconnect.php";
 		$id_kieuvay = $_GET["id_kieuvay"];
 	}
 	   if (isset($_POST["submit"])){
-		echo $_POST["id"];
+		
 		   	
 $kieu = mysqli_real_escape_string($conn,$_POST["kieu"]);
 $sql = "update kieuvay set kieuvay = '$kieu',toida = $_POST[td],toithieu = $_POST[tt],laixuat = $_POST[lx],trangthai = $_POST[tht] where id_kieuvay = $_POST[id]";
-		   echo $sql;
+		   
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>

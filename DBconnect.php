@@ -27,7 +27,7 @@ class control {
 		 $harsh = password_hash($str, PASSWORD_DEFAULT);
 		return $harsh;
 	}
-	public function string_escape($str){
+	public function real_string_escape($str){
 		$conn = $this->con ;
 		return mysqli_real_escape_string($conn,$str);
 	}

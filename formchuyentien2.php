@@ -39,9 +39,9 @@
 	<?php	if(isset($_POST["pay"]))
 {
 	// gan cac bien can thiet 
-$nguoinhan = $control->string_escape($_POST["payto"]);
+$nguoinhan = $control->real_string_escape($_POST["payto"]);
 $payamt = $_POST["pay_amt"];
-$taikhoanchuyen = $control->string_escape($_POST["taikhoanid"]);
+$taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
 	$code = taocode(4);
 	$mail = new guimail($_SESSION["email"]);
 	$mail->gui($conn,$code);

@@ -24,6 +24,8 @@ if (isset($_POST['login'])) {
 	
      	while($arrow = mysqli_fetch_array($results,MYSQLI_ASSOC)){
 		
+		if(!isset($_SESSION["khachhangid"])) $_SESSION["khachhangid"] = $arrow["khachhangid"];
+			
 		if(!isset($_SESSION["id_khachhang"])) $_SESSION["id_khachhang"] = $arrow["id_khachhang"];
 		
 		if (!isset($_SESSION["taikhoanid"])) $_SESSION["taikhoanid"] =  $arrow["taikhoanmacdinh"];

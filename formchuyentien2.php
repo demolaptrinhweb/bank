@@ -80,6 +80,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2)
 	{  
 		//chuyen tien 
+		
 		$tien = new chuyentien($_POST["taikhoanid"]);
 	    $tien->setCon($conn);
 	    $tien->setphichuyen($_POST["phichuyentien"]);
@@ -93,6 +94,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 			$control->query($sql4);
 			$_SESSION["max"] = $_SESSION["max"] - $_POST["amt"];
 			header("Location: formchuyentien3.php?kq=ct");}
+		
 	}
 	else
 	{   

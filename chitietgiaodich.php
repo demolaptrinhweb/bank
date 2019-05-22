@@ -196,6 +196,6 @@
             
      <?php }
   }
-   if ($page != $tsn ) {?> <a href="acctrangchu.php?ts=ctgd&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   if ($page != $tst ) {?> <a href="acctrangchu.php?ts=ctgd&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>

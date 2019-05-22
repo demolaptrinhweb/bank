@@ -196,7 +196,7 @@ require_once("class_vs_function.php");?>
             
      <?php }
   }
-   if ($page != $tsn ) {?> <a href="acctrangchu.php?ts=th0&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   if ($page != $tst ) {?> <a href="acctrangchu.php?ts=th0&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
 	

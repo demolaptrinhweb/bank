@@ -34,7 +34,7 @@
             <?php
             } else { ?>
                 <p id="info"><?php
-                echo "Server Error !<br>";
+                echo "Lỗi server !<br>";
                 echo "Error: " . $sql0 . "<br>" . "<br>";
                  ?></p>
             <?php
@@ -45,7 +45,7 @@
         </div>
 
         <div class="flex-item">
-            <a href="post_news.php" class="button">Post Again</a>
+            <a href="post_news.php" class="button">Đăng lại</a>
         </div>
 
     </div>

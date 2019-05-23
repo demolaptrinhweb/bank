@@ -22,7 +22,7 @@
         </div>
         <div class="flex-container">
             <div class=container>
-                <label>theme (theo theme quy định)<o></o> :</label><br>
+                <label>Danh mục (Theo chủ đề quy định)<o></o> :</label><br>
                 <input name="tm" size="50" type="text" required />
             </div>
 			</div>	
@@ -38,7 +38,7 @@
 	}
 </style>
 		
-    <textarea name="content" id="editor"></textarea>
+    <textarea name="nd" id="editor"></textarea>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.2/classic/ckeditor.js"></script>
     <script>
@@ -83,14 +83,12 @@ document.getElementById( 'reset' ).addEventListener( 'click', () => {
 -->
 	
 	
-<!--
         <div class="flex-container">
             <div class=container>
-                <label>url_hinh<o></o> :</label><br>
+                <label>URL Hình ảnh<o></o> :</label><br>
                 <input name="url" size="50" type="text"  />
             </div>
         </div>
--->
 			
         <div class="flex-container">
             <div class="container">

@@ -48,6 +48,7 @@ require_once("class_vs_function.php");
 <?php  
 $passerr="";
 	if (isset($_POST["pay"])){
+		$control->query("START TRANSACTION");
 		$dem=0;
 		$sql1 = "select * from kyhanguitien where id_kyhan = '$_POST[kyhan]'";
 		$a = $control->query($sql1);
@@ -78,7 +79,19 @@ $passerr="";
 		
 		$c = $control->row_affected();
 		if($c == 1 ) $dem++; 
-		if ($dem == 2) header("Location: formchuyentien3.php?kq=tktk");
+		if ($dem == 2) {
+			$control->query("commit");
+			header("Location: formchuyentien3.php?kq=tktk");
+					   }
+			 else {
+			$control->query("rollback");
+			?>
+		<script>
+		alert("có lỗi khi truyền thông tin xin thủ lại");
+		</script>
+		<?php
+			
+		}
 		}
 		
 		

@@ -43,15 +43,15 @@ else {
 	
 		$sql1 = "update taikhoantietkiem set tiengui = tiengui + $_GET[gui_amt] where taikhoanid = '$taikhoanid'" ;
 		$d = $control->query($sql1);
-	    $c = $control->row_affected();
-			if($c == 1 ) $demthanhcong++; 
-			
-		$sql1 = "update taikhoantietkiem set sodu = sodu - $_GET[gui_amt] where taikhoanid = '$taikhoanid'" ;
+	 
+			if($d) $demthanhcong++; 
+			echo $demthanhcong ;
+		$sql1 = "update taikhoan set sodu = sodu - $_GET[gui_amt] where taikhoanid = '$taikhoanid'" ;
 		$d = $control->query($sql1);
-	    $c = $control->row_affected();
-			if($c == 1 )$demthanhchong++ ; 
 			
+			if($d)$demthanhcong++ ; 
 			
+		echo $demthanhcong ;	
 		if($demthanhcong == 2 ) {
 			$control->query("commit");
 			header("Location: formchuyentien3.php?kq=ct");

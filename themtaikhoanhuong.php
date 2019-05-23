@@ -11,6 +11,7 @@ require ("DBconnect.php");
 	$passerr="";
 		
 	if (isset($_POST["pay"])){
+		
 		$passerr="";
 		$id_them = $control->real_string_escape($_POST["id_them"]);
 		$sql= "select * from taikhoan where taikhoanid = '$id_them'";

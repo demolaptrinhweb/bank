@@ -53,14 +53,11 @@ function id ($type){
 			$sql2 ="UPDATE taikhoan SET sodu = sodu - $tienchuyen WHERE taikhoanid = '$khach'";
 			
 			//sinh id tu dong
-			$id = id(2);
+			do {$id = id(2);
 			$sql= "select id_chuyentien from chuyentien where chuyentien='$id'";
 			$kq = $this->query($sql);
-			while($arr = $this->fetch_arr($kq)){
-				$id = id_GD();
-				$sql= "select id_chuyentien from chuyentien where chuyentien='$id'";
-			    $kq = $this->query($sql);
-			}
+			   }
+			while($arr = $this->fetch_arr($kq));
 			
 			
 			$sql3 ="INSERT INTO chuyentien VALUES('','$id',now(),'$khach','$id_nguoinhan',$tienchuyen,'$noidung')";
@@ -68,7 +65,7 @@ function id ($type){
 			$b = $this->query($sql2);
 			$c = $this->query($sql3);
 			
-			if(mysqli_affected_rows($this->getCon()) == 1)
+			if($a and $b and $c )
 				  {
 					$successresult = 1;	
 
@@ -90,7 +87,7 @@ function id ($type){
 			$khach = $this->taikhoanid ;
 			$sql2 ="UPDATE taikhoan SET sodu = sodu - $this->phichuyen WHERE taikhoanid = '$khach'";
 			$a = $this->query($sql2);
-			if(mysqli_affected_rows($this->getCon()) == 1)
+			if($a)
 				  {
 					$successresult = 1;	
 
@@ -105,7 +102,7 @@ function id ($type){
 		public function trutiennguoinhan ($id_nguoinhan){
 			$sql2 ="UPDATE taikhoan SET sodu = sodu - $this->phichuyen WHERE taikhoanid = '$id_nguoinhan'";
 			$a = $this->query($sql2);
-			if(mysqli_affected_rows($this->getCon()) == 1)
+			if($a)
 				  {
 					$successresult = 1;	
 
@@ -186,25 +183,19 @@ function taocode($length) {
 		  $sql1 ="UPDATE taikhoan SET sodu = sodu + $tienvay WHERE taikhoanid = '$khach'";
 		  
 		  $id = id(1);
-			$sql= "select id_vay from vaytien where vayid = '$id'";
+			$sql = "select id_vay from vaytien where vayid = '$id'";
 			$kq = $this->query($sql);
 			while($arr = $this->fetch_arr($kq)){
-				$id = id_vay();
+				$id = id(1);
 				$sql= "select id_vay from vaytien where vayid = '$id'";
 			    $kq = $this->query($sql);
 			}
 		  
           $sql2 ="INSERT INTO vaytien VALUES('','$id',$b,$tienvay,$c,now(),'$khach')";
 		  
-          if (!mysqli_query($con,$sql1))
-				  {
-				  die('Error: ' . mysqli_error($con));
-				  }
-			if (!mysqli_query($con,$sql2))
-				  {
-				  die('Error: ' . mysqli_error($con));
-				  }
-			if(mysqli_affected_rows($con) == 1)
+             $a = $this->query($sql1);
+		     $b = $this->query($sql2);
+			if($a and $b)
 				  {
 					$successresult = 1;	
 				  

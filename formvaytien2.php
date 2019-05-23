@@ -72,9 +72,9 @@
    
 	if($auth and $_POST["email"] == $_POST["code"])
 		
-		
-		
-	{   $demthanhcong=0;
+	{   
+		$control->query("START TRANSACTION");
+		$demthanhcong=0;
 		$vay = new vaytien($_POST["taikhoanid"]);
 	    $vay->setCon($conn);
 		$a=$vay->vay($conn,$_POST["amt"],$_POST["kieuvay"]);
@@ -86,7 +86,21 @@
 	    if ($a == 1)$demthanhcong++;
 	 
 	 
-	    if ($demthanhcong == 2) header("Location: formchuyentien3.php?kq=ct");
+	    if ($demthanhcong == 2){
+			
+			$control->query("commit");
+			header("Location: formchuyentien3.php?kq=ct");
+		}
+		else {
+			$control->query("rollback");
+			?>
+		<script>
+		alert("có lỗi khi truyền thông tin xin thủ lại");
+		</script>
+		<?php
+			
+		}
+		
 	}
    
    

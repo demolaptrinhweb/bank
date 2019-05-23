@@ -28,6 +28,8 @@ else {
    
 	if (isset($_GET["pay"])){
 		
+		$control->query("START TRANSACTION");
+		
 		$sql11 = "select * from taikhoan where taikhoanid = '$taikhoanid'" ;
 		$j = $control->query($sql11);
 		$i = $control->fetch_arr($j);
@@ -50,7 +52,19 @@ else {
 			if($c == 1 )$demthanhchong++ ; 
 			
 			
-		if($demthanhcong == 2 ) header("Location: formchuyentien3.php?kq=ct"); 
+		if($demthanhcong == 2 ) {
+			$control->query("commit");
+			header("Location: formchuyentien3.php?kq=ct");
+								} 
+			 else {
+			$control->query("rollback");
+			?>
+		<script>
+		alert("có lỗi khi truyền thông tin xin thủ lại");
+		</script>
+		<?php
+			
+		}
 		 
 		}
 		

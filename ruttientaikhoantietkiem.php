@@ -45,7 +45,7 @@ require_once("class_vs_function.php");
 	
 	
 	if (isset($_POST["pay"])){
-		
+		$control->query("START TRANSACTION");	
 		$kt = 0;
 		$demthanhcong=0;
 		$sql11 = "update taikhoan set sodu = sodu + $p[tiengui] where taikhoanid = '$taikhoanid'" ;
@@ -70,8 +70,34 @@ require_once("class_vs_function.php");
 		$j = $control->query($sql11);
 		$i = $control->row_affected();
 		if ($i == 1) $demthanhcong++;
-		if ($kt == 1 and $demthanhcong == 3 ) header("Location: formchuyentien3.php?kq=ct");
-		if ($demthanhcong == 2 ) header("Location: formchuyentien3.php?kq=ct");
+		if ($kt == 1 and $demthanhcong == 3 ) {
+			$control->query("commit");
+			header("Location: formchuyentien3.php?kq=ct");
+											  }
+		 else {
+			$control->query("rollback");
+			?>
+		<script>
+		alert("có lỗi khi truyền thông tin xin thủ lại");
+		</script>
+		<?php
+			
+		}
+		
+		
+		if ($demthanhcong == 2 ) {
+			$control->query("commit");
+			header("Location: formchuyentien3.php?kq=ct");
+		}
+		else {
+			$control->query("rollback");
+			?>
+		<script>
+		alert("có lỗi khi truyền thông tin xin thủ lại");
+		</script>
+		<?php
+			
+		}
 	}
    }
 	 else $dem=1 ;

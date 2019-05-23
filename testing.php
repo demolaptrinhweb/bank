@@ -31,10 +31,25 @@
 	
     <?php
 	
-	$sql = "UPDATE  taikhoan  INNER JOIN vaytien  ON taikhoan.taikhoanid = vaytien.taikhoanid set taikhoan.no = taikhoan.no + vaytien.sovay*vaytien.laixuat  ";
+	
+	
+	mysqli_query($conn,"START TRANSACTION");
+
+    $a1 = $control->query ("INSERT INTO admim  VALUES('',tai,2,1)");
+    $a2 = $control->query("INSERT INTO admin  VALUES('',2,2,2)");
+
+   if ($a2 and $a1) {
+    mysqli_query($conn,"COMMIT");
+    } else {        
+    mysqli_query($conn,"ROLLBACK");
+    }
+
+	
+	
+	/*$sql = "UPDATE  taikhoan  INNER JOIN vaytien  ON taikhoan.taikhoanid = vaytien.taikhoanid set taikhoan.no = taikhoan.no + vaytien.sovay*vaytien.laixuat  ";
 	$control->query($sql);
 	if ($control->row_affected() == 1) echo "success";
-	else echo "flase";
+	else echo "flase";*/
 
 	
 	/*$sql = "SELECT @@event_scheduler";

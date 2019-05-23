@@ -74,6 +74,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		}
 	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien)
 	{   
+		$control->query("START TRANSACTION");
 		$tien = new chuyentien($_POST["taikhoanid"]);
 		$tien->setCon($conn);
 		$tien->setphichuyen($_POST["phichuyentien"]);
@@ -97,8 +98,18 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		}
 		if ($demchuyentienthanhcong == $demnguoinhan and $demtruphi == $demnguoinhan){
 			unset($_SESSION['nguoinhan']);
-			header("Location: formchuyentien3.php?kq=ct");}
-																					 
+			$control->query("commit");
+			header("Location: formchuyentien3.php?kq=ct");
+		}
+		else {
+			$control->query("rollback");
+			?>
+		<script>
+		alert("có lỗi khi truyền thông tin xin thủ lại");
+		</script>
+		<?php
+			
+		}																			 
 	}
 	else
 	{
@@ -184,14 +195,14 @@ $taikhoanchuyen = $_POST["taikhoanid"];
                 </tr>
                 <tr>
                   <td><strong>SỐ TIỀN CHUYỀN</strong></td>
-                  <td>&nbsp;<?php echo number_format($payamt,2); ?></td>
+                  <td>&nbsp;<?php echo @number_format($payamt,2); ?></td>
                 </tr>
                  <tr>
                   <td><strong>PHÍ CHUYỂN TIỀN </strong></td>
-                  <td>&nbsp;<?php echo number_format($phichuyentien,2); ?>
-				  <?php if ($nguoichiuphi == 1 ) $chiu ="<br><b> người chuyển trả</b>";
+                  <td>&nbsp;<?php echo @number_format($phichuyentien,2); ?>
+				  <?php if (@$nguoichiuphi == 1 ) $chiu ="<br><b> người chuyển trả</b>";
                                   else $chiu = "<br><b>người nhận trả</b>";
-                      echo $chiu ; ?></td>	 
+                      echo @$chiu ; ?></td>	 
                 </tr>
                 <tr>
                   <td><strong>NHẬP MẬT KHẨU CHUYỂN KHOẢN</strong></td>

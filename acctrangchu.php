@@ -9,7 +9,7 @@
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	
+	<link rel="stylesheet" type="text/css" href="sidabar.css">
 	
 	<style>.account11{
 		border: solid;
@@ -39,6 +39,7 @@
 	<?php require("Header.php") ;?>
 	 <?php require ("accmenu.php") ;?>
 		<?php require("accheader.php");?>
+		<div align="center" >
 	 <?php if (isset($_GET['ts']))
 				  switch($_GET['ts']) 
 				  {
@@ -87,7 +88,7 @@
 				  }
 		 else require("soluottaikhoan.php");
 		?>
-		
+		</div>
 <?php require("Footer.php") ;?>
 	</div>
 	

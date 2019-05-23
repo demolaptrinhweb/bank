@@ -15,7 +15,7 @@
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	
+	<link rel="stylesheet" type="text/css" href="sidabar.css">
 	
 	<style>.account11{
 		border: solid;
@@ -40,7 +40,10 @@
 <body bgcolor="lightblue" >
 	<div id="khung" >
 		<?php require("Header.php") ;?>
-	 <?php require ("accmenu.php") ;?>
+	 <?php require ("accmenu.php") ;
+		  require("accheader.php");
+		?>
+		
 	<?php 
 require ("DBconnect.php");	
 require_once("class_vs_function.php");	
@@ -105,7 +108,7 @@ $passerr="";
 		
 	}
 	?>
-
+<div align="center" >
 <form id="form1" name="form1" method="post" action="">
   
      	<h2> MỞ TÀI KHOẢN TIẾT KIỆM </h2>
@@ -185,7 +188,7 @@ $passerr="";
         	      </div></td>
        	        </tr>
       	    </table>
-
+	</div>
 	 <?php require("Footer.php") ;?>
 	</div>
 </body>

@@ -13,6 +13,7 @@
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="sidabar.css">
 		<style>	
 	.account{border: solid;
 	border-color: blue;
@@ -155,6 +156,7 @@
 		
 		
 ?>
+		<div align="center" >
 	<form id="form2" name="form2" method="get" action="">
 	  <table>
 		  <input type="hidden" name="ts" value="">
@@ -261,6 +263,7 @@
                   </div></td>
                 </tr>
               </table>
+		</div>
 		</div>
 </body>
 </html>

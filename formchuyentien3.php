@@ -9,6 +9,7 @@
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="sidabar.css">
 	<style>.account11{
 		border: solid;
 	border-color: blue;
@@ -36,6 +37,7 @@
 	 <?php require ("accmenu.php") ;?>
 		<?php require("accheader.php");?>
     <h2>&nbsp; Transaction Detail:</h2>
+		<div align="center" >
               <table width="517" height="220" border="1">
                 <tr>
                   <td width="439" align="center"><h4><?php 
@@ -66,6 +68,7 @@
                   </td>
                 </tr>
               </table>
+		</div>
 <?php require("Footer.php") ;?>
 	</div>
 </body>

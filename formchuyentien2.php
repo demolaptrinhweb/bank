@@ -12,6 +12,7 @@
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="sidabar.css">
 		<style>	
 	.account{border: solid;
 	border-color: blue;
@@ -157,6 +158,7 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
    <?php echo $loi ;  
 		if ($loi == 0)
 { ?>
+		<div align="center" >
 	<form id="form1" name="form1" method="post" action="formchuyentien2.php">     
      	<h2>&nbsp;NGƯỜI NHẬN <?php echo $arrpayment["ho"]."  ".$arrpayment["ten"]; ?></h2>
               <table width="564" height="220" border="1">
@@ -225,9 +227,11 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
                   </div></td>
                 </tr>
               </table>
+		=
 		<?php }
 		else echo " đã xảy ra lỗi xin hãy kiểm tra lại thông tin nhập "; 
 		?>
+		</div>
 		<?php require("Footer.php") ;?>
  </div>
 </body>

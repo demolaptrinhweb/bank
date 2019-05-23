@@ -33,7 +33,7 @@ class control {
 	}
 }
 	
-$hostname = 'localhost';
+$hostname = 'localhost:3306';
 $username = 'root';
 $password = '19990604';
 $dbname = "test2";

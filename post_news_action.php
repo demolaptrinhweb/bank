@@ -24,7 +24,7 @@
             $url = mysqli_real_escape_string($conn, $_POST["url"]);
            
             $sql0 = "INSERT INTO `news` (`id`, `theme`, `title`, `created`, `url_hinh`, `body`) VALUES ('',$tm,'$tt',NOW(),'$url','$nd')";
-				
+			$result = $conn->query($sql0);	
 				
 				
 

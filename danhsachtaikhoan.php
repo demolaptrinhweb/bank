@@ -1,4 +1,4 @@
-
+	
 <?php @session_start(); ?>
 <?php		if(!isset($_SESSION['id_khachhang'])) {
 	header("Location: InDex.php?ts=bk");
@@ -22,7 +22,8 @@
         	    <tr>
 					<input type="hidden"  name="ts" value="dstk">
 				  <td> <strong> TÌM KIẾM THEO ID</strong></td>
-				   <td> <label><input type="input" name ="timkiem" onChange="form1.submit()" > </label></td>
+				   <td> <label><input type="input" name ="timkiem" onChange="form1.submit()"  value="<?php 
+					   if (isset($_GET["timkiem"]) and $_GET["timkiem"] != "" ) echo $_GET["timkiem"]; ?>"> </label></td>
 				  </tr>
         	    <tr>
         	      <td><strong> TÀI KHOẢN </strong></td>
@@ -186,7 +187,7 @@
 				 
    		   </table>
 	
-	
+	<div class="pagination clearfix" >	
 	<?php 
   if ($page != 1 and $page != 2) {
   $dau = $page-2 ;
@@ -198,7 +199,7 @@
   
   
   ?>
-  <p> trang : <?php  if ($page != 1 ){
+  <?php  if ($page != 1 ){
 	  ?>
       <a href="acctrangchu.php?ts=dstk&page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
       
@@ -206,7 +207,7 @@
   }
   
   for($i=$dau;$i<=$cuoi;$i++){
-	     if ($page == $i) echo " <b> <i> $i </i> </b> &nbsp;";
+	     if ($page == $i) echo "<strong> $i </strong> &nbsp;";
 		 else {
 			 ?>
 	             
@@ -217,5 +218,5 @@
    if ($page != $tst ) {?> <a href="acctrangchu.php?ts=dstk&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
-	
+	</div>
 	

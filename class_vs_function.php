@@ -245,7 +245,7 @@ class themtaikhoanhuong extends class_coban{
 		$wordsCount = count($wordsAry);
 		
 		for($i=0;$i<$wordsCount;$i++) {
-			$highlighted_text = "<span style='font-weight:bold;'>$wordsAry[$i]</span>";
+			$highlighted_text = "<span style='color : blue;'>$wordsAry[$i]</span>";
 			$text = str_ireplace($wordsAry[$i], $highlighted_text, $text);
 		}
 

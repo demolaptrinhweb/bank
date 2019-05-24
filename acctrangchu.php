@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-4.0.0.css">	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="sidabar.css">
-	
+	<link rel="stylesheet" type="text/css" href="paging.css">
 	<style>.account11{
 		border: solid;
 	border-color: blue;

@@ -180,6 +180,7 @@ require_once("class_vs_function.php");?>
   
   
   ?>
+	<div class="pagination clearfix" >	
   <p align="center"> trang : <?php  if ($page != 1 ){
 	  ?>
       <a href="acctrangchu.php?ts=th0&page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
@@ -188,7 +189,7 @@ require_once("class_vs_function.php");?>
   }
   
   for($i=$dau;$i<=$cuoi;$i++){
-	     if ($page == $i) echo " <b> <i> $i </i> </b> &nbsp;";
+	     if ($page == $i) echo " <strong> $i </strong> &nbsp;";
 		 else {
 			 ?>
 	             
@@ -199,6 +200,6 @@ require_once("class_vs_function.php");?>
    if ($page != $tst ) {?> <a href="acctrangchu.php?ts=th0&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
-	
+	</div>
  
 				

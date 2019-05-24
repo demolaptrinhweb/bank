@@ -135,6 +135,7 @@
 	
    <?php  if ($loi < 1)
 { ?>
+		<div align="center" >
 	<form id="form1" name="form1" method="post" action="">     
      	
               <table width="564" height="220" border="1">
@@ -197,6 +198,7 @@
 		} 
 		?>
 		<?php require("Footer.php") ;?>
+		</div>
  </div>
 </body>
 </html>

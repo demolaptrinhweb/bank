@@ -27,7 +27,8 @@
 				  <input type="hidden" name="ts" value="ctgd" > 
         	    <tr>
 				  <td> <strong> TÌM KIẾM THEO ID</strong></td>
-				   <td> <label><input type="input" name ="timkiem" onChange="form1.submit()" > </label></td>
+				   <td> <label><input type="input" name ="timkiem" onChange="form1.submit()" value="<?php 
+					   if (isset($_GET["timkiem"]) and $_GET["timkiem"] != "" ) echo $_GET["timkiem"]; ?>"> </label></td>
 				  </tr>
         	    <tr>
         	      <td><strong> TÀI KHOẢN </strong></td>
@@ -166,9 +167,9 @@
 				 
    		   </table>
 	</div> 
-				  
+	<div class="pagination clearfix" >			  
 	<?php 
-  
+
   if ($page != 1 and $page != 2) {
   $dau = $page-2 ;
    
@@ -180,15 +181,16 @@
   
   
   ?>
-  <p align="center"> trang : <?php  if ($page != 1  ){
+  <?php  if ($page != 1  ){
 	  ?>
       <a href="acctrangchu.php?ts=ctgd&page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
       
 	  <?php 
   }
   
+	   
   for($i=$dau;$i<=$cuoi;$i++){
-	     if ($page == $i) echo " <b> <i> $i </i> </b> &nbsp;";
+	     if ($page == $i) echo " <strong> $i </strong> &nbsp;";
 		 else {
 			 ?>
 	             
@@ -199,3 +201,4 @@
    if ($page != $tst ) {?> <a href="acctrangchu.php?ts=ctgd&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
+		</div>

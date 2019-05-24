@@ -27,7 +27,8 @@ $sql0="";
 				  <input type="hidden" name="ts" value="xn" > 
         	    <tr>
 				  <td> <strong> TÌM KIẾM THEO VAY ID</strong></td>
-				   <td> <label><input type="input" name ="timkiem" onChange="form1.submit()" > </label></td>
+				   <td> <label><input type="input" name ="timkiem" onChange="form1.submit()" value="<?php 
+					   if (isset($_GET["timkiem"]) and $_GET["timkiem"] != "" ) echo $_GET["timkiem"]; ?>" > </label></td>
 				  </tr>
         	    <tr>
         	      <td><strong> TÀI KHOẢN </strong></td>
@@ -115,15 +116,7 @@ $sql0="";
         <th width="132" scope="col"><p>NGÀY VAY</p></th>
       </tr>
 	 <?php
-	$sqlkieuvay = "select * from kieuvay ";
-	$arr_kieuvay= array();
 	
-	$kqkieuvay =$control->query($sqlkieuvay);
-	while($arrkieuvay = $control->fetch_arr($kqkieuvay)){
-		$tam = $arrkieuvay["kieuvay"];
-		$tam1 = $arrkieuvay["id_kieuvay"];
-		$arr_kieuvay[$arrkieuvay['id_kieuvay']] = $tam;
-	}
 	
 	while($arr = $control->fetch_arr($kq)){
 		
@@ -132,9 +125,10 @@ $sql0="";
  while($loan = $control->fetch_arr($loanarray))
 	  {
 	  $tam = $loan["kieuvay"];
-	 foreach($arr_kieuvay as $key => $vay){
-		 echo $key;
-		 if($key == $tam) {$kieuvay = $vay; break;}	 }
+	$sqlkieuvay = "select kieuvay from kieuvay where id_kieuvay = $tam";
+	 $kqkieuvay =$control->query($sqlkieuvay);
+	 $arrkieuvay = $control->fetch_arr($kqkieuvay);
+	 $kieuvay = $arrkieuvay["kieuvay"];
 echo "
       <tr>
         <td>&nbsp;$loan[vayid]</td>
@@ -150,7 +144,7 @@ echo "
 	  ?>
     </table>
 
-
+<div class="pagination clearfix" >	
 	<?php 
   if ($page != 1 and $page != 2) {
   $dau = $page-2 ;
@@ -170,7 +164,7 @@ echo "
   }
   
   for($i=$dau;$i<=$cuoi;$i++){
-	     if ($page == $i) echo " <b> <i> $i </i> </b> &nbsp;";
+	     if ($page == $i) echo " <strong> $i </strong> &nbsp;";
 		 else {
 			 ?>
 	             
@@ -181,4 +175,5 @@ echo "
    if ($page != $tsn ) {?> <a href="acctrangchu.php?ts=xn&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
+				  </div>
 	

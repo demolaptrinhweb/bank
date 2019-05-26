@@ -1,0 +1,15 @@
+body
+#bottom
+{
+	height: 80px;
+	clear: left;
+	background-color: #006992d1;
+	text-align: right;
+	padding-top: 40px;
+	padding-right: 10px;
+	color: #1c1c77;
+}
+#bottom1
+{
+	margin-bottom: 10px;
+}

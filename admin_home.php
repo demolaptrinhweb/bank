@@ -1,3 +1,5 @@
+<?php  	include "Header.php"; ?>
+
 <?php
     include "validate_admin.php";
     include "user_navbar.php";
@@ -23,6 +25,5 @@
             </p>
         </div>
     </div>
-
 </body>
 </html>

@@ -47,7 +47,9 @@ $(function(){
 let theEditor;
 
 ClassicEditor
-    .create( document.querySelector( '#editor' ))
+    .create( document.querySelector( '#editor' ) )
+       
+
     .then( editor => {
         theEditor = editor; // Save for later use.
     } )

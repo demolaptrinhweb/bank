@@ -2,7 +2,7 @@
 
 		 <div class="wrapper" >
         <ui class="mainMenu">
-			<li class="item" id="account">
+			<li class="item" id="trangchu">
 				<a href="acctrangchu.php" class="btn" > TRANG CHỦ</a>
             <li class="item" id="account">
                 <a href="#account" class="btn"><i class="fas fa-user-circle"></i>TÀI KHOẢN</a>

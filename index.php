@@ -5,7 +5,6 @@
 	<title>Ngân Hàng STbank</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="icon" type="img/ico" href="hinh/logo.ico">
-	
 </head>
 	<body>
 	<div id="khung">

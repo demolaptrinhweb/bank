@@ -52,12 +52,14 @@
     margin-right: 10px;
 }
 .subMenu{
-    background: lightblue ;
+	
+    background: #42b0f4 ;
     overflow: hidden;
     transition: max-height 0.7s;
     max-height: 0;
 }
 .subMenu a{
+	font-weight: bold;
     display: block;
     padding: 15px 20px;
     color: #fff;

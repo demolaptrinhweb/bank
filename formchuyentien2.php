@@ -40,9 +40,9 @@
 	<?php	if(isset($_POST["pay"]))
 {
 	// gan cac bien can thiet 
-$nguoinhan = $control->real_string_escape($_POST["payto"]);
-$payamt = $_POST["pay_amt"];
-$taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
+    $nguoinhan = $_POST["payto"];
+    $payamt = $_POST["pay_amt"];
+    $taikhoanchuyen = $_POST["taikhoanid"];
 	$code = taocode(4);
 	$mail = new guimail($_SESSION["email"]);
 	$mail->gui($conn,$code);
@@ -78,10 +78,11 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
 	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);
 		
 		
-	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2)
+	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
 	{  
 		//chuyen tien 
 		$control->query("START TRANSACTION");
+		
 		$tien = new chuyentien($_POST["taikhoanid"]);
 	    $tien->setCon($conn);
 	    $tien->setphichuyen($_POST["phichuyentien"]);
@@ -90,6 +91,7 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
 	    else $b = $tien->trutiennguoinhan($_POST["payto3"]);
 	    
 	    $sql4= "update khachhang set max_chuyentien = max_chuyentien - $_POST[amt] where id_khachhang = $_SESSION[id_khachhang]";
+		
 			$c = $control->query($sql4);
 		
 	    if ($a == 1 and $b == 1 and $c){
@@ -122,6 +124,8 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
 	
 		if($_SESSION["max"] < $_POST["amt"]) $passerr.="<br> <b> vượt quá số lượng chuyển tối đa trong ngày</b>";
 	if ($_POST["tt"] != 2) $passerr .= "<br> <b>tài khoản chuyển không hợp lệ </b>";	
+		
+	if ($_POST["xntrpass"] != $_POST["trpass"]) $passerr .= "<br> <b>pass và xác nhận pass không hợp lệ </b>";	
 		$passerr .= "<br>vui lòng nhập lại";
 		// gan lai bien 
 	$nguoinhan = $_POST["payto3"];
@@ -131,31 +135,35 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
 	$phichuyentien = $_POST["phichuyentien"];
 	$nguoichiuphi = $_POST["nguoichiuphi"];
 	$noidung = $_POST["noidung"];
-	}		  
+	}		  		
 }       
 		if(isset($nguoinhan) and $nguoinhan != ""){
-		$sql = "SELECT * FROM taikhoan where taikhoanid='$nguoinhan'" ;
-		$results_1 = $control->query($sql);
-		$array = $control->fetch_arr($results_1);
-		if (!isset($array["taikhoanid"]))
-		{
 			
+		$sql = "SELECT * FROM taikhoan where taikhoanid = '$nguoinhan' " ;
+		$resu = $control->query($sql);
+		$arr = $control->fetch_arr($resu);
+		if (!isset($arr["taikhoanid"]))
+		{
+		
 		$loi++ ;
+			
 		}
 		else {
 			
 	   
-        $nguoinhan_1 = $array["id_khachhang"];
+        $nguoinhan_1 = $arr["id_khachhang"];
 		$sql2 = "SELECT * FROM khachhang where id_khachhang=$nguoinhan_1" ;
-	    $results_2 = $control->query($sql2);	
-	    $arrpayment = $control->fetch_arr($results_2);
+	    $resu = $control->query($sql2);	
+	    $arrpayment = $control->fetch_arr($resu);
+			
 		}
 		}
 		else {$loi++;
-			  echo "loi 2" ;}
+			 
+			}
 ?>
 	
-   <?php echo $loi ;  
+   <?php   
 		if ($loi == 0)
 { ?>
 		<div align="center" >
@@ -177,8 +185,8 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
                   <td width="322">
 				  <?php
 				echo "<b>&nbsp;TÊN : </b>".$arrpayment["ho"]."  ".$arrpayment["ten"];
-				echo "<br><b>&nbsp;TÀI KHOẢN ID : </b>".$array["taikhoanid"];			
-				echo "<br><b>&nbsp;TRẠNG THÁI : </b>".$array["trangthai"];
+				echo "<br><b>&nbsp;TÀI KHOẢN ID : </b>".$arr["taikhoanid"];			
+				echo "<br><b>&nbsp;TRẠNG THÁI : </b>".$arr["trangthai"];
 	       
                   ?>
                   
@@ -189,7 +197,7 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
 <input type="hidden" name="phichuyentien" value="<?php echo $phichuyentien; ?>"  />
 <input type="hidden" name="nguoichiuphi" value="<?php echo $nguoichiuphi; ?>"  />
 <input type="hidden" name="noidung" value="<?php echo $noidung; ?>"  />	
-<input type="hidden" name="tt" value="<?php echo $array["trangthai"];?>"  />	
+<input type="hidden" name="tt" value="<?php echo $arr["trangthai"];?>"  />	
 					  
 				  </td>
                 </tr>
@@ -214,7 +222,7 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
                 </tr>
                 <tr>
                   <td><strong>XÁC NHẬN MẬT KHẨU </strong></td>
-                  <td><input name="conftrpass" type="password" id="conftrpass" size="35" required /></td>
+                  <td><input name="xntrpass" type="password"  size="35" required /></td>
                 </tr>
 				  <tr>
                   <td><strong>XÁC NHẬN EMAIL </strong></td>
@@ -227,8 +235,8 @@ $taikhoanchuyen = $control->real_string_escape($_POST["taikhoanid"]);
                   </div></td>
                 </tr>
               </table>
-		=
-		<?php }
+		
+		<?php }						
 		else echo " đã xảy ra lỗi xin hãy kiểm tra lại thông tin nhập "; 
 		?>
 		</div>

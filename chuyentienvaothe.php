@@ -1,7 +1,11 @@
+<? ob_start(); ?>
+	<?php @session_start(); 
 
-	<?php @session_start(); ?>
+
+
+?>
 	<?php		if(!isset($_SESSION['id_khachhang'])) {
-	header("Location: index.php?ts=bk");
+	@header("Location:index.php?ts=bk");
 }?>
 <?php 
 require ("DBconnect.php");
@@ -150,8 +154,5 @@ else $dem = 1 ;
 <?php }
 	else  echo "khong co the ngan hang ";
 	
-	
-	
-	
-	
 	?>
+	<? ob_flush(); ?>

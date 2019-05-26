@@ -1,15 +1,8 @@
 <?php @session_start(); ?>
 <?php		if(!isset($_SESSION['id_khachhang'])) {
-	header("Location: index.php?ts=bk");
+	
 }?>
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
-</head>
 
-<body>
 	
 	
 <?php 
@@ -171,5 +164,3 @@ else $dem = 1 ;
 	
 	?>
 
-</body>
-</html>

@@ -66,6 +66,12 @@ $taikhoanchuyen = $_POST["taikhoanid"];
       $results_3 = $control->query($sql);
       $arrpayment1 = $control->fetch_arr($results_3);
    
+   
+   //lay tai khoan khach hang muon su dung  
+    $sql11 = "select * from taikhoan where taikhoanid = '$_POST[taikhoanid]'" ;
+		$j = $control->query($sql11);
+		$i = $control->fetch_arr($j);
+		   
   
     //chuyen phai nguoi dung nhap sang harsh-password
 	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);	
@@ -73,7 +79,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		foreach  ($_SESSION['nguoinhan'] as $nguoinhan_1){
 			$tongtien = $tongtien + $_POST["amt"];
 		}
-	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien)
+	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien and $i["sodu"] >= $tongtien and $_post["trpass"] == $_POST["xntrpass"] )
 	{   
 		$control->query("START TRANSACTION");
 		$tien = new chuyentien($_POST["taikhoanid"]);
@@ -85,7 +91,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		foreach  ($_SESSION['nguoinhan'] as $nguoinhan_1){	
 	          if ($nguoinhan_1 != "" ) {
 				  $demnguoinhan++;
-				  echo $nguoinhan_1 ;
+				  
 				 $a= @$tien->chuyen($nguoinhan_1,$_POST["amt"],$_POST["noidung"]);
 				 if ($a == 1) $demchuyentienthanhcong++;	
 				 if ($_POST["nguoichiuphi"] == 1)$b = @$tien->trutiennguoichuyen();
@@ -93,11 +99,11 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	             if (  $b == 1) $demtruphi++;
 				  
 				  $sql4= "update khachhang set max_chuyentien = max_chuyentien - $_POST[amt] where id_khachhang = $_SESSION[id_khachhang]";
-			      $control->query($sql4);
+			      $c = $control->query($sql4);
 			      $_SESSION["max"] = $_SESSION["max"] - $_POST["amt"];
 		            }   
 		}
-		if ($demchuyentienthanhcong == $demnguoinhan and $demtruphi == $demnguoinhan){
+		if ($demchuyentienthanhcong == $demnguoinhan and $demtruphi == $demnguoinhan and $c){
 			unset($_SESSION['nguoinhan']);
 			$control->query("commit");
 			header("Location: formchuyentien3.php?kq=ct");
@@ -118,7 +124,8 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	if (!$auth) $passerr.= "<b> <br>mật khẩu chuyển khoản không đúng</b>";
 	if ($_POST["email"] != $_POST["code"])	$passerr.= "<b>  <br>mã xác nhận email không đúng</b>";
     if($_SESSION["max"] < $tongtien) $passerr.=  "<b>  <br>vượt quá số lượng chuyển tối đa trong ngày</b>";
-		 
+    if ($i["sodu"] < $tongtien ) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
+ 	if ($_post["trpass"] != $_POST["xntrpass"])	$passerr .= "<br> <b>pass và xác nhận pass không hợp lệ </b>";	 
 	$passerr.=" <br>vui lòng nhập lại";
 
 	
@@ -180,8 +187,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 						
 		            }   
 		            }
-		      if(isset($_SESSION["max"])) echo $_SESSION["max"];
-	          else echo "sai";
+		      
 	
                   ?>
                   
@@ -211,7 +217,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
                 </tr>
                 <tr>
                   <td><strong>XÁC NHẬN MẬT KHẨU </strong></td>
-                  <td><input name="conftrpass" type="password" id="conftrpass" size="35" required /></td>
+                  <td><input name="xntrpass" type="password" id="conftrpass" size="35" required /></td>
                 </tr>
 				  <tr>
                   <td><strong>XÁC NHẬN EMAIL </strong></td>

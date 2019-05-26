@@ -11,7 +11,7 @@ require ("DBconnect.php");
 ?>
 
 
-<form id="form1" name="form1" method="post" action="formchuyentien2.php">
+<form id="form1" name="form1" method="post" action="formchuyentien2.php#chuyen">
   
      	<h2>CHUYỂN TIỀN </h2>
            	  <table width="591" height="177" border="1">

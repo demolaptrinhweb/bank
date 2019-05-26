@@ -45,7 +45,7 @@ require_once("class_vs_function.php");
 	
 	
 	if (isset($_POST["pay"])){
-		$control->query("START TRANSACTION");	
+		
 		$kt = 0;
 		$demthanhcong=0;
 		$sql11 = "update taikhoan set sodu = sodu + $p[tiengui] where taikhoanid = '$taikhoanid'" ;
@@ -75,7 +75,7 @@ require_once("class_vs_function.php");
 			header("Location: formchuyentien3.php?kq=ct");
 											  }
 		 else {
-			$control->query("rollback");
+			
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");
@@ -112,19 +112,19 @@ require_once("class_vs_function.php");
         	      <td><strong>CHỌN TÀI KHOẢN  </strong></td>
         	   <td><label>
         	       <select name="taikhoan" id="taikhoan"  onchange="form2.submit()" > 
-					        <option value="11">tài khoản mặc định &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
+					        <option value=""> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
 				   <?php  
 					    $sql = "SELECT * FROM taikhoan where id_khachhang=$_SESSION[id_khachhang] and trangthai = 2" ;				
-                        $results_1 = $control->query($sql);			
+                        $resu = $control->query($sql);			
                         
-					  while ($rowsacc = $control->fetch_arr($results_1)){
-						  if (isset($_POST["id_tietkiem"])) echo $_POST["taikhoan"] ;
-					     ?>
-				   <option value="<?php echo $rowsacc["taikhoanid"];?>" <?php 
+					  while ($arr = $control->fetch_arr($resu)){
 						  
-						  if (isset($_POST["taikhoan"]) and $_POST["taikhoan"] == $rowsacc['taikhoanid']) echo "selected ='selected'" ;?> > 
+					     ?>
+				   <option value="<?php echo $arr["taikhoanid"];?>" <?php 
+						  
+						  if (isset($_POST["taikhoan"]) and $_POST["taikhoan"] == $arr['taikhoanid']) echo "selected ='selected'" ;?> > 
 					   
-					   <?php echo $rowsacc["taikhoanid"] ?>
+					   <?php echo $arr["taikhoanid"] ?>
 					   
 					   </option>
 					   
@@ -204,4 +204,4 @@ require_once("class_vs_function.php");
         	      </div></td>
        	        </tr>
       	    </table>
-<?php } else echo "không có tài khoản tiết kiệm chuyển hướng sang mở tài khoản tiết kiệm" ; ?>
+<?php } else echo "không có tài khoản tiết kiệm " ; ?>

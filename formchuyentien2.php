@@ -66,7 +66,7 @@
 	  $nguoinhan = $_POST["payto3"]	  ; 
 	  $sql = "SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
 	  $kq = $control->query($sql);
-      $arr1 = $control->fetch_arr($results_3);
+      $arr1 = $control->fetch_arr($kq);
        
    
    //lay tai khoan khach hang muon su dung  

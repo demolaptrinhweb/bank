@@ -64,13 +64,13 @@
 	   if(isset($_POST["pay2"]))
   {   
 	  $nguoinhan = $_POST["payto3"]	  ; 
-	  $sql = "SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
+	  $sql = "SELECT passchuyenkhoan FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
 	  $kq = $control->query($sql);
       $arr1 = $control->fetch_arr($kq);
        
    
    //lay tai khoan khach hang muon su dung  
-    $sql11 = "select * from taikhoan where taikhoanid = '$_POST[taikhoanid]'" ;
+    $sql11 = "select sodu from taikhoan where taikhoanid = '$_POST[taikhoanid]'" ;
 		$j = $control->query($sql11);
 		$i = $control->fetch_arr($j);
 		   
@@ -78,7 +78,7 @@
 	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);
 		
 		
-	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
+	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= ($_POST["amt"] + $_POST["phichuyentien"]) and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
 	{  
 		//chuyen tien 
 		
@@ -118,7 +118,7 @@
 	if (!$auth) $passerr.= "<br> <b>mật khẩu chuyển khoản không đúng</b>";
 	if ($_POST["email"] != $_POST["code"])	$passerr.= "<br> <b> mã xác nhận email không đúng</b>";
 	
-    if ($i["sodu"] < $_POST["amt"]) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
+    if ($i["sodu"] < ($_POST["amt"] + $_POST["phichuyentien"])) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
 	
 		if($_SESSION["max"] < $_POST["amt"]) $passerr.="<br> <b> vượt quá số lượng chuyển tối đa trong ngày</b>";
 	if ($_POST["tt"] != 2) $passerr .= "<br> <b>tài khoản chuyển không hợp lệ </b>";	
@@ -137,7 +137,7 @@
 }       
 		if(isset($nguoinhan) and $nguoinhan != ""){
 			
-		$sql = "SELECT * FROM taikhoan where taikhoanid = '$nguoinhan' " ;
+		$sql = "SELECT taikhoanid,id_khachhang,trangthai FROM taikhoan where taikhoanid = '$nguoinhan' " ;
 		$kq = $control->query($sql);
 		$arr = $control->fetch_arr($kq);
 		if (!isset($arr["taikhoanid"]))
@@ -159,6 +159,7 @@
 		else {$loi++;
 			 
 			}
+		if (@$payamt == 0) $loi++; 
 ?>
 	
    <?php   

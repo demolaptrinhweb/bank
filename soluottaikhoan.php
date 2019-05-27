@@ -11,20 +11,18 @@
 ?>
 	
 	<?php 
-          $sql = "select * from khachhang where id_khachhang = $_SESSION[id_khachhang]" ;
-         $resu = $control->query($sql);
-         $arr = $control->fetch_arr($resu);
+        
 
-
-	    
-		$results = mysqli_query($conn,"SELECT * FROM taikhoan where id_taikhoan = $arr[taikhoanmacdinh]");
-	while($arrow = mysqli_fetch_array($results,MYSQLI_ASSOC)){
-		$ngaytao = $arrow["ngaytao"];
-		$sodu = $arrow["sodu"];
-		$id_khachhang = $arrow["id_khachhang"];
-		$trangthai = $arrow["trangthai"];
-		$taikhoanid = $arrow["taikhoanid"];
-		$i = 1;
+	    $sql ="SELECT ngaytao,sodu,trangthai,taikhoanid FROM taikhoan where id_taikhoan = $_SESSION[taikhoanid]" ;
+		$kq = $control->query($sql);
+        
+	while( $arr1= $control->fetch_arr($kq)){
+		$ngaytao = $arr1["ngaytao"];
+		$sodu = $arr1["sodu"];
+		
+		$trangthai = $arr1["trangthai"];
+		$taikhoanid = $arr1["taikhoanid"];
+		
 	}
 	?>	
 

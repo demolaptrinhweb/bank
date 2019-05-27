@@ -77,9 +77,9 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);	
    $tongtien=0;
 		foreach  ($_SESSION['nguoinhan'] as $nguoinhan_1){
-			$tongtien = $tongtien + $_POST["amt"];
+			$tongtien = $tongtien + $_POST["amt"] + $_POST["phichuyentien"];
 		}
-	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien and $i["sodu"] >= $tongtien and $_post["trpass"] == $_POST["xntrpass"] )
+	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien and $i["sodu"] >= $tongtien and $_POST["trpass"] == $_POST["xntrpass"] )
 	{   
 		
 		$tien = new chuyentien($_POST["taikhoanid"]);
@@ -120,12 +120,12 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	}
 	else
 	{
-	
+	$passerr ="";
 	if (!$auth) $passerr.= "<b> <br>mật khẩu chuyển khoản không đúng</b>";
 	if ($_POST["email"] != $_POST["code"])	$passerr.= "<b>  <br>mã xác nhận email không đúng</b>";
     if($_SESSION["max"] < $tongtien) $passerr.=  "<b>  <br>vượt quá số lượng chuyển tối đa trong ngày</b>";
     if ($i["sodu"] < $tongtien ) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
- 	if ($_post["trpass"] != $_POST["xntrpass"])	$passerr .= "<br> <b>pass và xác nhận pass không hợp lệ </b>";	 
+ 	if ($_POST["trpass"] != $_POST["xntrpass"])	$passerr .= "<br> <b>pass và xác nhận pass không hợp lệ </b>";	 
 	$passerr.=" <br>vui lòng nhập lại";
 
 	
@@ -173,12 +173,12 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 				foreach  ($_SESSION['nguoinhan'] as $nguoinhan_1){
 			
 	             	if ($nguoinhan_1 != "" ){
-                    $sql ="SELECT * FROM taikhoan where taikhoanid=$nguoinhan_1"; 	
-						$resu = $control->query($sql);
-					  $arr = $control->fetch_arr($resu);
-					$sql2 ="SELECT * FROM khachhang where id_khachhang=$arr[id_khachhang]"; 	
-						$resu2 = $control->query($sql2);
-						$arr2 = $control->fetch_arr($resu2);
+                    $sql ="SELECT id_khachhang,taikhoanid FROM taikhoan where taikhoanid = '$nguoinhan_1'"; 	
+						$kq = $control->query($sql);
+					  $arr = $control->fetch_arr($kq);
+					$sql ="SELECT ho,ten FROM khachhang where id_khachhang=$arr[id_khachhang]"; 	
+						$kq = $control->query($sql);
+						$arr2 = $control->fetch_arr($kq);
 				echo "<br><b>&nbsp;TÊN : </b>".$arr2["ho"]."  ".$arr2["ten"];
 				echo "<br><b>&nbsp;TÀI KHOẢN ID : </b>".$arr["taikhoanid"];			
 				
@@ -191,7 +191,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	
                   ?>
                   
-<input type="hidden" name="payto3" value="<?php echo $nguoinhan; ?>"  />
+
 <input type="hidden" name="amt" value="<?php echo $payamt; ?>"  />
 <input type="hidden" name="taikhoanid" value="<?php echo $taikhoanchuyen; ?>"  />
 <input type="hidden" name="code" value="<?php echo $code; ?>"  />	
@@ -213,11 +213,11 @@ $taikhoanchuyen = $_POST["taikhoanid"];
                 </tr>
                 <tr>
                   <td><strong>NHẬP MẬT KHẨU CHUYỂN KHOẢN</strong></td>
-                  <td><input name="trpass" type="password" id="trpass" size="35" required /></td>
+                  <td><input name="trpass" type="password"  size="35" required /></td>
                 </tr>
                 <tr>
                   <td><strong>XÁC NHẬN MẬT KHẨU </strong></td>
-                  <td><input name="xntrpass" type="password" id="conftrpass" size="35" required /></td>
+                  <td><input name="xntrpass" type="password"  size="35" required /></td>
                 </tr>
 				  <tr>
                   <td><strong>XÁC NHẬN EMAIL </strong></td>

@@ -1,5 +1,3 @@
-
-
 <?php
  date_default_timezone_set("Asia/Ho_Chi_Minh");
 class control {
@@ -42,7 +40,7 @@ if (!$conn) {
  die('Không thể kết nối: ' . mysqli_error($conn));
  exit();
 }
- header("Content-type: text/html; charset=utf-8");
+ 
         mysqli_set_charset($conn, 'UTF8');
  $control = new control($conn);
 	    $control->setCon($conn);

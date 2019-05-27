@@ -49,39 +49,43 @@
 	$mail->gui($conn,$code);
 	$passerr ="" ;
 	echo $code ;
-	echo $kieuvay;
 }
 	
 ?>
 		
 	<?php 
-	
-  $results_4 = mysqli_query($conn,"SELECT * FROM kieuvay where id_kieuvay=$_POST[kieuvay]");
-	$array_4 = mysqli_fetch_assoc($results_4);
+	$sql = "SELECT * FROM kieuvay where id_kieuvay=$_POST[kieuvay]";
+    $kq = $control->query($sql);
+	$arr4 = $control->fetch_arr($kq);
 		
+	echo $arr4["laixuat"];	
 		
 		
 	$loi = 0 ;
 		
 		
 	   if(isset($_POST["pay2"]))
-  {   $results_3 = mysqli_query($conn,"SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]");
-      $arrpayment1 = mysqli_fetch_assoc($results_3);	
+  {   
+		   $sql = "SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
+           $kq = $control->query($sql);
+		   
+           $arr1 = $control->fetch_arr($kq);	
    
    //chuyen phai nguoi dung nhap sang harsh-password
-	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);	
+	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);	
    
 	if($auth and $_POST["email"] == $_POST["code"])
 		
 	{   
-		$control->query("START TRANSACTION");
+		
 		$demthanhcong=0;
 		$vay = new vaytien($_POST["taikhoanid"]);
 	    $vay->setCon($conn);
 		$a=$vay->vay($conn,$_POST["amt"],$_POST["kieuvay"]);
 		if ($a == 1)$demthanhcong++;
-	 
-	    $sql = "update taikhoan set no = $_POST[amt] +($_POST[amt]*$array_4[laixuat]) where taikhoanid = '$_POST[taikhoanid]' ";
+	    echo $_POST["taikhoanid"];
+	    $sql = "update taikhoan set no = $_POST[amt] + ($_POST[amt]*$arr4[laixuat]) where taikhoanid = '$_POST[taikhoanid]'";
+		
 	    $resu = $control->query($sql);
 	    $a = $control->row_affected();
 	    if ($a == 1)$demthanhcong++;
@@ -89,11 +93,11 @@
 	 
 	    if ($demthanhcong == 2){
 			
-			$control->query("commit");
+			
 			header("Location: formchuyentien3.php?kq=ct");
 		}
 		else {
-			$control->query("rollback");
+		
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");
@@ -124,10 +128,9 @@
 	$code = $_POST["code"];
 	}		  
     }       
-		
-	$results_4 = mysqli_query($conn,"SELECT * FROM kieuvay where id_kieuvay=$kieuvay");
-	$array_4 = mysqli_fetch_assoc($results_4);
-		if ($vayamt < $array_4["toithieu"] or $vayamt > $array_4["toida"]) {
+	
+	
+		if ($vayamt < $arr4["toithieu"] or $vayamt > $arr4["toida"]) {
 			$loi++ ;
 		}
 		if ($kieuvay == "") $loi++;
@@ -154,7 +157,7 @@
                   <td width="322">
 				  <?php
 	
-				echo "<b>&nbsp;KIÊU VAY : </b>".$array_4["kieuvay"];
+				echo "<b>&nbsp;KIÊU VAY : </b>".$arr4["kieuvay"];
 				echo "<br><b>&nbsp;SỐ LƯỢNG VAY : </b>".$vayamt;			
 				echo "<br><b>&nbsp;TÀI KHOẢN VAYY : </b>".$taikhoanvay;
 	
@@ -181,7 +184,7 @@
                 <tr>
                   <td colspan="2"><div align="right">
                     <input type="submit" name="pay2" id="pay2" value="Pay" />
-                    <input name="button" type="button"  value="Cancel" alt="Pay Now" />
+                   
                   </div></td>
                 </tr>
               </table>
@@ -190,7 +193,7 @@
 			
 		
 		
-		if ($vayamt < $array_4["toithieu"] or $vayamt > $array_4["toida"]) {
+		if ($vayamt < $arr4["toithieu"] or $vayamt > $arr4["toida"]) {
 			echo "<br>"."số tiền vay không phù hợp";
 		}	
 			

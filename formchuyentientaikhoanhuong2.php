@@ -63,8 +63,8 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	$loi = 0 ;
 	   if(isset($_POST["pay2"]))
   {   $sql ="SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
-      $results_3 = $control->query($sql);
-      $arrpayment1 = $control->fetch_arr($results_3);
+      $kq = $control->query($sql);
+      $arr1 = $control->fetch_arr($kq);
    
    
    //lay tai khoan khach hang muon su dung  
@@ -74,14 +74,14 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		   
   
     //chuyen phai nguoi dung nhap sang harsh-password
-	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);	
+	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);	
    $tongtien=0;
 		foreach  ($_SESSION['nguoinhan'] as $nguoinhan_1){
 			$tongtien = $tongtien + $_POST["amt"];
 		}
 	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien and $i["sodu"] >= $tongtien and $_post["trpass"] == $_POST["xntrpass"] )
 	{   
-		$control->query("START TRANSACTION");
+		
 		$tien = new chuyentien($_POST["taikhoanid"]);
 		$tien->setCon($conn);
 		$tien->setphichuyen($_POST["phichuyentien"]);
@@ -105,11 +105,11 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		}
 		if ($demchuyentienthanhcong == $demnguoinhan and $demtruphi == $demnguoinhan and $c){
 			unset($_SESSION['nguoinhan']);
-			$control->query("commit");
+			
 			header("Location: formchuyentien3.php?kq=ct");
 		}
 		else {
-			$control->query("rollback");
+			
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");
@@ -181,7 +181,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 						$arr2 = $control->fetch_arr($resu2);
 				echo "<br><b>&nbsp;TÊN : </b>".$arr2["ho"]."  ".$arr2["ten"];
 				echo "<br><b>&nbsp;TÀI KHOẢN ID : </b>".$arr["taikhoanid"];			
-				echo "<br><b>&nbsp;TRẠNG THÁI : </b>".$arr2["trangthai"];
+				
 				echo "<br>";		
 				
 						

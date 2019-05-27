@@ -64,9 +64,9 @@
 	   if(isset($_POST["pay2"]))
   {   
 	  $nguoinhan = $_POST["payto3"]	  ; 
-	  $sql3 = "SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
-	  $results_3 = $control->query($sql3);
-      $arrpayment1 = $control->fetch_arr($results_3);
+	  $sql = "SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
+	  $kq = $control->query($sql);
+      $arr1 = $control->fetch_arr($results_3);
        
    
    //lay tai khoan khach hang muon su dung  
@@ -75,13 +75,13 @@
 		$i = $control->fetch_arr($j);
 		   
     //chuyen phai nguoi dung nhap sang harsh-password
-	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);
+	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);
 		
 		
 	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= $_POST["amt"] and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
 	{  
 		//chuyen tien 
-		$control->query("START TRANSACTION");
+		
 		
 		$tien = new chuyentien($_POST["taikhoanid"]);
 	    $tien->setCon($conn);
@@ -97,11 +97,11 @@
 	    if ($a == 1 and $b == 1 and $c){
 			
 			$_SESSION["max"] = $_SESSION["max"] - $_POST["amt"];
-			$control->query("commit");
+			
 			header("Location: formchuyentien3.php?kq=ct");
 		}
 		else {
-			$control->query("rollback");
+			
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");
@@ -115,8 +115,6 @@
 	{   
 		// neu co loi xuat loi ra 
 		
-		$err1 = "";
-		$err2 = "";
 	if (!$auth) $passerr.= "<br> <b>mật khẩu chuyển khoản không đúng</b>";
 	if ($_POST["email"] != $_POST["code"])	$passerr.= "<br> <b> mã xác nhận email không đúng</b>";
 	
@@ -140,8 +138,8 @@
 		if(isset($nguoinhan) and $nguoinhan != ""){
 			
 		$sql = "SELECT * FROM taikhoan where taikhoanid = '$nguoinhan' " ;
-		$resu = $control->query($sql);
-		$arr = $control->fetch_arr($resu);
+		$kq = $control->query($sql);
+		$arr = $control->fetch_arr($kq);
 		if (!isset($arr["taikhoanid"]))
 		{
 		
@@ -152,9 +150,9 @@
 			
 	   
         $nguoinhan_1 = $arr["id_khachhang"];
-		$sql2 = "SELECT * FROM khachhang where id_khachhang=$nguoinhan_1" ;
-	    $resu = $control->query($sql2);	
-	    $arrpayment = $control->fetch_arr($resu);
+		$sql2 = "SELECT ho,ten FROM khachhang where id_khachhang=$nguoinhan_1" ;
+	    $kq = $control->query($sql2);	
+	    $arrpay = $control->fetch_arr($kq);
 			
 		}
 		}
@@ -168,7 +166,7 @@
 { ?>
 		<div align="center" >
 	<form id="form1" name="form1" method="post" action="formchuyentien2.php">     
-     	<h2>&nbsp;NGƯỜI NHẬN <?php echo $arrpayment["ho"]."  ".$arrpayment["ten"]; ?></h2>
+     	
               <table width="564" height="220" border="1">
                 <?php
 				if($passerr != "")
@@ -184,9 +182,11 @@
                   <td width="203"><strong>THÔNG TIN NGƯỜI NHẬN</strong></td>
                   <td width="322">
 				  <?php
-				echo "<b>&nbsp;TÊN : </b>".$arrpayment["ho"]."  ".$arrpayment["ten"];
-				echo "<br><b>&nbsp;TÀI KHOẢN ID : </b>".$arr["taikhoanid"];			
-				echo "<br><b>&nbsp;TRẠNG THÁI : </b>".$arr["trangthai"];
+				echo "<b>&nbsp;TÊN : </b>".$arrpay["ho"]."  ".$arrpay["ten"];
+				echo "<br><b>&nbsp;TÀI KHOẢN ID : </b>".$arr["taikhoanid"];	
+                if ($arr["trangthai"] == 2) $tt = "đang hoạt động" ;
+                else $tt = "tạm dừng";
+				echo "<br><b>&nbsp;TRẠNG THÁI : </b>".$tt;
 	       
                   ?>
                   

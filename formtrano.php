@@ -83,7 +83,7 @@
 		
 		
 	{   
-		$control->query("START TRANSACTION");
+		
 		$demthanhcong=0;
 		$vay = new chuyentien($_POST["taikhoanid"]);
 	    $vay->setCon($conn);
@@ -117,11 +117,11 @@
 		
 	    if ($demthanhcong == 3) {
 			
-			$control->query("commit");
+			
 			header("Location: formchuyentien3.php?kq=ct");		
 				}
 		else {
-			$control->query("rollback");
+		
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");

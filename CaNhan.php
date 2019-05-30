@@ -37,7 +37,6 @@
 	border-color: blue;
 	border-width: 1px;
 	background-color: #29a0c7;
-
 	text-align: center;
 	font-weight: bolder;
 	border-radius: 50px;

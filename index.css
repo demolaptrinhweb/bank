@@ -402,12 +402,12 @@ div#menu
 	text-align: center;
 	font-weight: bolder;
 	color: white;
-	margin-left: -40px;
+	margin-left: 0px;
 	padding: 2px;
 }
 #khacright li:hover
 {
-	background-color: #099ec1; 
+	color: aqua;
 }
 #khacright h2:hover
 {

@@ -8,15 +8,7 @@
 	
 
 <?php 
-        
-        
-        
-        
 	    $sql = "SELECT * FROM chuyentien where (id_chuyen = '$_SESSION[taikhoan_id]' or id_nhan = '$_SESSION[taikhoan_id]')";
-				  
-				  
-		$kq = $control->query($sql);
-	
 	?>		
 
 
@@ -36,7 +28,7 @@
         	        <select name="taikhoan" id="taikhoan" onchange="form1.submit()"  >
                              <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
         	 			<?php
-						$sql1 = "SELECT * FROM taikhoan where id_khachhang=$_SESSION[id_khachhang]"; ;
+						$sql1 = "SELECT taikhoanid FROM taikhoan where id_khachhang=$_SESSION[id_khachhang]"; ;
 						
 						$results_1 = $control->query($sql1);
 						
@@ -99,12 +91,12 @@
   $kq = $control->query($sql);
   $tsp = @mysqli_num_rows($kq);
   $sd = 5 ;
-  $sn = 5 ;
+  
   
   $tst = ceil($tsp/$sd);
   
-  $tsn = ceil($tst/$sn);
   
+  if ($tsp != 0 ){
  
   if (isset($_GET["page"])){
 	  $page = $_GET["page"] ;
@@ -202,3 +194,4 @@
    }
   ?></p>
 		</div>
+<?php } ?>

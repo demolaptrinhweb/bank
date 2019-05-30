@@ -137,7 +137,7 @@ function id ($type){
 
 mail($to,$subject,$txt,$headers);
 	  }
-	 public function gui1 ($con,$tieude,$noidung){
+	 public function guinoidung ($con,$tieude,$noidung){
 		 $khach = $this->khachhangemail ;
 		  
 		  $to = $khach;
@@ -211,21 +211,6 @@ function taocode($length) {
 
 
 
-<?php 
-class themtaikhoanhuong extends class_coban{
-	function themtaikhoanhuong ($id){
-		$this->setid($id);
-	}
-	public function them ($con,$id_huong){
-		$a = new control ($con);
-		$a->setCon($con);
-		$idd = $this->getid();
-		$sql = "INSERT INTO taikhoanhuong VALUES('','$id_huong','$idd')";
-		$b = $a->query($sql);
-		if ($b)  header("Location: formchuyentien3.php");
-	}
-}
-?>
 
 <?php class phichuyentien extends control {
 	

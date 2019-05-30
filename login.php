@@ -59,24 +59,7 @@ if (isset($_POST['login'])) {
 
 ?>
 
-<head>
-	<title>Internet Banking</title>
-	<meta charset="UTF-8">
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
 
-</head>
-<body>
-	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
@@ -118,31 +101,3 @@ if (isset($_POST['login'])) {
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 	<script src="js/main.js"></script>
 
-<!--
-<div class="container" style="min-height: 500px;" align="center">	
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4 well">
-			<form role="form" method="post" name="loginform" style="min-height: 300px; max-width: 500px" >
-				<fieldset>
-					<legend>Login</legend>						
-					<div class="form-group">
-						<label for="name">Email</label>
-						<input type="text" name="taikhoan" placeholder="Nhập Email của bạn" required class="form-controla" />
-					</div>	
-					<div class="form-group">
-						<label for="name">Password</label>
-						<input type="password" name="password" placeholder="Nhập mật khẩu" required class="form-controla" />
-					</div>	
-					<div class="form-group">
-						<button type="submit" name="login" value="Login" class="btn btn-primary" >Login</button>
-					</div>
-				</fieldset>
-			</form>
-				
-		<span class="text-danger"><?php if (isset($error_message)) { echo $error_message; } ?></span>
-			
-		</div>
-	</div>
--->
-
-</body>

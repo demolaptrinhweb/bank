@@ -32,13 +32,14 @@
 	border-color: blue;
 	border-width: 1px;
 	background-color: #29a0c7;
-	
+
 	text-align: center;
 	font-weight: bolder;
 	border-radius: 50px;
 	color: white;
-	min-width: 230px;
+	width: 270px;
 	word-wrap: break-word;
+	float:right;
 	<?php 
 			if ($id_remem == $arr["id"])	
 				 echo "font-style:italic;";

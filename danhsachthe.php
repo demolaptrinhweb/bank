@@ -6,7 +6,7 @@
 require_once("class_vs_function.php");?>
 	<?php 
 	    $sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang]";
-		$results = $control->query($sql);
+		
 	   
 	
 	?>		
@@ -116,12 +116,10 @@ require_once("class_vs_function.php");?>
   $kq = $control->query($sql);
   $tsp = mysqli_num_rows($kq);
   $sd = 5 ;
-  $sn = 5 ;
-  
+ 
   $tst = ceil($tsp/$sd);
   
-  $tsn = ceil($tst/$sn);
-  
+    if ($tsp != 0 ){
 
  if (isset($_GET["page"])){
 	  $page = $_GET["page"] ;
@@ -201,5 +199,5 @@ require_once("class_vs_function.php");?>
    }
   ?></p>
 	</div>
- 
+ <?php } ?>
 				

@@ -9,19 +9,19 @@ require ("DBconnect.php");
 		$passerr = "";
 	if (isset($_POST["pay"])){
 		$passerr = "";
-		$sql = "select * from khachhang  where id_khachhang =$_SESSION[id_khachhang]";
-		$a = $control->query($sql);
-		$b = $control->fetch_arr($a);
+		$sql = "select pass from khachhang  where id_khachhang =$_SESSION[id_khachhang]";
+		$kq = $control->query($sql);
+		$arr = $control->fetch_arr($kq);
 		
-		$auth = password_verify($_POST["pass"],$b["pass"]);
+		$auth = password_verify($_POST["pass"],$arr["pass"]);
 		
 	 if($auth and $_POST["email"] == $_POST["code"] and $_POST["passmoi"]==$_POST["passlai"]){	
 		 $passmoi = $control->passharsh($_POST["passmoi"]);
 		 $sql = "UPDATE khachhang SET pass = '$passmoi' where id_khachhang = $_SESSION[id_khachhang]";
 		$a = $control->query($sql);
 		if ($control->row_affected() == 1){
-			$gui = new guimail ($_SESSION["email"]);
-			$gui->gui1($conn,"đỗi pass ","tài khoản của bản đã được đổi pass");
+			$mail = new guimail ($_SESSION["email"]);
+			$mail->guinodung($conn,"đỗi pass ","tài khoản của bản đã được đổi pass");
 			
 			header("Location: formchuyentien3.php?kq=dp");}
 																					

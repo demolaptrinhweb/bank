@@ -133,11 +133,11 @@
   $kq = $control->query($sql);
   $tsp = mysqli_num_rows($kq);
   $sd = 5 ;
-  $sn = 5 ;
+  
   
   $tst = ceil($tsp/$sd);
   
-  $tsn = ceil($tst/$sn);
+   if ($tsp != 0 ) {
   
 
   if (isset($_GET["page"])){
@@ -219,4 +219,5 @@
    }
   ?></p>
 	</div>
+<?php } ?>
 	

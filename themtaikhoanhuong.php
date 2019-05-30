@@ -13,28 +13,32 @@ require ("DBconnect.php");
 	if (isset($_POST["pay"])){
 		
 		$passerr="";
-		$id_them = $control->real_string_escape($_POST["id_them"]);
-		$sql= "select * from taikhoan where taikhoanid = '$id_them'";
-		$c =$control->query($sql);
-		$h = $control->fetch_arr($c);
+		$id_them = $_POST["id_them"];
+		$sql= "select trangthai from taikhoan where taikhoanid = '$id_them'";
+		$kq =$control->query($sql);
+		$arr = $control->fetch_arr($kq);
 		
 		
 		$sql1 = "select taikhoanhuongid from taikhoanhuong where taikhoanhuongid = '$id_them'" ;
-		$d = $control->query($sql1);
-		$j = $control->fetch_arr($d);
+		$kq1 = $control->query($sql1);
+		$arr1 = $control->fetch_arr($kq1);
 		
 		
-		if($h and !$j and $h["trangthai"] == 2){
-		$a = new themtaikhoanhuong($_SESSION["id_khachhang"]);
-		$a->them($conn,$id_them);
-	    if( $control->row_affected() == 1 ) header("location:formchuyentien3.php?kq=tkh");
-		 
+		if($arr and !$arr1 and $arr["trangthai"] == 2){
+		$sql = "INSERT INTO taikhoanhuong VALUES('','$id_them','$_SESSION[id_khachhang]')";
+		$control->query($sql);	
+	    if( $control->row_affected() == 1 ) { ?> <script>
+		 location.replace("formchuyentien3.php?kq=tkh"); 
+</script>
+		 <?php }
 		}
 		
 			
-		if (!$h)$passerr .= "tài khoản thêm không tồn tại";
-		if ($j) $passerr .= "tài khoản thêm đã có trong dữ liệu";
-		if ($h["trangthai"] == 1 ) $passerr .= "tài khoản hiện không hoạt động";
+		if (!$arr) $passerr .= "tài khoản thêm không tồn tại";
+		else 
+		if ($arr1) $passerr .= "tài khoản thêm đã có trong dữ liệu";
+	    else 	
+		if ($arr["trangthai"] == 1 ) $passerr .= "tài khoản hiện không hoạt động";
  		
 	}
 ?>

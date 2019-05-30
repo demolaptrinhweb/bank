@@ -30,7 +30,7 @@
 							
 						</ul>
 					</div>
-					<div class="left_22">
+					<div class="left_22" >
 						<h1>Giới thiệu chung</h1>
 						<ul>
 							<?php $sql = "select id,title from news where theme = 2";

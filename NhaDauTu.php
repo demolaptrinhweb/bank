@@ -58,7 +58,8 @@
 	                      background-color: lightblue;
 			              min-height: 315px	
 						   " >
-	                    <?php if(isset($_GET["id"])) { ?>	<ul style ="list-style-image: url('hinh/gach.jpg');" >
+	                    <?php if(isset($_GET["id"])) { ?>	<ul style ="list-style-image: url('hinh/gach.jpg');
+						padding-left: 25px;	" >
 							<?php $sql = "select id,title from news where theme = $theme_rem";
 							      $kq  = $control->query($sql);
 							      while ($arr = $control->fetch_arr($kq)){		

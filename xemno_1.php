@@ -79,16 +79,16 @@ $sql0="";
   $kq = $control->query($sql);
   $tsp = @mysqli_num_rows($kq);
   $sd = 5 ;
-  $sn = 5 ;
+ 
   
   $tst = ceil($tsp/$sd);
   
-  $tsn = ceil($tst/$sn);
-  
+ 
+   if ($tsp != 0 ){
  
    if (isset($_GET["page"])){
 	  $page = $_GET["page"] ;
-	  $gr =  ceil ($page / $sn);
+
 	  }
 	  else {
 		  $gr = $page = 1 ;}
@@ -172,8 +172,8 @@ echo "
             
      <?php }
   }
-   if ($page != $tsn ) {?> <a href="acctrangchu.php?ts=xn&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   if ($page != $tst ) {?> <a href="acctrangchu.php?ts=xn&page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
 				  </div>
-	
+	<?php } ?>

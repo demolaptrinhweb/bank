@@ -130,7 +130,8 @@ div#menu
 	border-radius: 25px;
 }
 .left_22 ul
-{
+{    
+	padding-left: 25px;
 	list-style-image: url("hinh/list.jpg");
 }
 .left_22 h1:hover
@@ -139,6 +140,7 @@ div#menu
 }
 #left_2 li
 {
+	
 }
 .left_22
 {
@@ -563,6 +565,7 @@ div#menu
 }
 #leftnhadautu ul
 {
+	padding-left: 25px;
 	list-style-image: url("hinh/gach.jpg");
 }
 #leftnhadautu a

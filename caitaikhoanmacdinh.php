@@ -7,7 +7,7 @@ require ("DBconnect.php");
 	    
 		
 		
-	if (isset($_POST["pay"])){
+	if (isset($_POST["pay"]) and $_POST["taikhoanid"] != ""){
 		
 		
 		
@@ -16,6 +16,13 @@ require ("DBconnect.php");
 		$a = $control->query($sql);
 		if ($control->row_affected() == 1) {
 			$_SESSION["taikhoanid"] = $_POST["taikhoanid"];
+			$sql = " select taikhoanid from taikhoan where id_taikhoan = '$_POST[taikhoanid]' ";
+			$kq = $control->query($sql);
+			$arr = $control->fetch_arr($kq);
+			
+			$_SESSION["taikhoan_id"] = $arr["taikhoanid"];
+			
+			
 			echo "success";
 		}
 	}
@@ -32,16 +39,16 @@ require ("DBconnect.php");
         	      <td><strong>CHỌN TÀI KHOẢN </strong></td>
         	      <td><label>
         	        <select name="taikhoanid" id="taikhoanid" >
-                             <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
+                         <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>     
         	 			<?php
-						$sql = "SELECT * FROM taikhoan where id_khachhang=$_SESSION[id_khachhang]" ;
+						$sql = "SELECT id_taikhoan,taikhoanid FROM taikhoan where id_khachhang=$_SESSION[id_khachhang]" ;
 						
-						$results_1 = $control->query($sql);
+						$kq = $control->query($sql);
 						
 						
-						while($rowsacc = $control->fetch_arr($results_1))
+						while($arr = $control->fetch_arr($kq))
 						{
-							echo "<option value='$rowsacc[id_taikhoan]'>$rowsacc[taikhoanid]</option>";
+							echo "<option value='$arr[id_taikhoan]'>$arr[taikhoanid]</option>";
 						}
 						?>
       	            </select>

@@ -35,7 +35,7 @@
 
 
 
-<form id="form1" name="form1" method="get" action="acctrangchu.php" >
+<form id="form1" name="form1" method="get" action="Javascript:;" >
   
      	
            	  <table width="591" height="177"  align="center">
@@ -95,5 +95,22 @@
       	      </tr> 
 	</table>
 </form>	
+<script> 
+ 
+	
+	$(document).ready(function(){
+	 	$.ajax({
+		 type : "GET",
+		 url : "danhsachtaikhoan_xuly.php",
+		 data : "page=" + "&timkiem=" + "&taikhoan=" + "&sotien="  +
+		 "&trangthai=" ,
+		 success : function(dulieu){
+			 $("#noidung").html(dulieu);
+		 }
+	 })
+	 
+ })
+    
+</script>	
 <div id="noidung"></div>
 	

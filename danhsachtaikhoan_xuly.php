@@ -32,25 +32,25 @@
 				 if (isset($_GET["trangthai"]) and $_GET["trangthai"] != "") {
 				
 					 $sql .= " and trangthai = $_GET[trangthai]";
-					  $truyendulieu .= "&trangthai=$_GET[trangthai]";
+					 
 				 }
 				 
 				 
 			
 				  if (isset($_GET["timkiem"]) and $_GET["timkiem"] != "" ) { 
 					 $sql .=  " and taikhoanid like '%$_GET[timkiem]%'";
-					 $truyendulieu .= "&timkiem=$_GET[timkiem]";
+					 
 				 }
 				 
 				 
 				  if (isset($_GET["sotien"]) and $_GET["sotien"] != "") {
 					 if ($_GET["sotien"] == 1) {
 						 $sql .=  " order by sodu desc";
-					 $truyendulieu .= "&sotien=$_GET[sotien]";
+					
 					 }
 					 if ($_GET["sotien"] == 2) {
 						 $sql .=  " order by sodu ASC";
-					 $truyendulieu .= "&sotien=$_GET[sotien]";
+					 
 					 }
 				 }
 				 

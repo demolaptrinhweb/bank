@@ -29,7 +29,7 @@
 
 
 
-<form id="form1" name="form1" method="get" action="acctrangchu.php" >
+<form id="form1" name="form1" method="get" action="Javascript:;" >
   
      	
            	  <table width="591" height="177"  align="center">
@@ -54,7 +54,7 @@
 						{ ?>
 							
 							<option value='<?php echo $rowsacc["taikhoanid"]; ?>' 
-									<?php if (isset($_GET["taikhoan"]) and $_GET["taikhoan"] != "" and $_GET["taikhoan"] == $rowsacc["taikhoanid"]) echo "selected ='selected'";?>> <?php echo  $rowsacc["taikhoanid"];?></option>";
+									> <?php echo  $rowsacc["taikhoanid"];?></option>";
 						<?php }
 						?>
       	            </select>
@@ -65,14 +65,29 @@
         	   <td><label>
         	        <select name="sotien" id="sotien" onChange="boLoc()"  >
                              <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
-        	 			     <option value="1" <?php if (isset($_GET["sotien"]) and $_GET["sotien"] != "" and $_GET["sotien"] == 1) echo "selected ='selected'";?>> giảm dần </option>
-						    <option value="2" <?php if (isset($_GET["sotien"]) and $_GET["sotien"] != "" and $_GET["sotien"] == 2) echo "selected ='selected'";?>> tăng dần </option>
+        	 			     <option value="1" > giảm dần </option>
+						    <option value="2"> tăng dần </option>
       	            </select>
       	        </label></td>
       	      </tr>
 	</table>
 </form>
-				 
+	<script> 
+ 
+	
+	$(document).ready(function(){
+	 	$.ajax({
+		 type : "GET",
+		 url : "chitietgiaodich_xuly.php",
+		 data : "page=" + "&timkiem=" + "&taikhoan=" + "&sotien="  ,
+		 success : function(dulieu){
+			 $("#noidung").html(dulieu);
+		 }
+	 })
+	 
+ })
+    
+</script>				 
 				 
 
 		<div id= "noidung"></div>

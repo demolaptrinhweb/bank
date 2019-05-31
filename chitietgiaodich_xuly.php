@@ -3,7 +3,6 @@
       require_once("class_vs_function.php");
 ?>
 	
-
 <?php 
 	    $sql = "SELECT * FROM chuyentien where (id_chuyen = '$_SESSION[taikhoan_id]' or id_nhan = '$_SESSION[taikhoan_id]')";
 	?>		
@@ -11,30 +10,30 @@
 
 
 <?php
-				 $truyendulieu ="";
+				
 				 
 				 
 				 if (isset($_GET["taikhoan"]) and $_GET["taikhoan"] != "") { 
 					 $sql = "SELECT * FROM chuyentien where (id_chuyen = '$_GET[taikhoan]' or id_nhan = '$_GET[taikhoan]')";
-					 $truyendulieu .= "&taikhoan=$_GET[taikhoan]";
+					 
 				 }
 				 
 				 
 			
 				  if (isset($_GET["timkiem"]) and $_GET["timkiem"] != "" ) { 
 					 $sql .=  " and chuyentienid like '%$_GET[timkiem]%'";
-					 $truyendulieu .= "&timkiem=$_GET[timkiem]";
+					
 				 }
 				 
 				 
 				 if (isset($_GET["sotien"]) and $_GET["sotien"] != "") {
 					 if ($_GET["sotien"] == 1) {
 						 $sql .=  " order by sotien desc";
-					 $truyendulieu .= "&sotien=$_GET[sotien]";
+					
 					 }
 					 if ($_GET["sotien"] == 2) {
 						 $sql .=  " order by sotien ASC";
-					 $truyendulieu .= "&sotien=$_GET[sotien]";
+					
 					 }
 				 }
 				 ?> 

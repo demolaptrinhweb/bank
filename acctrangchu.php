@@ -36,7 +36,7 @@
 <?php		if(!isset($_SESSION['id_khachhang'])) {
 	header("Location: index.php?ts=bk");
 }?>	
-	<?php require("Header.php") ;?>
+	<?php require("header2.php") ;?>
 	 <?php require ("accmenu.php") ;?>
 		<?php require("accheader.php");?>
 		<div align="center" >

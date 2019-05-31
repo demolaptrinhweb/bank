@@ -1,4 +1,4 @@
-<?php  	include "Header.php"; ?>
+<?php  	include "header2.php"; ?>
 
 <?php
     include "validate_admin.php";

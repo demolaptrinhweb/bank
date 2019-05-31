@@ -4,10 +4,13 @@ body
 
 #header
 {
-	height: 130px;
+    height: 130px;
+	width: auto;
 	background-image: url("hinh/st_logo.jpg");
 	text-align: right;
 }
+
+
 #header div
 {
 	padding-top: 70px;
@@ -30,4 +33,11 @@ body
     font-size: 15px;
     background-color: white;
 }
+@media only screen and (max-width: 800px) {
 
+    #header{
+            width: 100%;
+            height: auto;
+            background-size: 100% auto !important;
+    }
+}

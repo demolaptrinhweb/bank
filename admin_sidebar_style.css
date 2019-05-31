@@ -1,7 +1,7 @@
 .sidenav {
     width: 256px;
     background-color: #eee;
-    height: 90vh;
+    height: 130vh;
     float: left;
     overflow-y: auto;
     box-shadow: 1px 1px 5px #888888;
@@ -54,7 +54,7 @@
 
 @media screen and (max-width: 855px) {
     .sidenav {
-        height: 100vh;
+        height: 130vh;
         width: 0;
         margin-top: -53px;
         z-index: 100;

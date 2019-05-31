@@ -1,5 +1,5 @@
 <?php
-	include "Header.php";
+	include "header2.php";
 
     if (isset($_GET['loginFailed'])) {
         $message = "Thông tin đăng nhập không chính xác, vui lòng thử lại!";

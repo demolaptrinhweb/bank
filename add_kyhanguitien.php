@@ -20,8 +20,8 @@ include "DBconnect.php";
 	<?php 
 	   if (isset($_POST["submit"])){
 	    
-
-$sql = "INSERT INTO kyhanguitien VALUES('',$_POST[so],'$_POST[chu]',$_POST[laixuat])";
+  $laixuat = floatval(str_replace(',','.',$_POST["laixuat"]));
+$sql = "INSERT INTO kyhanguitien VALUES('',$_POST[so],'$_POST[chu]',$laixuat)";
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>

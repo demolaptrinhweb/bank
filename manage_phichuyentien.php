@@ -11,8 +11,8 @@ $truyendulieu = "";
         $by = $_GET['by'];
           
         if ($by == "acno") {
-            $sql0 = "SELECT id_kyhan,kyhan_chu FROM kyhanguitien
-            WHERE id_kyhan LIKE '%".$search."%'";
+            $sql0 = "SELECT id_phichuyentien,toithieu,toida FROM phichuyentien
+            WHERE id_chuyentien LIKE '%".$search."%'";
 			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
         }
       
@@ -20,7 +20,7 @@ $truyendulieu = "";
     else {
         $back_button = FALSE;
 
-        $sql0 = "SELECT id_kyhan,kyhan_chu FROM kyhanguitien
+        $sql0 = "SELECT id_phichuyentien,toithieu,toida FROM phichuyentien
             ";
     }
 ?>
@@ -105,17 +105,20 @@ $truyendulieu = "";
                         <p id="id"><?php echo $i . "."; ?></p>
                     </div>
                     <div class="flex-item-2">
-                        <p id="name"><?php echo $row["kyhan_chu"] ; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id_kyhan"]; ?></p>
+                        <p id="min">tối đa :<?php echo $row["toithieu"] ; ?></p>
+						
+						<p id="max">tối thiểu :<?php echo $row["toida"] ; ?> </p>
+						<br>
+                        <p id="acno"><?php echo "Ac/No : " . $row["id_phichuyentien"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">
                             
                           <button onclick="dropdown_func(<?php echo $i ?>)" class="dropbtn"></button>
                           <div id="dropdown<?php echo $i ?>" class="dropdown-content">
-                            <a href="edit_kyhanguitien.php?id_kyhan=<?php echo $row["id_kyhan"]; ?>">View / Edit</a>
+                            <a href="edit_phichuyentien.php?id_phichuyentien=<?php echo $row["id_phichuyentien"]; ?>">View / Edit</a>
                           
-                            <a href="delete_kyhanguitien.php?id_kyhan=<?php echo $row["id_kyhan"]; ?>"
+                            <a href="delete_phichuyentien.php?id_phichuyentien=<?php echo $row["id_phichuyentien"]; ?>"
                                  onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
                           </div>
                         </div>
@@ -141,7 +144,7 @@ $truyendulieu = "";
   ?>
   <p align="center"> trang : <?php  if ($page != 1  ){
 	  ?>
-      <a href="manage_kyhanguitien.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
+      <a href="manage_phichuyentien.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
       
 	  <?php 
   }
@@ -151,11 +154,11 @@ $truyendulieu = "";
 		 else {
 			 ?>
 	             
-	       <a href="manage_kyhanguitien.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
+	       <a href="manage_phichuyentien.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
             
      <?php }
   }
-   if ($page != $tst ) {?> <a href="manage_kyhanguitien.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   if ($page != $tst ) {?> <a href="manage_phichuyentien.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
 				

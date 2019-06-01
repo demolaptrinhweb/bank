@@ -23,8 +23,8 @@ include "DBconnect.php";
 	   {
 		
 $kieu = mysqli_real_escape_string($conn,$_POST["kieu"]);
-		   echo $kieu;
-$sql = "INSERT INTO kieuvay VALUES('','$kieu',$_POST[td],$_POST[tt],$_POST[lx],'$_POST[tht]')";
+		   $laixuat = floatval(str_replace(',','.',$_POST["lx"]));
+$sql = "INSERT INTO kieuvay VALUES('','$kieu',$_POST[td],$_POST[tt],$laixuat,'$_POST[tht]')";
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>

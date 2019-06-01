@@ -26,7 +26,8 @@ include "DBconnect.php";
 		
 		   	
 $kieu = mysqli_real_escape_string($conn,$_POST["kieu"]);
-$sql = "update kieuvay set kieuvay = '$kieu',toida = $_POST[td],toithieu = $_POST[tt],laixuat = $_POST[lx],trangthai = $_POST[tht] where id_kieuvay = $_POST[id]";
+		     $laixuat = floatval(str_replace(',','.',$_POST["lx"]));
+$sql = "update kieuvay set kieuvay = '$kieu',toida = $_POST[td],toithieu = $_POST[tt],laixuat = $laixuat,trangthai = $_POST[tht] where id_kieuvay = $_POST[id]";
 		   
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	

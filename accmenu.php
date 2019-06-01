@@ -54,5 +54,15 @@
             </li>
         </ui>
 			</div>
-				
-	
+<script>
+
+for (var i = 0; i < document.links.length; i++) {
+
+    
+        sanitizedURL = document.URL;
+    
+    if (document.links[i].href == sanitizedURL) {
+        document.links[i].style = 'color : red';
+    }
+}
+</script>

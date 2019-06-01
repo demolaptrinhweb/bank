@@ -3,6 +3,7 @@
     include "user_navbar.php";
     include "admin_sidebar.php";
     include "session_hethan.php";
+include "DBconnect.php";
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,16 @@
         <div class="flex-container">
             <div class=container>
                 <label>Danh mục (Theo chủ đề quy định)<o></o> :</label><br>
-                <input name="tm" size="50" type="text" required />
+                
+				<select name="tm"  required >
+					<?php 
+					$sql = "select * from theme";
+				   $kq = mysqli_query($conn,$sql);
+					while($arr = mysqli_fetch_assoc($kq)){
+						echo "<option value = '$arr[theme]'> $arr[title]</option>";
+					}
+					?>
+				</select>
             </div>
 			</div>	
 		

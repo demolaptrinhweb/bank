@@ -19,13 +19,13 @@ require ("DBconnect.php");
    
 	if (isset($_POST["pay"])){
 		
-		$sql11 = "select * from taikhoan where id_taikhoan = $_POST[taikhoanid] and trangthai = 2" ;
+		$sql11 = "select sodu from taikhoan where id_taikhoan = $_POST[taikhoanid] and trangthai = 2" ;
 		$j = @$control->query($sql11);
 		$i = @$control->fetch_arr($j);
 		
 		
 		
-		$sql12 = "select * from thenganhang where thenganhangid = '$_POST[theid]' and trangthai = 2";
+		$sql12 = "select sodu from thenganhang where thenganhangid = '$_POST[theid]' and trangthai = 2";
 		$k = $control->query($sql12);
 		$l = $control->fetch_arr($k);
 		

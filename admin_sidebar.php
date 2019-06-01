@@ -15,6 +15,8 @@
         <a href="#nx">Danh sách nợ xấu</a>
 		<a href="add_kieuvay.php"> thêm kiểu vay</a>
 		<a href="manage_kieuvay.php"> quản lý kiểu vay</a>
+		<a href="add_kyhanguitien.php"> thêm kỳ hạn gủi tiền</a>
+		<a href="manage_kyhanguitien.php"> quản lý kỳ hạn gủi tiền</a>
         <a id="label">Quản lý admin</a>
 		<a href="manage_theme.php"> xem theme</a>
         <a href="post_news.php">Đăng bài</a>
@@ -26,8 +28,7 @@
     </div>
 
 <script>
-// For-Loop below is used to create active links and accordingly color them.
-// Helps in recognizing which tab is selected.
+
 for (var i = 0; i < document.links.length; i++) {
     if (document.URL.indexOf('?') > 0) {
         sanitizedURL = document.URL.substring(0, document.URL.indexOf('?'));
@@ -48,8 +49,7 @@ function openNav() {
     }
 }
 
-// Never use get window size of jquery, in javascript, they dont work !
-// lesson learnt !!!
+
 function closeNav() {
     if (document.documentElement.clientWidth < 856) {
         document.getElementById("theSideNav").style.width = "0";
@@ -67,7 +67,7 @@ $(document).ready(function() {
     });
 });
 
-// Function below is jquery-3 function used for making the navbar sticky
+
 $(document).ready(function() {
     $(window).scroll(function () {
         var x1 = document.getElementById("theSideNav").style.width;

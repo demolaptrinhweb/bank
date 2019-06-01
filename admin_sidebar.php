@@ -17,6 +17,8 @@
 		<a href="manage_kieuvay.php"> quản lý kiểu vay</a>
 		<a href="add_kyhanguitien.php"> thêm kỳ hạn gủi tiền</a>
 		<a href="manage_kyhanguitien.php"> quản lý kỳ hạn gủi tiền</a>
+		<a href="add_phichuyentien.php"> thêm phí chuyển tiền</a>
+		<a href="manage_phichuyentien.php"> quản lý phí chuyển tiền</a>
         <a id="label">Quản lý admin</a>
 		<a href="manage_theme.php"> xem theme</a>
         <a href="post_news.php">Đăng bài</a>

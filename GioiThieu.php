@@ -1,9 +1,35 @@
 <?php  require("DBconnect.php")?>
 <script  src="js/jquery.js"></script>
-<script>
-$(document).ready(function() {
-  
-    var showChar =1000;  
+<script type="text/javascript" >
+
+</script>
+<script> 
+ 
+	
+	$(document).ready(function(){
+	
+	$(".chuyentrang").click(function(){
+		$(".chuyentrang").css("color","gray");
+		$(this).css("color","red");
+	})	
+	trang();		
+ });
+    
+</script>		
+<script  > 
+	
+	
+ function trang(id){
+	  id = id?id:"" ;
+	 
+	 $.ajax({
+		 type : "GET",
+		 url : "GioiThieu_xuly.php",
+		 data : "id=" + id,
+		 success : function(dulieu){
+			  
+			 $("#lefttinchu").html(dulieu);
+			 var showChar =1000;  
     var ellipsestext = "...";
     var moretext = "<b>xem tiếp <b> >";
     var lesstext = "<b>rút gọn<b>";
@@ -35,13 +61,14 @@ $(document).ready(function() {
         $(this).prev().toggle();
         return false;
     });
-});
-</script>
+		 }
+	 })
+	 
+ }
+    
+</script>	
 
-<?php if (isset($_GET["id"]))  $sql = "select id,body from news where theme = 2 and id = $_GET[id] ";
-       else {
-		   $sql = "select id,body from news where theme = 2 " ;}
-					      	?>
+
 
 <div id="center">
 			<div id="lefttin">
@@ -49,12 +76,7 @@ $(document).ready(function() {
 					
 				</div>
 				<div id="lefttinchu" class="more">
-					<?php 
-					      $kq = $control->query($sql);
-					      $arr = $control->fetch_arr($kq);
-					      $id_remem = $arr["id"];
-					?>
-					<?php echo $arr["body"]; ?>
+					  
 				</div>
 			</div>
 			<div id="khacright">
@@ -66,9 +88,9 @@ $(document).ready(function() {
 					 
 					?>
 					<li style="<?php 
-			if ($id_remem == $arr["id"])	
-				 echo "font-style:italic;";
-	 ?>	"><a href="index.php?ts=gt&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a></li>
+			
+				
+	 ?>	"><a href="Javascript:;" class ="chuyentrang" onClick="trang(<?php echo $arr["id"]?>)"><?php echo $arr["title"] ?></a></li>
 					<?php }?>
 				
 				</ul>

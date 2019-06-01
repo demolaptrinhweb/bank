@@ -51,17 +51,17 @@ require_once("class_vs_function.php");
 <?php  
 $passerr="";
 	if (isset($_POST["pay"])){
-		$control->query("START TRANSACTION");
+	
 		$dem=0;
-		$sql1 = "select * from kyhanguitien where id_kyhan = '$_POST[kyhan]'";
+		$sql1 = "select kyhan_so from kyhanguitien where id_kyhan = '$_POST[kyhan]'";
 		$a = $control->query($sql1);
 		$b = $control->fetch_arr($a);
 		
-		$sql11 = "select * from taikhoan where taikhoanid = '$_POST[taikhoanid]'" ;
+		$sql11 = "select sodu from taikhoan where taikhoanid = '$_POST[taikhoanid]'" ;
 		$j = $control->query($sql11);
 		$i = $control->fetch_arr($j);
 		
-		$sql22 = "select * from taikhoantietkiem where taikhoanid = '$_POST[taikhoanid]'";
+		$sql22 = "select taikhoanid from taikhoantietkiem where taikhoanid = '$_POST[taikhoanid]'";
 		$h = $control->query($sql22);
 		$k = $control->fetch_arr($h);	
 			
@@ -83,11 +83,11 @@ $passerr="";
 		$c = $control->row_affected();
 		if($c == 1 ) $dem++; 
 		if ($dem == 2) {
-			$control->query("commit");
+			
 			header("Location: formchuyentien3.php?kq=tktk");
 					   }
 			 else {
-			$control->query("rollback");
+			
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");

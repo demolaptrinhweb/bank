@@ -35,7 +35,6 @@
                 <a href="#tk" class="btn"><i class="fas fa-info"></i>TÀI KHOẢN TIẾT KIỆM</a>
                 <div class="subMenu">
                  <a href="motaikhoantietkiem.php#tk">Mở tài khoản tiết kiệm</a>
-					<a href="acctrangchu.php?ts=tk2#tk">Thêm tiền vào tài khoản tiết kiệm</a> 
 					<a href="acctrangchu.php?ts=tk3#tk">Rút tiền tài khoản hưởng </a> 
                 </div>
             </li>

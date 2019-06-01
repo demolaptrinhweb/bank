@@ -12,12 +12,8 @@ require_once("class_vs_function.php");
 	 $dem = 0 ;
    if(isset($_POST["taikhoan"])  and $_POST["taikhoan"] != "") $taikhoanid = $_POST["taikhoan"];
    else {
-	   
-	   $sql11 = "select * from taikhoan where id_taikhoan = $_SESSION[taikhoanid]";
-		$q = $control->query($sql11);
-		$p = $control->fetch_arr($q);
-	   
-	   $taikhoanid = $p["taikhoanid"]; 
+	  
+	   $taikhoanid = $_SESSION["taikhoan_id"]; 
 
    }
    $sql = "SELECT * FROM taikhoantietkiem where taikhoanid='$taikhoanid'" ;				
@@ -31,7 +27,7 @@ require_once("class_vs_function.php");
 	    
 	
 	
-	    $sql33 = "select * from kyhanguitien where id_kyhan = $p[kyhangui]" ;
+	    $sql33 = "select laixuat from kyhanguitien where id_kyhan = $p[kyhangui]" ;
         $m = $control->query($sql33);
 	    $n = $control->fetch_arr($m);
 	
@@ -71,7 +67,7 @@ require_once("class_vs_function.php");
 		$i = $control->row_affected();
 		if ($i == 1) $demthanhcong++;
 		if ($kt == 1 and $demthanhcong == 3 ) {
-			$control->query("commit");
+		
 			header("Location: formchuyentien3.php?kq=ct");
 											  }
 		 else {
@@ -86,11 +82,11 @@ require_once("class_vs_function.php");
 		
 		
 		if ($demthanhcong == 2 ) {
-			$control->query("commit");
+			
 			header("Location: formchuyentien3.php?kq=ct");
 		}
 		else {
-			$control->query("rollback");
+		
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");

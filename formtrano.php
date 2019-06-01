@@ -50,7 +50,7 @@
 		
    else {
    if (!isset($_POST["taikhoanvay"]))		
-		$sql .=" taikhoanid = '$_SESSION[taikhoanid]'"	;
+		$sql .=" taikhoanid = '$_SESSION[taikhoan_id]'"	;
 	else $sql .= " taikhoanid = '$_POST[taikhoanvay]'" ;	
    }
 	$kq = $control->query($sql);

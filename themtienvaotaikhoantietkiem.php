@@ -28,7 +28,7 @@ else {
    
 	if (isset($_GET["pay"])){
 		
-		$control->query("START TRANSACTION");
+		
 		
 		$sql11 = "select * from taikhoan where taikhoanid = '$taikhoanid'" ;
 		$j = $control->query($sql11);
@@ -53,11 +53,11 @@ else {
 			
 		echo $demthanhcong ;	
 		if($demthanhcong == 2 ) {
-			$control->query("commit");
+			
 			header("Location: formchuyentien3.php?kq=ct");
 								} 
 			 else {
-			$control->query("rollback");
+			
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");

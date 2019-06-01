@@ -1,4 +1,4 @@
-t<?php
+<?php
 
 @session_start();
 ?>
@@ -18,13 +18,10 @@ require_once("class_vs_function.php");
    }
    $sql = "SELECT * FROM taikhoantietkiem where taikhoanid='$taikhoanid'" ;				
    $results_1 = $control->query($sql);			
-   if($rowsacc = $control->fetch_arr($results_1))
+   if($p = $control->fetch_arr($results_1))
 	{
 	$passerr="";
-		$sql11 = "select * from taikhoantietkiem where taikhoanid = '$taikhoanid'" ;
-		$q = $control->query($sql11);
-		$p = $control->fetch_arr($q);
-	    
+	
 	
 	
 	    $sql33 = "select laixuat from kyhanguitien where id_kyhan = $p[kyhangui]" ;

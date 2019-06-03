@@ -123,7 +123,7 @@ else $dem = 1 ;
       	        </label></td>
       	      </tr>
 				  <tr>
-        	      <td><strong>TÀI KHOẢN CHUYỂN </strong></td>
+        	      <td><strong>TÀI KHOẢN NHẬN </strong></td>
         	   <td><label>
         	        <select name="taikhoanid" id="taikhoanid"   >
                              <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>

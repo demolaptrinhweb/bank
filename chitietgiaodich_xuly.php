@@ -87,7 +87,7 @@
 				  
 				  
   <?php
-				 echo "$sql";
+				 
    while($giaodich = $control->fetch_arr($kq)){
 					 
 					
@@ -149,4 +149,5 @@
    }
   ?></p>
 		</div>
-<?php } ?>
+<?php }
+  else  echo "<div align='center' > không có kết quả </div>";?>

@@ -174,9 +174,9 @@ function taocode($length) {
 		}
 	  public function vay ($con,$tienvay,$kieuvay){
 		  
-		  $date = date('d-m-Y');
+		 
 		  $khach = $this->taikhoanid ;
-		  $results_4 = mysqli_query($con,"SELECT * FROM kieuvay where id_kieuvay=$kieuvay");
+		  $results_4 = mysqli_query($con,"SELECT id_kieuvay,laixuat FROM kieuvay where id_kieuvay=$kieuvay");
 	      $array_4 = mysqli_fetch_assoc($results_4);
 		  $b = $array_4["id_kieuvay"];
 		  $c = $array_4["laixuat"];

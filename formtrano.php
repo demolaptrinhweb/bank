@@ -155,7 +155,7 @@
 	}		  
     }       
 		
-	@$results_4 = mysqli_query($conn,"SELECT * FROM kieuvay where id_kieuvay=$arr[kieuvay]");
+	@$results_4 = mysqli_query($conn,"SELECT kieuvay FROM kieuvay where id_kieuvay=	$arr[kieuvay]");
 	@$array_4 = mysqli_fetch_assoc($results_4);
 		
 		
@@ -168,7 +168,7 @@
         	      <td><strong>CHỌN TÀI KHOẢN  NỢ  </strong></td>
         	   <td><label>
         	       <select name="taikhoanvay" id="taikhoanvay"  onchange="form2.submit()" > 
-					        <option value="<?php echo $_SESSION["taikhoan_id"] ?>">tài khoản mặc định &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
+					        <option value=""> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
 				   <?php  
 					    $sql = "SELECT * FROM taikhoan where id_khachhang=$_SESSION[id_khachhang] and no > 0";				
                         $results_1 = $control->query($sql);			

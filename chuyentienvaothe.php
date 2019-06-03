@@ -98,26 +98,6 @@ else $dem = 1 ;
                 <?php
 				}
 				?>
-        	    <tr>
-        	      <td><strong>THẺ CẦN CHUYỂN </strong></td>
-        	   <td><label>
-        	        <select name="theid" id="theid"   >
-                             <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
-        	 			<?php
-						$sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang] and trangthai = 2" ;
-						
-						$results_1 = $control->query($sql);
-						
-						
-						while($rowsacc = $control->fetch_arr($results_1))
-						{
-							
-							echo "<option value='$rowsacc[thenganhangid]'>$rowsacc[thenganhangid]</option>";
-						}
-						?>
-      	            </select>
-      	        </label></td>
-      	      </tr>
 				  <tr>
         	      <td><strong>TÀI KHOẢN CHUYỂN </strong></td>
         	   <td><label>
@@ -138,6 +118,27 @@ else $dem = 1 ;
       	            </select>
       	        </label></td>
       	      </tr>
+        	    <tr>
+        	      <td><strong>THẺ NHẬN </strong></td>
+        	   <td><label>
+        	        <select name="theid" id="theid"   >
+                             <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
+        	 			<?php
+						$sql = "SELECT * FROM thenganhang where id_khachhang=$_SESSION[id_khachhang] and trangthai = 2" ;
+						
+						$results_1 = $control->query($sql);
+						
+						
+						while($rowsacc = $control->fetch_arr($results_1))
+						{
+							
+							echo "<option value='$rowsacc[thenganhangid]'>$rowsacc[thenganhangid]</option>";
+						}
+						?>
+      	            </select>
+      	        </label></td>
+      	      </tr>
+				 
 				  <tr>
 				  <td><strong> SỐ TIỀN CHUYỂN </strong></td>
 					  <td><label>

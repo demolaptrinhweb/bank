@@ -82,10 +82,14 @@ $passerr="";
 		
 		$c = $control->row_affected();
 		if($c == 1 ) $dem++; 
-		if ($dem == 2) {
+		if ($dem == 2) 
+			 {	?>	
+	<script>
+  
+		 location.replace(" formchuyentien3.php?kq=tktk"); 
+</script>
+	 <?php  }
 			
-			header("Location: formchuyentien3.php?kq=tktk");
-					   }
 			 else {
 			
 			?>

@@ -88,7 +88,7 @@
 	$dem = $vitri+1 ;
   ?>  
   <?php
-				 echo "$sql";
+				 
    while($taikhoan = $control->fetch_arr($kq)){
 					 
 					 if ($taikhoan["trangthai"] == 2) $trangthai = "đang hoạt động" ;
@@ -118,7 +118,7 @@
 				 
    		   </table>
 	
-	<div class="pagination clearfix" >	
+	<div class="pagination clearfix"  >	
 	<?php 
   if ($page != 1 and $page != 2) {
   $dau = $page-2 ;
@@ -150,4 +150,5 @@
    }
   ?></p>
 	</div>
-<?php } ?>
+<?php }
+      else  echo "<div align='center' > không có kết quả </div>";  ?>

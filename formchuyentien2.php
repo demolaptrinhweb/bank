@@ -77,8 +77,8 @@
     //chuyen phai nguoi dung nhap sang harsh-password
 	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);
 		
-		
-	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= ($_POST["amt"] + $_POST["phichuyentien"]) and $_SESSION["max"] >= $_POST["amt"] and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
+	$tienchuyen = floatval(str_replace(',','.',$_POST["amt"]));	
+	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= ($tienchuyen + $_POST["phichuyentien"]) and $_SESSION["max"] >= $tienchuyen and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
 	{  
 		//chuyen tien 
 		

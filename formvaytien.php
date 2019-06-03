@@ -43,7 +43,7 @@ require ("DBconnect.php");
         	    <tr>
         	      <td><strong>SỐ LƯỢNG VAY </strong></td>
         	      <td><label>
-        	        <input type="number" name="vay_amt" id="vay_amt" size="25" step="any" required/>
+        	        <input type="number" name="vay_amt" id="vay_amt" size="25"  required/>
       	        </label></td>
       	      </tr>
         	    <tr>

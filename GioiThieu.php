@@ -12,7 +12,10 @@
 		$(".chuyentrang").css("color","gray");
 		$(this).css("color","red");
 	})	
-	trang();		
+	var danhDauTrang = $("#id").val();
+	trang(danhDauTrang); 
+    
+	
  });
     
 </script>		
@@ -84,14 +87,20 @@
 				<ul type="none">
 					<?php $sql = "select id,title from news where theme = 2 ";
 					      $kq = $control->query($sql);
+                          $danhdau = 1 ;
 					    while(  $arr = $control->fetch_arr($kq)){
-					 
+					 if (isset($_GET["id"]) and $_GET["id"] == $arr["id"]){
+						 ?>
+					<input type="hidden" value="<?php echo $arr["id"] ?>" id="id">
+					<?php
+					 }
 					?>
 					<li style="<?php 
 			
 				
-	 ?>	"><a href="Javascript:;" class ="chuyentrang" onClick="trang(<?php echo $arr["id"]?>)"><?php echo $arr["title"] ?></a></li>
-					<?php }?>
+	 ?>	"><a href="Javascript:;" class ="chuyentrang" <?php  if ((isset($_GET["id"]) and $_GET["id"] == $arr["id"]) or (!isset($_GET["id"]) and $danhdau == 1 ))  echo "style='color : red'" ?> onClick="trang(<?php echo $arr["id"]?>)"><?php echo $arr["title"] ?></a></li>
+					<?php 
+						$danhdau++ ;}?>
 				
 				</ul>
 			</div>

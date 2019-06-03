@@ -92,8 +92,13 @@
 	 
 	    if ($demthanhcong == 2){
 			
+			?>
 			
-			header("Location: formchuyentien3.php?kq=ct");
+			<script>
+
+		 location.replace("formchuyentien3.php?kq=ct"); 
+</script>	
+			<?php
 		}
 		else {
 		

@@ -66,6 +66,7 @@
 		
 	   if(isset($_POST["pay2"]))
   {   
+		    $payamt = floatval(str_replace(',','.',$_POST["payamt"]));
 		   $results_3 = mysqli_query($conn,"SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]");
 		   $arrpayment1 = mysqli_fetch_assoc($results_3);	
    //chuyen pass nguoi dung nhap sang harsh-password
@@ -78,7 +79,7 @@
 	$sql = "select sodu from taikhoan where taikhoanid='$_POST[taikhoanid]'"	  ;
 	$kq3 = $control->query($sql);
 	$arr3 = $control->fetch_arr($kq3);	   
-	if($auth and $_POST["trpass"] == $_POST["conftrpass"] and $_POST["payamt"] <= $arr2["no"] and $_POST["payamt"] > 0 and $arr3["sodu"] >= $_POST["payamt"] )
+	if($auth and $_POST["trpass"] == $_POST["conftrpass"] and $payamt <= $arr2["no"] and $payamt > 0 and $arr3["sodu"] >= $payamt )
 		
 		
 		
@@ -87,18 +88,18 @@
 		$demthanhcong=0;
 		$vay = new chuyentien($_POST["taikhoanid"]);
 	    $vay->setCon($conn);
-	    $vay->setphichuyen($_POST["payamt"]);
+	    $vay->setphichuyen($payamt);
 	    $vay->setid($_POST["taikhoanid"]);
 		$vay->trutiennguoichuyen();
 	    $a = $control->row_affected();
 		if ($a == 1)$demthanhcong++;
 	   
-	    $sql = "update taikhoan set no = no - $_POST[payamt]  where taikhoanid = '$_POST[taikhoanvay]'";
+	    $sql = "update taikhoan set no = no - $payamt  where taikhoanid = '$_POST[taikhoanvay]'";
 	    $resu = $control->query($sql);
 	    $a = $control->row_affected();
 		if ($a == 1)$demthanhcong++;
 		
-		$sql = "insert into trano values ('',now(),$_POST[payamt],'$_POST[taikhoanid]','$_POST[taikhoanvay]','$_SESSION[khachhangid]')";
+		$sql = "insert into trano values ('',now(),$payamt,'$_POST[taikhoanid]','$_POST[taikhoanvay]','$_SESSION[khachhangid]')";
 	     $resu = $control->query($sql);
 		
 		$a = $control->row_affected();
@@ -116,10 +117,13 @@
 		
 		
 	    if ($demthanhcong == 3) {
+			?>
 			
-			
-			header("Location: formchuyentien3.php?kq=ct");		
-				}
+			<script>
+
+		 location.replace("formchuyentien3.php?kd=ct"); 
+</script>	
+			<?php	}
 		else {
 		
 			?>

@@ -23,9 +23,7 @@ include "DBconnect.php";
 	}
 	
 	   if (isset($_POST["submit"]) and $_POST["min"] < $_POST["max"]){
-$min = floatval(str_replace(',', '.', $_POST["min"]));
-$max = floatval(str_replace(',', '.', $_POST["max"]));
-$phi = floatval(str_replace(',','.',$_POST["phi"]))	;	   
+	   
 $sql = "update phichuyentien set toithieu = $min,toida = $max,phi = $phi where id_phichuyentien = $_POST[id]";
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	
@@ -58,15 +56,15 @@ if (mysqli_affected_rows($conn) == 1) {
         <div class="flex-container">
             <div class=container>
                 <label>tối thiểu  :</label><br>
-                <input name="min" size="30" type="number" required value="<?php echo $arr["toithieu"] ?>" step="0.01"/>
+                <input name="min" size="30" type="number" required value="<?php echo $arr["toithieu"] ?>" />
             </div>
             <div  class=container>
                 <label>tối đa  :</b></label><br>
-                <input name="max" size="30" type="number" required value="<?php echo $arr["toida"] ?>" step="0.01" />
+                <input name="max" size="30" type="number" required value="<?php echo $arr["toida"] ?>"  />
             </div>
 		 <div  class=container>
                 <label>phí:</b></label><br>
-                <input name="phi" size="30" type="number" required value="<?php echo $arr["phi"] ?>" step="0.01"/>
+                <input name="phi" size="30" type="number" required value="<?php echo $arr["phi"] ?>" />
             </div>
 	
 	

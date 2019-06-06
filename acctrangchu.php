@@ -67,8 +67,7 @@
 					  case "ct2" : require("formchuyentientaikhoanhuong.php");
 						  break;
 					  
-					  case "tk2" : require("themtienvaotaikhoantietkiem.php");
-						  break;
+					  
 					  case "tk3":  require("ruttientaikhoantietkiem.php");
 						  break;
 					  case "dp" : require("doipass.php");

@@ -83,14 +83,10 @@
 		$a=$vay->vay($conn,$_POST["amt"],$_POST["kieuvay"]);
 		if ($a == 1)$demthanhcong++;
 	    
-	    $sql = "update taikhoan set no = $_POST[amt] + ($_POST[amt]*$arr4[laixuat]) where taikhoanid = '$_POST[taikhoanid]'";
-		
-	    $resu = $control->query($sql);
-	    $a = $control->row_affected();
-	    if ($a == 1)$demthanhcong++;
+	    
 	 
 	 
-	    if ($demthanhcong == 2){
+	    if ($demthanhcong == 1){
 			
 			?>
 			

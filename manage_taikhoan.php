@@ -10,21 +10,17 @@ $truyendulieu = "";
         $search = $_GET['search'];
         $by = $_GET['by'];
           
-        if ($by == "name") {
-            $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
-            WHERE kieuvay LIKE '%".$search."%'";
+        if ($by == "acno") {
+            $sql0 = "SELECT id_taikhoan,taikhoanid FROM taikhoan
+            WHERE taikhoanid LIKE '%".$search."%'";
 			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
         }
-        else {
-            $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
-            WHERE id_kieuvay LIKE '%".$search."%'";
-			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
-        }
+      
     }
     else {
         $back_button = FALSE;
 
-        $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
+        $sql0 = "SELECT id_taikhoan,taikhoanid FROM taikhoan
             ";
     }
 ?>
@@ -56,7 +52,6 @@ $truyendulieu = "";
 
                     <div class="flex-item-search-by">
                         <select name="by">
-                            <option value="name">Tên</option>
                             <option value="acno">id</option>
                         </select>
                     </div>
@@ -77,7 +72,7 @@ $truyendulieu = "";
   
   $tst = ceil($tsp/$sd);
   
-
+  
   
  
   if (isset($_GET["page"])){
@@ -110,17 +105,17 @@ $truyendulieu = "";
                         <p id="id"><?php echo $i . "."; ?></p>
                     </div>
                     <div class="flex-item-2">
-                        <p id="name"><?php echo $row["kieuvay"] ; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id_kieuvay"]; ?></p>
+                        <p id="name"></p>
+                        <p id="acno"><?php echo "Ac/No : " . $row["taikhoanid"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">
                             
                           <button onclick="dropdown_func(<?php echo $i ?>)" class="dropbtn"></button>
                           <div id="dropdown<?php echo $i ?>" class="dropdown-content">
-                            <a href="edit_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>">View / Edit</a>
+                            <a href="edit_taikhoan.php?id_taikhoan=<?php echo $row["id_taikhoan"]; ?>">View / Edit</a>
                           
-                            <a href="delete_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>"
+                            <a href="delete_taikhoan.php?id_taikhoan=<?php echo $row["id_taikhoan"]; ?>"
                                  onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
                           </div>
                         </div>
@@ -146,7 +141,7 @@ $truyendulieu = "";
   ?>
   <p align="center"> trang : <?php  if ($page != 1  ){
 	  ?>
-      <a href="manage_kieuvay.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
+      <a href="manage_taikhoan.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
       
 	  <?php 
   }
@@ -156,11 +151,11 @@ $truyendulieu = "";
 		 else {
 			 ?>
 	             
-	       <a href="manage_kieuvay.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
+	       <a href="manage_taikhoan.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
             
      <?php }
   }
-   if ($page != $tst ) {?> <a href="manage_kieuvay.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   if ($page != $tst ) {?> <a href="manage_taikhoan.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
 				
@@ -170,7 +165,7 @@ $truyendulieu = "";
             if ($back_button) { ?>
                 <div class="flex-container-bb">
                     <div class="back_button">
-                        <a href="manage_kieuvay.php" class="button">Go Back</a>
+                        <a href="manage_taikhoan.php" class="button">Go Back</a>
                     </div>
                 </div>
             <?php }
@@ -215,6 +210,7 @@ $truyendulieu = "";
 
 
   
+
     </script>
 
 </body>

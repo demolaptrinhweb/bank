@@ -10,21 +10,17 @@ $truyendulieu = "";
         $search = $_GET['search'];
         $by = $_GET['by'];
           
-        if ($by == "name") {
-            $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
-            WHERE kieuvay LIKE '%".$search."%'";
+        if ($by == "acno") {
+            $sql0 = "SELECT id_the,thenganhangid FROM thenganhang
+            WHERE thenganhangid LIKE '%".$search."%'";
 			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
         }
-        else {
-            $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
-            WHERE id_kieuvay LIKE '%".$search."%'";
-			$truyendulieu .= "&search=$_GET[search]&by=$_GET[by]";
-        }
+      
     }
     else {
         $back_button = FALSE;
 
-        $sql0 = "SELECT id_kieuvay,kieuvay FROM kieuvay
+        $sql0 = "SELECT id_the,thenganhangid FROM thenganhang
             ";
     }
 ?>
@@ -56,7 +52,6 @@ $truyendulieu = "";
 
                     <div class="flex-item-search-by">
                         <select name="by">
-                            <option value="name">Tên</option>
                             <option value="acno">id</option>
                         </select>
                     </div>
@@ -77,7 +72,7 @@ $truyendulieu = "";
   
   $tst = ceil($tsp/$sd);
   
-
+  
   
  
   if (isset($_GET["page"])){
@@ -110,17 +105,17 @@ $truyendulieu = "";
                         <p id="id"><?php echo $i . "."; ?></p>
                     </div>
                     <div class="flex-item-2">
-                        <p id="name"><?php echo $row["kieuvay"] ; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id_kieuvay"]; ?></p>
+						   <p id="name"></p>
+                        <p id="acno"><?php echo "Ac/No : " . $row["thenganhangid"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">
                             
                           <button onclick="dropdown_func(<?php echo $i ?>)" class="dropbtn"></button>
                           <div id="dropdown<?php echo $i ?>" class="dropdown-content">
-                            <a href="edit_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>">View / Edit</a>
+                            <a href="edit_thenganhang.php?id_the=<?php echo $row["id_the"]; ?>">View / Edit</a>
                           
-                            <a href="delete_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>"
+                            <a href="delete_thenganhang.php?id_the=<?php echo $row["id_the"]; ?>"
                                  onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
                           </div>
                         </div>
@@ -146,7 +141,7 @@ $truyendulieu = "";
   ?>
   <p align="center"> trang : <?php  if ($page != 1  ){
 	  ?>
-      <a href="manage_kieuvay.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
+      <a href="manage_thenganhang.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
       
 	  <?php 
   }
@@ -156,11 +151,11 @@ $truyendulieu = "";
 		 else {
 			 ?>
 	             
-	       <a href="manage_kieuvay.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
+	       <a href="manage_thenganhang.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
             
      <?php }
   }
-   if ($page != $tst ) {?> <a href="manage_kieuvay.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   if ($page != $tst ) {?> <a href="manage_thenganhang.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
    }
   ?></p>
 				
@@ -170,7 +165,7 @@ $truyendulieu = "";
             if ($back_button) { ?>
                 <div class="flex-container-bb">
                     <div class="back_button">
-                        <a href="manage_kieuvay.php" class="button">Go Back</a>
+                        <a href="manage_thenganhang.php" class="button">Go Back</a>
                     </div>
                 </div>
             <?php }
@@ -214,7 +209,42 @@ $truyendulieu = "";
     }
 
 
-  
+    $(document).ready(function() {
+        var curr_scroll;
+
+        $(window).scroll(function () {
+            curr_scroll = $(window).scrollTop();
+
+            if ($(window).scrollTop() > 120) {
+                $("#the-search-bar").addClass('search-bar-fixed');
+
+              if ($(window).width() > 855) {
+                  $("#fi-search-bar").addClass('fi-search-bar-fixed');
+              }
+            }
+
+            if ($(window).scrollTop() < 121) {
+                $("#the-search-bar").removeClass('search-bar-fixed');
+
+              if ($(window).width() > 855) {
+                  $("#fi-search-bar").removeClass('fi-search-bar-fixed');
+              }
+            }
+        });
+
+        $(window).resize(function () {
+            var class_name = $("#fi-search-bar").attr('class');
+
+            if ((class_name == "flex-item-search-bar fi-search-bar-fixed") && ($(window).width() < 856)) {
+                $("#fi-search-bar").removeClass('fi-search-bar-fixed');
+            }
+
+            if ((class_name == "flex-item-search-bar") && ($(window).width() > 855) && (curr_scroll > 120)) {
+                $("#fi-search-bar").addClass('fi-search-bar-fixed');
+            }
+        });
+    });
+
     </script>
 
 </body>

@@ -15,8 +15,7 @@
      		   <tr >
      		     <th  width="105" scope="col">THẺ ID</th>      
                  <th width="105" scope="col">SỐ DƯ</th>
-                 <th width="93" scope="col">MÃ PIN</th>
-                 <th width="101" scope="col">CHỨNG MINH NHÂN DÂN</th>
+               
                  <th width="144" scope="col">TRANG THAI</th>
 				
                  
@@ -87,8 +86,7 @@
                    <tr>
                     <td>&nbsp;$the[thenganhangid]</td>
                     <td>&nbsp;$the[sodu]</td>
-                    <td>&nbsp;$the[passbin]</td>
-                    <td>&nbsp;$the[cmnd]</td>	
+                  
 					<td>&nbsp;$trangthai</td>	
                     
                    

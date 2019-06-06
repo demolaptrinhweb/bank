@@ -36,7 +36,7 @@ require ("DBconnect.php");
 				
 		if ($l["sodu"] >= $_POST["gui_amt"] and $_POST["gui_amt"] != 0 ){
 			
-		$control->query("START TRANSACTION");	
+			
 		$demthanhcong= 0;
 			
 		$sql1 = "update thenganhang set sodu = sodu - $_POST[gui_amt] where thenganhangid = '$_POST[theid]'" ;
@@ -50,13 +50,16 @@ require ("DBconnect.php");
 		if($c1 == 1 ) $demthanhcong++; 	
 			
 			
-		if($demthanhcong == 2 ){ 
-			
-			$control->query("commit");
-			header("Location: formchuyentien3.php?kq=ct"); 
-		}
+		if($demthanhcong == 2 )
+			{	?>	
+	<script>
+ 
+		 location.replace("formchuyentien3.php?kq=ct"); 
+</script>
+	 <?php  }
+		
 			else {
-			$control->query("rollback");
+			
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");

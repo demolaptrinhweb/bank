@@ -99,15 +99,7 @@
  
 	
 	$(document).ready(function(){
-	 	$.ajax({
-		 type : "GET",
-		 url : "danhsachtaikhoan_xuly.php",
-		 data : "page=" + "&timkiem=" + "&taikhoan=" + "&sotien="  +
-		 "&trangthai=" ,
-		 success : function(dulieu){
-			 $("#noidung").html(dulieu);
-		 }
-	 })
+	 	boLoc();
 	 
  })
     

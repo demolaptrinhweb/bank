@@ -162,7 +162,7 @@ function taocode($length) {
 ?>
 <?php 
  class vaytien extends control {
-       private $khachhangid ;
+       private $taikhoanid ;
 		public function setid($id){
 			$this->taikhoanid = $id ;
 		}
@@ -176,10 +176,9 @@ function taocode($length) {
 		  
 		 
 		  $khach = $this->taikhoanid ;
-		  $results_4 = mysqli_query($con,"SELECT id_kieuvay,laixuat FROM kieuvay where id_kieuvay=$kieuvay");
+		  $results_4 = mysqli_query($con,"SELECT laixuat FROM kieuvay where id_kieuvay=$kieuvay");
 	      $array_4 = mysqli_fetch_assoc($results_4);
-		  $b = $array_4["id_kieuvay"];
-		  $c = $array_4["laixuat"];
+		  $laixuat = $array_4["laixuat"];
 		  $sql1 ="UPDATE taikhoan SET sodu = sodu + $tienvay WHERE taikhoanid = '$khach'";
 		  
 		  $id = id(1);
@@ -191,11 +190,15 @@ function taocode($length) {
 			    $kq = $this->query($sql);
 			}
 		  
-          $sql2 ="INSERT INTO vaytien VALUES('','$id',$b,$tienvay,$c,now(),'$khach')";
+          $sql2 ="INSERT INTO vaytien VALUES('','$id',$kieuvay,$tienvay,$laixuat,now(),'$khach')";
+		  $sql = "update taikhoan set no = $tienvay + ($tienvay*$laixuat) where taikhoanid = '$khach'";
+		
+	  
 		  
              $a = $this->query($sql1);
 		     $b = $this->query($sql2);
-			if($a and $b)
+		     $c = $this->query($sql);
+			if($a and $b and $c)
 				  {
 					$successresult = 1;	
 				  

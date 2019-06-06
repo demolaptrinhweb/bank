@@ -48,8 +48,9 @@ require ("DBconnect.php");
         	        <select name="taikhoanid" id="taikhoanid">
                              <option value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; </option>
         	 			<?php
-						$results_1 = mysqli_query($conn,"SELECT * FROM taikhoan where id_khachhang=$_SESSION[id_khachhang] and trangthai = 2");
-						while($rowsacc = mysqli_fetch_array($results_1,MYSQLI_ASSOC))
+						$sql = "SELECT taikhoanid FROM taikhoan where id_khachhang=$_SESSION[id_khachhang] and trangthai = 2" ;
+						$results_1 = $control->query($sql);
+						while($rowsacc = $control->fetch_arr($results_1))
 						{
 							
 							echo "<option value='$rowsacc[taikhoanid]'>$rowsacc[taikhoanid]</option>";

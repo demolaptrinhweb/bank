@@ -86,14 +86,7 @@ require_once("class_vs_function.php");?>
  
 	
 	$(document).ready(function(){
-	 	$.ajax({
-		 type : "GET",
-		 url : "danhsachthe_xuly.php",
-		 data : "page=" + "&the=" + "&trangthai=" + "&sotien="  ,
-		 success : function(dulieu){
-			 $("#noidung").html(dulieu);
-		 }
-	 })
+	 	boLoc();
 	 
  })
     

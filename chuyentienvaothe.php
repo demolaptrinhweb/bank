@@ -34,7 +34,7 @@ require ("DBconnect.php");
 		
 		if ($i and $l ){
 			
-		$control->query("START TRANSACTION");		
+				
 		if ($i["sodu"] >= $_POST["gui_amt"] and $_POST["gui_amt"] != 0 ){
 		$demthanhcong= 0;
 			
@@ -49,12 +49,14 @@ require ("DBconnect.php");
 		if($c1 == 1 ) $demthanhcong++; 	
 			
 			
-		if($demthanhcong == 2 ) {
-			$control->query("commit");
-			header("Location: formchuyentien3.php?kq=ct");
-		} 
+		if($demthanhcong == 2 ) {	?>	
+	<script>
+ 
+		 location.replace("formchuyentien3.php?kq=ct"); 
+</script>
+	 <?php  }
 		 else {
-			$control->query("rollback");
+		
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");

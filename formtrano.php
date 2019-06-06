@@ -49,9 +49,9 @@
 	       $sql .= " taikhoanid = '$_GET[taikhoanvay]' " ;	
 		
    else {
-   if (!isset($_POST["taikhoanvay"]))		
-		$sql .=" taikhoanid = '$_SESSION[taikhoan_id]'"	;
-	else $sql .= " taikhoanid = '$_POST[taikhoanvay]'" ;	
+   if (isset($_POST["taikhoanvay"]))		
+	
+	 $sql .= " taikhoanid = '$_POST[taikhoanvay]'" ;	
    }
 	$kq = $control->query($sql);
 	$arr = $control->fetch_arr($kq);
@@ -67,8 +67,9 @@
 	   if(isset($_POST["pay2"]))
   {   
 		    $payamt = floatval(str_replace(',','.',$_POST["payamt"]));
-		   $results_3 = mysqli_query($conn,"SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]");
-		   $arrpayment1 = mysqli_fetch_assoc($results_3);	
+		   $sql1 ="SELECT * FROM khachhang where id_khachhang=$_SESSION[id_khachhang]";
+		   $results_3 = $control->query($sql1);
+		   $arrpayment1 = $control->fetch_arr($results_3);
    //chuyen pass nguoi dung nhap sang harsh-password
 	$auth = password_verify($_POST["trpass"],$arrpayment1["passchuyenkhoan"]);	
 		   
@@ -121,7 +122,7 @@
 			
 			<script>
 
-		 location.replace("formchuyentien3.php?kd=ct"); 
+		 location.replace("formchuyentien3.php?kq=ct"); 
 </script>	
 			<?php	}
 		else {

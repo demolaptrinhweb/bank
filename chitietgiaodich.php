@@ -76,15 +76,7 @@
  
 	
 	$(document).ready(function(){
-	 	$.ajax({
-		 type : "GET",
-		 url : "chitietgiaodich_xuly.php",
-		 data : "page=" + "&timkiem=" + "&taikhoan=" + "&sotien="  ,
-		 success : function(dulieu){
-			 $("#noidung").html(dulieu);
-		 }
-	 })
-	 
+	 	boLoc();
  })
     
 </script>				 

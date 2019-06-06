@@ -175,8 +175,8 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	             	if ($nguoinhan_1 != "" ){
                     $sql ="SELECT id_khachhang,taikhoanid FROM taikhoan where taikhoanid = '$nguoinhan_1'"; 	
 						$kq = $control->query($sql);
-					  $arr = $control->fetch_arr($kq);
-					$sql ="SELECT ho,ten FROM khachhang where id_khachhang=$arr[id_khachhang]"; 	
+					    $arr = $control->fetch_arr($kq);
+					    $sql ="SELECT ho,ten FROM khachhang where id_khachhang=$arr[id_khachhang]"; 	
 						$kq = $control->query($sql);
 						$arr2 = $control->fetch_arr($kq);
 				echo "<br><b>&nbsp;TÊN : </b>".$arr2["ho"]."  ".$arr2["ten"];

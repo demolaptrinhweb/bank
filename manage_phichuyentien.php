@@ -168,7 +168,7 @@ $truyendulieu = "";
             if ($back_button) { ?>
                 <div class="flex-container-bb">
                     <div class="back_button">
-                        <a href="manage_customers.php" class="button">Go Back</a>
+                        <a href="manage_phichuyentien.php" class="button">Go Back</a>
                     </div>
                 </div>
             <?php }

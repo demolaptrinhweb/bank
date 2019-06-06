@@ -70,14 +70,7 @@ require_once("class_vs_function.php");
 				  	<script> 
  
 	$(document).ready(function(){
-	 	$.ajax({
-		 type : "GET",
-		 url : "xemno_1_xuly.php",
-		 data : "page=" + "&timkiem=" + "&taikhoan="   ,
-		 success : function(dulieu){
-			 $("#noidung").html(dulieu);
-		 }
-	 })
+	 	boLoc();
 	 
  })
     

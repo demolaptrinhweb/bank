@@ -165,7 +165,7 @@ $truyendulieu = "";
             if ($back_button) { ?>
                 <div class="flex-container-bb">
                     <div class="back_button">
-                        <a href="manage_customers.php" class="button">Go Back</a>
+                        <a href="manage_kyhanguitien.php" class="button">Go Back</a>
                     </div>
                 </div>
             <?php }
@@ -209,41 +209,7 @@ $truyendulieu = "";
     }
 
 
-    $(document).ready(function() {
-        var curr_scroll;
-
-        $(window).scroll(function () {
-            curr_scroll = $(window).scrollTop();
-
-            if ($(window).scrollTop() > 120) {
-                $("#the-search-bar").addClass('search-bar-fixed');
-
-              if ($(window).width() > 855) {
-                  $("#fi-search-bar").addClass('fi-search-bar-fixed');
-              }
-            }
-
-            if ($(window).scrollTop() < 121) {
-                $("#the-search-bar").removeClass('search-bar-fixed');
-
-              if ($(window).width() > 855) {
-                  $("#fi-search-bar").removeClass('fi-search-bar-fixed');
-              }
-            }
-        });
-
-        $(window).resize(function () {
-            var class_name = $("#fi-search-bar").attr('class');
-
-            if ((class_name == "flex-item-search-bar fi-search-bar-fixed") && ($(window).width() < 856)) {
-                $("#fi-search-bar").removeClass('fi-search-bar-fixed');
-            }
-
-            if ((class_name == "flex-item-search-bar") && ($(window).width() > 855) && (curr_scroll > 120)) {
-                $("#fi-search-bar").addClass('fi-search-bar-fixed');
-            }
-        });
-    });
+ 
 
     </script>
 

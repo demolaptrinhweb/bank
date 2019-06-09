@@ -23,19 +23,36 @@
 	   <?php require("Header.php") 
 		?>	
 		<?php require("Menu.php")?>
+	<script  src="js/jquery.js"></script>
+	<script type="text/javascript" >
+
+</script>	
 		
-		<?php if (isset($_GET['ts']))
-				  switch($_GET['ts'])
-				  {
-					  case "gt" : include("GioiThieu.php");break;
-					  case "cn" : include("CaNhan.php");break;
-					  case "ndt": include("NhaDauTu.php");break;
-					  case "dn" : include("DoanhNghiep.php");break;
-					  case "td" : include ("TuyenDung.php");break;
-					  case "tt" : include("TinTuc.php");break;	
-					  case "bk" : include("internetbanking.php");break;	  
-				  }				  
-				else  include("Main_index.php")?>
+<script> 
+    function mucluc (ts){
+	  ts = ts?ts:"" ;
+	
+	 $.ajax({
+		 type : "GET",
+		 url : "index_xuly.php",
+		 data : "ts=" + ts,
+		 success : function(dulieu){
+			  
+			 $("#dulieu").html(dulieu);
+			
+	 }
+	})
+  }
+</script>	
+	<script> 
+		$(document).ready(function(){
+			mucluc();
+		})
+	
+</script>	
+		
+	 <span id="dulieu"> </span>
+	
 		
 	
 	

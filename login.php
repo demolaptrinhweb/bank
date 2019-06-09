@@ -1,81 +1,50 @@
+<script  src="js/jquery.js"></script>
+	<script type="text/javascript" >
 
-<?php 
-ob_start();
-
-include_once("DBconnect.php");
-session_start();
-if(isset($_SESSION['id_khachhang'])!="") {
-	header("Location: acctrangchu.php");
-}
-if (isset($_POST['login'])) {
-	$email = mysqli_real_escape_string($conn, $_POST['taikhoan']);
-	$password = mysqli_real_escape_string($conn, $_POST['password']);
+</script>
+<script  > 
 	
 	
-	$result = mysqli_query($conn, "SELECT pass,khachhangid FROM khachhang WHERE loginid = '" . $email."'" );
-	
-	
-	if ($row = mysqli_fetch_array($result)) {
-		
-	    $auth = password_verify($_POST["password"],$row["pass"]);
-		
-		if($auth){
-		$results = mysqli_query($conn,"SELECT * FROM khachhang where khachhangid='$row[khachhangid]'");
-	
-     	while($arrow = mysqli_fetch_array($results,MYSQLI_ASSOC)){
-		
-		if(!isset($_SESSION["khachhangid"])) $_SESSION["khachhangid"] = $arrow["khachhangid"];
+ function dangnhap(){
+	var taikhoan = $("#taikhoan").val();
+	 var password = $("#password").val();
+	 $.ajax({
+		 type : "POST",
+		 url : "login_xuly.php",
+		 data : "login=" + "&taikhoan="+taikhoan +"&password="+password,
+		 success : function(dulieu){
+			 
+			 var text = dulieu.trim();
 			
-		if(!isset($_SESSION["id_khachhang"])) $_SESSION["id_khachhang"] = $arrow["id_khachhang"];
-		
-		if (!isset($_SESSION["taikhoanid"])) $_SESSION["taikhoanid"] =  $arrow["taikhoanmacdinh"];
-		
-		$sql = "select * from taikhoan where id_taikhoan = $arrow[taikhoanmacdinh]";
-		$kq = $control->query($sql);
-		$arr = $control->fetch_arr($kq);
-		if(!isset($_SESSION["taikhoan_id"])) $_SESSION["taikhoan_id"] = $arr ["taikhoanid"];
-		
-	    if(!isset($_SESSION["no"])) $_SESSION["no"] = $arr ["no"];
-		
-		if (!isset($_SESSION["email"])) $_SESSION["email"] = $arrow["email"];	
-		
-		if(!isset($_SESSION["ho"])) $_SESSION["ho"] = $arrow["ho"];
-			
-		if(!isset($_SESSION["ten"])) $_SESSION["ten"] = $arrow["ten"];	
-			
-		if (!isset($_SESSION["max"])) $_SESSION["max"] = $arrow["max_chuyentien"];	
-		header("Location: acctrangchu.php");
-		}
-			
-	  }
-		
-	}
-		else {
-		$error_message = "Sai mật khẩu hoặc email!";
-	}
-}
-
-
-
-?>
-
+			 if (text == "dung")  location.replace("acctrangchu.php"); 
+			 
+			if (text == "sai")	$(".text-danger").html("Sai mật khẩu hoặc email!")
+	
+ 
+   
+		 }
+	 })
+	 
+ }
+    
+</script>	
 
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form" method="post" name="loginform">
+				<form onSubmit="dangnhap()" class="login100-form validate-form" method="post" name="loginform" action="Javascript:;"  >
 					<span class="login100-form-title p-b-33">
 						Đăng nhập tài khoản Online Banking
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Không được bỏ trống ID tài khoản">
-						<input class="input100" type="text" name="taikhoan" placeholder="Nhập tài khoản">
+						<input class="input100" type="text" id="taikhoan" name="taikhoan" placeholder="Nhập tài khoản">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
 
 					<div class="wrap-input100 rs1 validate-input" data-validate="Không được bỏ trống mật khẩu">
-						<input class="input100" type="password" name="password" placeholder="Nhập mật khẩu">
+						<input class="input100" type="password" id="password" name="password" placeholder="Nhập mật khẩu">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -86,7 +55,7 @@ if (isset($_POST['login'])) {
 						</button>
 					</div>
 				</form>
-				<span class="text-danger"><?php if (isset($error_message)) { echo $error_message; } ?></span>
+				<span class="text-danger"></span>
 			</div>
 		</div>
 	</div>

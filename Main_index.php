@@ -1,4 +1,42 @@
 <?php require_once("DBconnect.php"); ?>
+<script  src="js/jquery.js"></script>
+	<script type="text/javascript" >
+
+</script>
+<script  > 
+	
+	
+ function loaitrang(loai,id){
+	  id = id?id:"" ;
+	 var diachi ;
+	   switch(loai)
+				  {
+					  case 1: diachi = "GioiThieu.php";break;
+					  case 2 : diachi = "CaNhan.php";break;
+					  case 3: diachi = "NhaDauTu.php";break;	
+					default: 	  
+				  }	
+	
+	
+	 $.ajax({
+		 type : "GET",
+		 url : diachi,
+		 data : "id=" + id,
+		 success : function(dulieu){
+			 
+			 $("#text").html(dulieu);
+	
+    
+   
+ 
+   
+		 }
+	 })
+	 
+ }
+    
+</script>	
+<span id="text">
 <div id="center">
 			<div id="left" style="height: 700px;">
 				<div id="left_1">
@@ -14,7 +52,7 @@
 							      $kq  = $control->query($sql);
 							      while ($arr = $control->fetch_arr($kq)){		
 							?>
-							<li><a a href="index.php?ts=cn&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
+							<li><a href="Javascript:;" onClick="loaitrang(2,<?php echo $arr["id"] ?>)"><?php echo $arr["title"] ?></a>  </li>
 					      <?php }?>
 						</ul>
 					</div>
@@ -25,7 +63,7 @@
 							      $kq  = $control->query($sql);
 							      while ($arr = $control->fetch_arr($kq)){		
 							?>
-							<li><a a href="index.php?ts=dn&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
+							<li><a  href="Javascript:;" onClick="loaitrang(3,<?php echo $arr["id"] ?>)" ><?php echo $arr["title"] ?></a>  </li>
 					      <?php }?>
 							
 						</ul>
@@ -37,7 +75,7 @@
 							      $kq  = $control->query($sql);
 							      while ($arr = $control->fetch_arr($kq)){		
 							?>
-							<li><a a href="index.php?ts=gt&id=<?php echo $arr["id"]; ?>"><?php echo $arr["title"] ?></a>  </li>
+							<li><a  href="Javascript:;" onClick="loaitrang(1,<?php echo $arr["id"] ?>)"><?php echo $arr["title"] ?></a>  </li>
 					      <?php }?>
 							
 						</ul>
@@ -100,3 +138,4 @@
 				
 			</div>
 		</div>
+	</span>

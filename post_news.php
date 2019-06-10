@@ -48,10 +48,17 @@ include "DBconnect.php";
 	}
 </style>
 		
-    <textarea name="nd" id="editor"></textarea>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.2/classic/ckeditor.js"></script>
+   
+	
+	<script type="text/javascript" src="testing_ckedit/ckeditor.js"> </script>	
+	<script type="text/javascript" src="ckfinder/ckfinder.js"> </script>		
+	<textarea name="nd" id="content"></textarea>			
+		<script>
+			 	 CKEDITOR.replace( 'content');
+	
+		</script>	
     <script>
+     
 
 $(function(){
 let theEditor;
@@ -61,7 +68,7 @@ ClassicEditor
        
 
     .then( editor => {
-        theEditor = editor; // Save for later use.
+        theEditor = editor; 
     } )
     .catch( error => {
         console.error( error );
@@ -81,18 +88,9 @@ document.getElementById( 'reset' ).addEventListener( 'click', () => {
 		});		
 });
 </script>
-		</div>
+		</div	>
 			</div>	
-		
-<!--
-        </div>	
-        <div class="flex-container">
-            <div class=container>
-                <label>nội dung <o></o>:</label><br>
-                <textarea name="nd" style="height: 200px; width: 60vw;"  /></textarea>
-            </div>
-        </div>
--->
+
 	
 	
         <div class="flex-container">

@@ -25,9 +25,9 @@ $config = array();
 /*============================ Enable PHP Connector HERE ==============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
 
- $config['authentication'] = function() {
-      return true;
- };
+$config['authentication'] = function () {
+    return true;
+};
 
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey

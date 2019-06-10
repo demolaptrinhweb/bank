@@ -141,7 +141,7 @@ mail($to,$subject,$txt,$headers);
 		 $khach = $this->khachhangemail ;
 		  
 		  $to = $khach;
-          $subject = $tieudu;
+          $subject = $tieude;
           $txt = $noidung;
           $headers = "From: STB@mail.com" ;
 

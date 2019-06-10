@@ -45,6 +45,7 @@
     $vayamt = $_POST["vay_amt"];
     $taikhoanvay = $_POST["taikhoanid"];
 	$code = taocode(4);
+	$_SESSION["code"] = $code;
 	$mail = new guimail($_SESSION["email"]);
 	$mail->gui($conn,$code);
 	$passerr ="" ;
@@ -73,7 +74,7 @@
    //chuyen phai nguoi dung nhap sang harsh-password
 	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);	
    
-	if($auth and $_POST["email"] == $_POST["code"])
+	if($auth and $_POST["email"] == $_SESSION["code"])
 		
 	{   
 		
@@ -117,7 +118,7 @@
 		
 		
 	if (!$auth) $err1 = "<b> <br>mật khẩu chuyển khoản không đúng</b>";
-	if ($_POST["email"] != $_POST["code"])	$err2 = "<b> <br> mã xác nhận email không đúng</b>";
+	if ($_POST["email"] != $_SESSION["code"])	$err2 = "<b> <br> mã xác nhận email không đúng</b>";
 	$passerr = $err1.$err2." <br>vui lòng nhập lại";
 
 		
@@ -125,7 +126,7 @@
 	$kieuvay = $_POST["kieuvay"];
 	$vayamt = $_POST["amt"];
 	$taikhoanvay = $_POST["taikhoanid"];
-	$code = $_POST["code"];
+	
 	}		  
     }       
 	
@@ -166,7 +167,7 @@
 <input type="hidden" name="kieuvay" value="<?php echo $kieuvay; ?>"  />
 <input type="hidden" name="amt" value="<?php echo $vayamt; ?>"  />
 <input type="hidden" name="taikhoanid" value="<?php echo $taikhoanvay; ?>"  />
-<input type="hidden" name="code" value="<?php echo $code; ?>"  />					  
+				  
 				  </td>
                 </tr>         
                 <tr>

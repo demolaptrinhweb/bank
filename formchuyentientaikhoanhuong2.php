@@ -48,6 +48,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	$mail->gui($conn,$code);
 	$passerr ="" ;
 	echo $code ;
+	$_SESSION["code"] = $code;
 	$phi = new phichuyentien ($conn);
 	$phi->setCon($conn);
     $phichuyentien = $phi->phichuyen($payamt);
@@ -79,7 +80,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		foreach  ($_SESSION['nguoinhan'] as $nguoinhan_1){
 			$tongtien = $tongtien + $_POST["amt"] + $_POST["phichuyentien"];
 		}
-	if($auth and $_POST["email"] == $_POST["code"] and $_SESSION["max"] >= $tongtien and $i["sodu"] >= $tongtien and $_POST["trpass"] == $_POST["xntrpass"] )
+	if($auth and $_POST["email"] == $_SESSION["code"] and $_SESSION["max"] >= $tongtien and $i["sodu"] >= $tongtien and $_POST["trpass"] == $_POST["xntrpass"] )
 	{   
 		
 		$tien = new chuyentien($_POST["taikhoanid"]);
@@ -106,7 +107,11 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 		if ($demchuyentienthanhcong == $demnguoinhan and $demtruphi == $demnguoinhan and $c){
 			unset($_SESSION['nguoinhan']);
 			
-			header("Location: formchuyentien3.php?kq=ct");
+			
+			 ?> <script>
+		 location.replace("formchuyentien3.php?kq=ct"); 
+</script>
+		 <?php 
 		}
 		else {
 			
@@ -122,7 +127,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	{
 	$passerr ="";
 	if (!$auth) $passerr.= "<b> <br>mật khẩu chuyển khoản không đúng</b>";
-	if ($_POST["email"] != $_POST["code"])	$passerr.= "<b>  <br>mã xác nhận email không đúng</b>";
+	if ($_POST["email"] != $_SESSION["code"])	$passerr.= "<b>  <br>mã xác nhận email không đúng</b>";
     if($_SESSION["max"] < $tongtien) $passerr.=  "<b>  <br>vượt quá số lượng chuyển tối đa trong ngày</b>";
     if ($i["sodu"] < $tongtien ) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
  	if ($_POST["trpass"] != $_POST["xntrpass"])	$passerr .= "<br> <b>pass và xác nhận pass không hợp lệ </b>";	 
@@ -131,7 +136,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 	
 	$payamt = $_POST["amt"];
 	$taikhoanchuyen = $_POST["taikhoanid"];
-	$code = $_POST["code"];
+	
 	$phichuyentien = $_POST["phichuyentien"];
 	$nguoichiuphi = $_POST["nguoichiuphi"];
 		$noidung = $_POST["noidung"];
@@ -194,7 +199,7 @@ $taikhoanchuyen = $_POST["taikhoanid"];
 
 <input type="hidden" name="amt" value="<?php echo $payamt; ?>"  />
 <input type="hidden" name="taikhoanid" value="<?php echo $taikhoanchuyen; ?>"  />
-<input type="hidden" name="code" value="<?php echo $code; ?>"  />	
+
 <input type="hidden" name="phichuyentien" value="<?php echo $phichuyentien; ?>"  />
 <input type="hidden" name="nguoichiuphi" value="<?php echo $nguoichiuphi; ?>"  />						  <input type="hidden" name="noidung" value="<?php echo $noidung; ?>"  />					  
 
@@ -225,8 +230,8 @@ $taikhoanchuyen = $_POST["taikhoanid"];
                 </tr>
                 <tr>
                   <td colspan="2"><div align="right">
-                    <input type="submit" name="pay2" id="pay2" value="Pay" />
-                    <input name="button" type="button"  value="Cancel" alt="Pay Now" />
+                    <input type="submit" name="pay2" id="pay2" value="đồng ý" />
+                   
                   </div></td>
                 </tr>
               </table>

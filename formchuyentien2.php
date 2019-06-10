@@ -47,6 +47,7 @@
 	$mail = new guimail($_SESSION["email"]);
 	$mail->gui($conn,$code);
 	$passerr ="" ;
+	$_SESSION["code"] = $code;
 	echo $code ;
 	$phi = new phichuyentien ($conn);
 	$phi->setCon($conn);
@@ -78,7 +79,7 @@
 	$auth = password_verify($_POST["trpass"],$arr1["passchuyenkhoan"]);
 		
 	$tienchuyen = floatval(str_replace(',','.',$_POST["amt"]));	
-	if($auth and $_POST["email"] == $_POST["code"] and $i["sodu"] >= ($tienchuyen + $_POST["phichuyentien"]) and $_SESSION["max"] >= $tienchuyen and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
+	if($auth and $_POST["email"] == $_SESSION["code"] and $i["sodu"] >= ($tienchuyen + $_POST["phichuyentien"]) and $_SESSION["max"] >= $tienchuyen and $_POST["tt"] == 2 and $_POST["xntrpass"] == $_POST["trpass"])
 	{  
 		//chuyen tien 
 		
@@ -98,7 +99,11 @@
 			
 			$_SESSION["max"] = $_SESSION["max"] - $_POST["amt"];
 			
-			header("Location: formchuyentien3.php?kq=ct");
+			
+			 ?> <script>
+		 location.replace("formchuyentien3.php?kq=ct"); 
+</script>
+		 <?php 
 		}
 		else {
 			
@@ -116,7 +121,7 @@
 		// neu co loi xuat loi ra 
 		
 	if (!$auth) $passerr.= "<br> <b>mật khẩu chuyển khoản không đúng</b>";
-	if ($_POST["email"] != $_POST["code"])	$passerr.= "<br> <b> mã xác nhận email không đúng</b>";
+	if ($_POST["email"] != $_SESSION["code"])	$passerr.= "<br> <b> mã xác nhận email không đúng</b>";
 	
     if ($i["sodu"] < ($_POST["amt"] + $_POST["phichuyentien"])) $passerr.="<br> <b> số tiền trong tài khoản không đủ</b>";
 	
@@ -129,7 +134,7 @@
 	$nguoinhan = $_POST["payto3"];
 	$payamt = $_POST["amt"];
 	$taikhoanchuyen = $_POST["taikhoanid"];
-	$code = $_POST["code"];
+	
 	$phichuyentien = $_POST["phichuyentien"];
 	$nguoichiuphi = $_POST["nguoichiuphi"];
 	$noidung = $_POST["noidung"];
@@ -194,7 +199,7 @@
 <input type="hidden" name="payto3" value="<?php echo $nguoinhan; ?>"  />
 <input type="hidden" name="amt" value="<?php echo $payamt; ?>"  />
 <input type="hidden" name="taikhoanid" value="<?php echo $taikhoanchuyen; ?>"  />
-<input type="hidden" name="code" value="<?php echo $code; ?>"  />	
+
 <input type="hidden" name="phichuyentien" value="<?php echo $phichuyentien; ?>"  />
 <input type="hidden" name="nguoichiuphi" value="<?php echo $nguoichiuphi; ?>"  />
 <input type="hidden" name="noidung" value="<?php echo $noidung; ?>"  />	
@@ -231,7 +236,7 @@
                 </tr>
                 <tr>
                   <td colspan="2"><div align="right">
-                    <input type="submit" name="pay2" id="pay2" value="Pay" />
+                    <input type="submit" name="pay2" id="pay2" value="đồng ý" />
                    
                   </div></td>
                 </tr>

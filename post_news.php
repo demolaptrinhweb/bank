@@ -50,45 +50,22 @@ include "DBconnect.php";
 		
    
 	
-	<script type="text/javascript" src="testing_ckedit/ckeditor.js"> </script>	
+	<script type="text/javascript" src="ckeditor_test2/ckeditor.js"> </script>	
 	<script type="text/javascript" src="ckfinder/ckfinder.js"> </script>		
 	<textarea name="nd" id="content"></textarea>			
 		<script>
-			 	 CKEDITOR.replace( 'content');
-	
+			 	  CKEDITOR.replace( 'content',
+		{
+			filebrowserBrowseUrl : 'hinh/ckfinder/ckfinder.html',
+			filebrowserImageBrowseUrl : 'hinh/ckfinder/ckfinder.html?type=Images',
+			filebrowserFlashBrowseUrl : 'hinh/ckfinder/ckfinder.html?type=Flash',
+			filebrowserUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+			filebrowserImageUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+			filebrowserFlashUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+		});
 		</script>	
-    <script>
-     
-
-$(function(){
-let theEditor;
-
-ClassicEditor
-    .create( document.querySelector( '#editor' ) )
-       
-
-    .then( editor => {
-        theEditor = editor; 
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
-
-function getDataFromTheEditor() {
-    return theEditor.getData();
-}
-
-document.getElementById( 'reset' ).addEventListener( 'click', () => {
-	form_data = getDataFromTheEditor();
-
-} );
-		
-		$("#reset").click(function() {
-			theEditor.setData( '' );
-		});		
-});
-</script>
-		</div	>
+   
+		</div>
 			</div>	
 
 	
@@ -102,7 +79,7 @@ document.getElementById( 'reset' ).addEventListener( 'click', () => {
 			
         <div class="flex-container">
             <div class="container">
-                <button type="submit">Đăng bài</button><br>
+                <button type="submit" id="pay" name="pay">Đăng bài</button><br>
             </div>
 
             <div class="container">

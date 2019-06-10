@@ -58,8 +58,21 @@ if (mysqli_affected_rows($conn) == 1) {	?>
         </div>	
         <div class="flex-container">
             <div class=container>
-                <label>nội dung <o></o>:</label><br>
-                <textarea name="nd" style="height: 200px; width: 60vw;"  /><?php echo $arr1["body"];?></textarea>
+		<script type="text/javascript" src="ckeditor_test2/ckeditor.js"> </script>	
+	<script type="text/javascript" src="ckfinder/ckfinder.js"> </script>	
+                <label>nội dung <o></o>:</label><br><br>
+                <textarea name="nd" id="content"><?php echo $arr1["body"];?></textarea>
+			<script>
+			 	  CKEDITOR.replace( 'content',
+		{
+			filebrowserBrowseUrl : 'hinh/ckfinder/ckfinder.html',
+			filebrowserImageBrowseUrl : 'hinh/ckfinder/ckfinder.html?type=Images',
+			filebrowserFlashBrowseUrl : 'hinh/ckfinder/ckfinder.html?type=Flash',
+			filebrowserUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+			filebrowserImageUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+			filebrowserFlashUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+		});
+		</script>	
             </div>
         </div>
         <div class="flex-container">

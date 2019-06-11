@@ -15,12 +15,15 @@
 		 success : function(dulieu){
 			 
 			 var text = dulieu.trim();
-			
+			 
+			 
 			 if (text == "dung")  location.replace("acctrangchu.php"); 
 			 
 			if (text == "sai")	$(".text-danger").html("Sai mật khẩu hoặc email!")
 	
- 
+            if (text == "trangthai")	$(".text-danger").html("tài khoản này hiện không hoạt động")
+	
+           
    
 		 }
 	 })

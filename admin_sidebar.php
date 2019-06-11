@@ -12,7 +12,8 @@
         <a id="label">Thông tin khách hàng</a>
         <a href="customer_add.php">Thêm khách hàng</a>
         <a href="manage_customers.php">Quản lý khách hàng</a>
-        <a href="#nx">Danh sách nợ xấu</a>
+		  <a href="add_taikhoan.php">thêm tài khoản</a>
+		<a href="manage_taikhoan.php">quản lý tài khoản</a>
 		<a href="add_kieuvay.php"> thêm kiểu vay</a>
 		<a href="manage_kieuvay.php"> quản lý kiểu vay</a>
 		<a href="add_kyhanguitien.php"> thêm kỳ hạn gủi tiền</a>
@@ -23,9 +24,7 @@
 		<a href="manage_theme.php"> xem theme</a>
         <a href="post_news.php">Đăng bài</a>
 		<a href="post_news_manager.php">quản lí bài</a>
-		  <a href="add_taikhoan.php">thêm tài khoản</a>
-		<a href="manage_taikhoan.php">quản lý tài khoản</a>
-		
+
 		<?php if ($_SESSION["quyen"] == 1 ) { ?>
 		<a href="add_admin.php">thêm admin</a>
 		<a href="manage_admin.php">quản lí admin</a>

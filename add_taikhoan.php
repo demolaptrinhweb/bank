@@ -25,6 +25,13 @@ include "DBconnect.php";
 if (!$arr){
 $sql = "INSERT INTO taikhoan VALUES('','$_POST[taikhoan]',$_POST[khachhang],$_POST[tt],now(),$_POST[sodu],0)";
 $kq = mysqli_query($conn,$sql);
+if ($_POST["macdinh"] == 1) {
+	 $sql = "select id_taikhoan from taikhoan where taikhoanid = '$_POST[taikhoan]'";
+  $kq = mysqli_query($conn,$sql);
+  $arr = mysqli_fetch_array($kq); 
+	$sql = "update khachhang set taikhoanmacdinh = $arr[id_taikhoan] where id_khachhang = $_POST[khachhang]";
+	mysqli_query($conn,$sql);
+}
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>
   alert("thành công");
@@ -54,15 +61,20 @@ if (mysqli_affected_rows($conn) == 1) {	?>
             <div  class=container>
                 <label>khách hàng :</b></label><br>
                 <select name="khachhang">
-					<?php $sql = "select id_khachhang,khachhangid from khachhang ";
+					<?php $sql = "select id_khachhang,ho,ten from khachhang ";
 					      $kq = mysqli_query($conn,$sql);
 					    while(  $arr = mysqli_fetch_array($kq)){
-							echo "<option value='$arr[id_khachhang]'>$arr[khachhangid]</option>";
+							echo "<option value='$arr[id_khachhang]'>$arr[ho]"." "."$arr[ten] </option>";
 						}
 					?>
 			</select>
             </div>
+	
 		 <div  class=container>
+			 <br>
+		<br>
+		<br>
+			 <br>
                 <label>trạng thái:</b></label><br>
                <select name="tt">
 		          <option value="2"> đang hoạt động</option>
@@ -75,9 +87,20 @@ if (mysqli_affected_rows($conn) == 1) {	?>
             </div>
 	
         </div>
+     <div  class=container>
+                <label>Để làm tải khoản mặc định</b></label><br>
+               <select name="macdinh">
+		          <option value="2"> không</option>
+		         <option value="1"> có</option>
+		      </select>
+            </div>
+	
+        
 
-        
-        
+            <br>
+            <br>
+             <br>
+            <br> 
 
         <div class="flex-container">
             <div class="container">

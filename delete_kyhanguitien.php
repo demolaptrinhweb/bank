@@ -16,7 +16,12 @@ include "DBconnect.php";
 	
 	if ($_GET["id_kyhan"]){
 		$id_kyhan = $_GET["id_kyhan"];
-		   	
+		
+	$sql = "select id_tietkiem from taikhoantietkiem where kyhangui = $id_kyhan";
+	$kq = mysqli_query($conn,$sql);
+	$arr = mysqli_fetch_array($kq);	
+		
+   if (!$arr){	   	
 
 $sql = "delete from kyhanguitien where id_kyhan = $id_kyhan";
 		  
@@ -28,7 +33,14 @@ if (mysqli_affected_rows($conn) == 1) {	?>
 </script>
 	 <?php  }
 		
-	   }
+       }
+		else {	?>	
+	<script>
+  alert("không xoá được dữ liệu đang được sử dụng");
+		 location.replace("manage_kyhanguitien.php"); 
+</script>
+	 <?php  }
+   }
 	?>
 </body>
 </html>

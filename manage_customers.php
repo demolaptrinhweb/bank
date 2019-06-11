@@ -11,19 +11,19 @@
         $by = $_POST['by'];
 
         if ($by == "name") {
-            $sql0 = "SELECT cust_id, first_name, last_name, account_no FROM customer
-            WHERE first_name LIKE '%".$search."%' OR last_name LIKE '%".$search."%'
-            OR CONCAT(first_name, ' ', last_name) LIKE '%".$search."%'";
+            $sql0 = "SELECT id_khachhang,ho,ten FROM khachhang
+            WHERE ho LIKE '%".$search."%' OR ten LIKE '%".$search."%'
+            OR CONCAT(ho, ' ',ten) LIKE '%".$search."%'";
         }
         else {
-            $sql0 = "SELECT cust_id, first_name, last_name, account_no FROM customer
-            WHERE account_no LIKE '$search'";
+            $sql0 = "SELECT id_khachhang,ho,ten FROM khachhang
+            WHERE id_khachhang LIKE '$search'";
         }
     }
     else {
         $back_button = FALSE;
 
-        $sql0 = "SELECT cust_id, first_name, last_name, account_no FROM customer";
+        $sql0 = "SELECT id_khachhang,ho,ten FROM khachhang";
     }
 ?>
 
@@ -64,12 +64,43 @@
         </div>
     </div>
 
+	
     <div class="flex-container">
+	  <?php 
+	
+	
+	
+  $kq = $control->query($sql0);
+  $tsp = @mysqli_num_rows($kq);
+  $sd = 5 ;
+  
+  
+  $tst = ceil($tsp/$sd);
+  
+  
+  
+ 
+  if (isset($_GET["page"])){
+	  $page = $_GET["page"] ;
+	  
+	  }
+	  else {
+		  $page = 1 ;}
+		  
+		  
+	$vitri = ($page - 1) * $sd ;
+	
+	$sql0.= " limit $vitri , $sd ";
+				  
+	
+  ?>  
+				
+	 
         <?php
-            $result = $conn->query($sql0);
+            $result = $control->query($sql0);
 
-            if ($result->num_rows > 0) {
-            // output data of each row
+            if ( $tsp > 0) {
+           
             $i = 0;
             while($row = $result->fetch_assoc()) {
                 $i++; ?>
@@ -79,56 +110,84 @@
                         <p id="id"><?php echo $i . "."; ?></p>
                     </div>
                     <div class="flex-item-2">
-                        <p id="name"><?php echo $row["first_name"] . " " . $row["last_name"]; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["account_no"]; ?></p>
+                        <p id="name"><?php echo $row["ho"]." ".$row["ten"] ?></p>
+                        <p id="acno"><?php echo "Ac/No : " . $row["id_khachhang"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">
-                            <!--We are dynamically naming each dropdown for every entry in the loop and
-                                passing the respective integer value in the dropdown_func().
-                                This creates adynamic anchor for each button-->
+                            
                           <button onclick="dropdown_func(<?php echo $i ?>)" class="dropbtn"></button>
                           <div id="dropdown<?php echo $i ?>" class="dropdown-content">
-                            <!--Pass the customer trans_id as a get variable in the link-->
-                            <a href="edit_customer.php?cust_id=<?php echo $row["cust_id"] ?>">View / Edit</a>
-                            <a href="transactions.php?cust_id=<?php echo $row["cust_id"] ?>">Transactions</a>
-                            <a href="delete_customer.php?cust_id=<?php echo $row["cust_id"] ?>"
+                            <a href="edit_customer.php?id_khachhang=<?php echo $row["id_khachhang"]; ?>">View / Edit</a>
+                          
+                            <a href="delete_customer.php?id_khachhang=<?php echo $row["id_khachhang"]; ?>"
                                  onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
                           </div>
                         </div>
                     </div>
-                </div>
-
-            <?php }
-            } else {  ?>
+                </div>	
+	 
+	 
+	 
+	  <?php }?>
+								  
+	<?php 
+  
+  if ($page != 1 and $page != 2) {
+  $dau = $page-2 ;
+   
+  }
+  else $dau = 1;
+	$cuoi = $page + 2; 
+  if ($cuoi > $tst) $cuoi = $tst ;
+  
+  
+  
+  ?>
+  <p align="center"> trang : <?php  if ($page != 1  ){
+	  ?>
+      <a href="manage_kyhanguitien.php?page=<?php echo 1 ; echo $truyendulieu;?>"> << </a>
+      
+	  <?php 
+  }
+  
+  for($i=$dau;$i<=$cuoi;$i++){
+	     if ($page == $i) echo " <b> <i> $i </i> </b> &nbsp;";
+		 else {
+			 ?>
+	             
+	       <a href="manage_kyhanguitien.php?page=<?php echo $i ; echo $truyendulieu;?> "><?php echo $i ; ?> &nbsp;</a>
+            
+     <?php }
+  }
+   if ($page != $tst ) {?> <a href="manage_kyhanguitien.php?page=<?php echo $tst ;echo $truyendulieu; ?>"> >> </a>  <?php 
+   }
+  ?></p>
+				
+           <?php }  else {  ?>
                 <p id="none"> No results found :(</p>
             <?php }
             if ($back_button) { ?>
                 <div class="flex-container-bb">
                     <div class="back_button">
-                        <a href="manage_customers.php" class="button">Go Back</a>
+                        <a href="manage_kyhanguitien.php" class="button">Go Back</a>
                     </div>
                 </div>
             <?php }
-            $conn->close(); ?>
+             ?>
     </div>
 
+
     <script>
-    /*  The problem with lots of menus sharing same anchor(dropdown-content) is that clicking on
-        any of the buttons produces the same output as clicking the first button. Thus only the
-        menu associated with the first button opens. This is BIG PROBLEM when we have lots of menus
-        inside the while-loop.
-        Hence, solve this problem using dynamic naming to create different anchors for different
-        buttons.
-        This is a proper solution and NOT a hack/workaround */
+
     function dropdown_func(i) {
-        // Dynamic naming of the dropdown #id
+      
         var doc_id = "dropdown".concat(i.toString());
 
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
 
-        // Close any menus, if opened, before opening a new one
+        
         for (i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
@@ -140,7 +199,7 @@
         return false;
     }
 
-    // Close the dropdown if the user clicks outside of it
+   
     window.onclick = function(event) {
       if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -155,7 +214,7 @@
       }
     }
 
-    // Sticky search-bar
+
     $(document).ready(function() {
         var curr_scroll;
 

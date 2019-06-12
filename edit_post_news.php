@@ -77,7 +77,7 @@ if (mysqli_affected_rows($conn) == 1) {	?>
         </div>
         <div class="flex-container">
             <div class=container>
-                <label>url_hinh<o></o> :</label><br>
+                <label>URL Hình ảnh (dành cho slide)<o></o> :</label><br>
                 <input name="url" size="50" type="text" value="<?php echo $arr1["url_hinh"]; ?>" />
             </div>
         </div>

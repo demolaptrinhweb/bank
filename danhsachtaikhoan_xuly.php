@@ -133,7 +133,7 @@
   <?php  if ($page != 1 ){
 	  ?>
       <a href="Javascript:;" onClick="boLoc(1)"> << </a>
-      
+       <a href="Javascript:;" onClick="boLoc(<?php echo $page - 1;  ?>)"> < </a>
 	  <?php 
   }
   
@@ -146,7 +146,9 @@
             
      <?php }
   }
-   if ($page != $tst ) {?> <a href="Javascript:;" onClick="boLoc(<?php echo $tst ?>)" > >> </a>  <?php 
+   if ($page != $tst ) {?> 
+		    <a href="Javascript:;" onClick="boLoc(<?php echo $page + 1;  ?>)"> > </a>
+		   <a href="Javascript:;" onClick="boLoc(<?php echo $tst ?>)" > >> </a>  <?php 
    }
   ?></p>
 	</div>

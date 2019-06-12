@@ -72,7 +72,7 @@ include "DBconnect.php";
 	
         <div class="flex-container">
             <div class=container>
-                <label>URL Hình ảnh<o></o> :</label><br>
+                <label>URL Hình ảnh(dành cho slide)<o></o> :</label><br>
                 <input name="url" size="50" type="text"  />
             </div>
         </div>

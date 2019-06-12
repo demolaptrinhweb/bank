@@ -1,4 +1,4 @@
-t<?php
+<?php
 
 @session_start();
 ?>
@@ -13,7 +13,7 @@ require ("DBconnect.php");
 	if (isset($_POST["pay"])){
 		
 		$passerr="";
-		$id_them = $_POST["id_them"];
+		$id_them =  mysqli_real_escape_string($conn,$_POST["id_them"]);
 		$sql= "select trangthai from taikhoan where taikhoanid = '$id_them'";
 		$kq =$control->query($sql);
 		$arr = $control->fetch_arr($kq);

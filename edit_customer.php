@@ -3,6 +3,7 @@
     include "user_navbar.php";
     include "admin_sidebar.php";
 include "DBconnect.php";
+include "session_hethan.php";
 ?>
 
 <!DOCTYPE html>
@@ -51,8 +52,8 @@ include "DBconnect.php";
             <div class=container>
                 <label>trạng thái :</label><br>
                  <select name="tt">
-		          <option value="2" <?php if ($arr["trangthai"] == 2) > đang hoạt động</option>
-		         <option value="1" <?php if ($arr["trangthai"] == 1)> tạm ngừng</option>
+		          <option  value="2" <?php if ($arr["trangthai"] == 2) echo "selected='selected'"  ?>  >  đang hoạt động</option>
+		         <option  value="1" <?php if ($arr["trangthai"] == 1) echo "selected='selected'" ?> >tạm ngừng</option>
 		      </select>
             </div>
             

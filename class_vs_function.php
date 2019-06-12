@@ -221,8 +221,10 @@ function taocode($length) {
 		
 			$sql1 = "select phi from phichuyentien where toithieu <= $sotien and toida >= $sotien";
 			$resu = $this->query($sql1);
-			$arr = $this->fetch_arr($resu);
-			return  $arr["phi"];											 
+			if($arr = $this->fetch_arr($resu)){
+			return  $arr["phi"];			
+				}
+		    else return 0 ;
 	
 	}
 }

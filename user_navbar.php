@@ -19,7 +19,7 @@
     </div>
 
 <script>
-// Function below is jquery-3 function used for making the navbar sticky
+
 $(document).ready(function() {
   $(window).scroll(function () {
     if ($(window).scrollTop() > 120) {

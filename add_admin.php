@@ -7,6 +7,7 @@ if ($_SESSION["quyen"] == 1){
     include "user_navbar.php";
     include "admin_sidebar.php";
 include "DBconnect.php";
+	  include "session_hethan.php";
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +27,9 @@ include "DBconnect.php";
 	  
 		
 $ten = mysqli_real_escape_string($conn,$_POST["ten"]);
-		
-$sql = "INSERT INTO admin VALUES('','$ten','$_POST[pass]',$_POST[quyen])";
+$pass = mysqli_real_escape_string($conn,$_POST["pass"]);
+$pass = $control->passharsh($pass);		
+$sql = "INSERT INTO admin VALUES('','$ten','$pass',$_POST[quyen])";
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>
@@ -49,11 +51,11 @@ if (mysqli_affected_rows($conn) == 1) {	?>
             </div>
             <div  class=container>
                 <label>pass :</b></label><br>
-                <input name="pass" size="30" type="password" required step="0.01" />
+                <input name="pass" size="30" type="password" required  />
             </div>
 		 <div  class=container>
                 <label>quyền :</b></label><br>
-                <input name="quyen" size="30" type="number" required step="0.01"/>
+                <input name="quyen" size="30" type="number" required />
             </div>
 	
      

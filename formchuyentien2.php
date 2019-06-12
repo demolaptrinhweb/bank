@@ -41,7 +41,7 @@
 {
 	// gan cac bien can thiet 
     $nguoinhan = $_POST["payto"];
-    $payamt = $_POST["pay_amt"];
+    $payamt =  mysqli_real_escape_string($conn,$_POST["pay_amt"]);
     $taikhoanchuyen = $_POST["taikhoanid"];
 	$code = taocode(4);
 	$mail = new guimail($_SESSION["email"]);

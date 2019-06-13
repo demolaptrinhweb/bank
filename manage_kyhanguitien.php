@@ -106,7 +106,7 @@ $truyendulieu = "";
                     </div>
                     <div class="flex-item-2">
                         <p id="name"><?php echo $row["kyhan_chu"] ; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id_kyhan"]; ?></p>
+                        <p id="acno"><?php echo "id : " . $row["id_kyhan"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">

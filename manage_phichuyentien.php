@@ -109,7 +109,7 @@ $truyendulieu = "";
 						
 						<p id="max">tối thiểu :<?php echo $row["toida"] ; ?> </p>
 						<br>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id_phichuyentien"]; ?></p>
+                        <p id="acno"><?php echo "id : " . $row["id_phichuyentien"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">

@@ -121,7 +121,7 @@ $truyendulieu = "";
                             <a href="edit_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>">View / Edit</a>
                           
                             <a href="delete_kieuvay.php?id_kieuvay=<?php echo $row["id_kieuvay"]; ?>"
-                                 onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
+                                 onclick="return confirm('Bạn có chắc chắn muốn xoá?')">Delete</a>
                           </div>
                         </div>
                     </div>

@@ -10,18 +10,15 @@
 <body>
     <div class="flex-container">
         <div class="flex-item">
-            <img id="session" src="/images/hourglass.png">
         </div>
         <div class="flex-item-message">
-            <h1 id="session">Session Expired !</h1>
+            <h1 id="session">Session Hết hạn !</h1>
             <p id="session">
-                For security reasons if your account remains inactive for more
-                than 5 minutes, you are automatically logged out.<br><br>
-                Please sign-in again. :)
+				Session hết hạn sau 5p, vui lòng đăng nhập lại!
             </p>
         </div>
         <div class="flex-item">
-            <a href="index.php" class="button">Go Home</a>
+            <a href="index.php" class="button">Về trang chủ</a>
         </div>
     </div>
 

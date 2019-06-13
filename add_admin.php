@@ -26,8 +26,9 @@ include "DBconnect.php";
 	  
 		
 $ten = mysqli_real_escape_string($conn,$_POST["ten"]);
-		
-$sql = "INSERT INTO admin VALUES('','$ten','$_POST[pass]',$_POST[quyen])";
+$pass = mysqli_real_escape_string ($conn, $_POST["pass"]);		   
+$pass = password_hash($pass, PASSWORD_DEFAULT);			
+$sql = "INSERT INTO admin VALUES('','$ten','$pass',$_POST[quyen])";
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>

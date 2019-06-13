@@ -11,20 +11,21 @@
         $by = $_POST['by'];
 
         if ($by == "name") {
-            $sql0 = "SELECT cust_id, first_name, last_name, account_no FROM customer
-            WHERE first_name LIKE '%".$search."%' OR last_name LIKE '%".$search."%'
-            OR CONCAT(first_name, ' ', last_name) LIKE '%".$search."%'";
+            $sql0 = "SELECT khachhangid, ten, ho, taikhoanmacdinh FROM khachhang
+            WHERE ten LIKE '%".$search."%' OR ho LIKE '%".$search."%'
+            OR CONCAT(ten, ' ', ho) LIKE '%".$search."%'";
         }
         else {
-            $sql0 = "SELECT cust_id, first_name, last_name, account_no FROM customer
-            WHERE account_no LIKE '$search'";
+            $sql0 = "SELECT khachhangid, ten, ho, taikhoanmacdinh FROM khachhang
+            WHERE taikhoanmacdinh LIKE '$search'";
         }
     }
     else {
         $back_button = FALSE;
 
-        $sql0 = "SELECT cust_id, first_name, last_name, account_no FROM customer";
+        $sql0 = "SELECT khachhangid, ten, ho, taikhoanmacdinh FROM khachhang";
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,7 @@
 
                 <form class="search_form" action="" method="post">
                     <div class="flex-item-search">
-                        <input name="search" size="30" type="text" placeholder="Search Customers..." />
+                        <input name="search" size="30" type="text" placeholder="Tìm kiếm khách hàng..." />
                     </div>
 
                     <div class="flex-item-search-button">
@@ -49,13 +50,13 @@
                     </div>
 
                     <div class="flex-item-by">
-                        <label>By :</label>
+                        <label>Bởi :</label>
                     </div>
 
                     <div class="flex-item-search-by">
                         <select name="by">
-                            <option value="name">Name</option>
-                            <option value="acno">Ac/No</option>
+                            <option value="name">Tên</option>
+                            <option value="acno">Tài khoản</option>
                         </select>
                     </div>
                 </form>
@@ -79,8 +80,8 @@
                         <p id="id"><?php echo $i . "."; ?></p>
                     </div>
                     <div class="flex-item-2">
-                        <p id="name"><?php echo $row["first_name"] . " " . $row["last_name"]; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["account_no"]; ?></p>
+                        <p id="name"><?php echo $row["ho"] . " " . $row["ten"]; ?></p>
+                        <p id="acno"><?php echo "Tài khoản: " . $row["taikhoanmacdinh"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">
@@ -90,10 +91,9 @@
                           <button onclick="dropdown_func(<?php echo $i ?>)" class="dropbtn"></button>
                           <div id="dropdown<?php echo $i ?>" class="dropdown-content">
                             <!--Pass the customer trans_id as a get variable in the link-->
-                            <a href="edit_customer.php?cust_id=<?php echo $row["cust_id"] ?>">View / Edit</a>
-                            <a href="transactions.php?cust_id=<?php echo $row["cust_id"] ?>">Transactions</a>
-                            <a href="delete_customer.php?cust_id=<?php echo $row["cust_id"] ?>"
-                                 onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
+                            <a href="edit_customer.php?khachhangid=<?php echo $row["khachhangid"] ?>">Chỉnh sửa hồ sơ</a>
+                            <a href="delete_customer.php?khachhangid=<?php echo $row["khachhangid"] ?>"
+                                 onclick="return confirm('Bạn có chắc chắn muốn xoá khách hàng?')">Xoá</a>
                           </div>
                         </div>
                     </div>
@@ -101,12 +101,12 @@
 
             <?php }
             } else {  ?>
-                <p id="none"> No results found :(</p>
+                <p id="none"> Không tìm thấy khách hàng :(</p>
             <?php }
             if ($back_button) { ?>
                 <div class="flex-container-bb">
                     <div class="back_button">
-                        <a href="manage_customers.php" class="button">Go Back</a>
+                        <a href="manage_customers.php" class="button">Quay lại</a>
                     </div>
                 </div>
             <?php }

@@ -17,11 +17,18 @@
 			 var text = dulieu.trim();
 			 
 			 
-			 if (text == "dung")  location.replace("acctrangchu.php"); 
+			 if (text == "dung")  {
+				 alert("thành công");
+				 location.replace("acctrangchu.php");} 
 			 
-			if (text == "sai")	$(".text-danger").html("Sai mật khẩu hoặc email!")
+			 
+			if (text == "sai")	{
+				alert("thất bại");
+				$(".text-danger").html("Sai mật khẩu hoặc email!")}
 	
-            if (text == "trangthai")	$(".text-danger").html("tài khoản này hiện không hoạt động")
+            if (text == "trangthai")	{
+				alert("thất bại");
+				$(".text-danger").html("tài khoản này hiện không hoạt động")}
 	
            
    

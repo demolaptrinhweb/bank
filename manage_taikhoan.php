@@ -39,7 +39,7 @@ $truyendulieu = "";
 
                 <form class="search_form" action="" method="get">
                     <div class="flex-item-search">
-                        <input name="search" size="30" type="text" placeholder="tìm kiếm kiểu vay" />
+                        <input name="search" size="30" type="text" placeholder="tìm kiếm tài khoản" />
                     </div>
 
                     <div class="flex-item-search-button">

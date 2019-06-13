@@ -64,29 +64,30 @@ require_once("class_vs_function.php");
 		$i = $control->row_affected();
 		if ($i == 1) $demthanhcong++;
 		if ($kt == 1 and $demthanhcong == 3 ) {
-		
-			header("Location: formchuyentien3.php?kq=ct");
-											  }
-		 else {
-			
 			?>
-		<script>
-		alert("có lỗi khi truyền thông tin xin thủ lại");
-		</script>
-		<?php
 			
-		}
+			<script>
+
+		 location.replace("formchuyentien3.php?kq=ct"); 
+</script>	
+			<?php	}
+		
 		
 		
 		if ($demthanhcong == 2 ) {
+			?>
 			
-			header("Location: formchuyentien3.php?kq=ct");
-		}
+			<script>
+
+		 location.replace("formchuyentien3.php?kq=ct"); 
+</script>	
+			<?php	}
 		else {
 		
 			?>
 		<script>
 		alert("có lỗi khi truyền thông tin xin thủ lại");
+			
 		</script>
 		<?php
 			

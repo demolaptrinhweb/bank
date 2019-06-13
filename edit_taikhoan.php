@@ -3,6 +3,7 @@
     include "user_navbar.php";
     include "admin_sidebar.php";
 include "DBconnect.php";
+include "session_hethan.php";
 ?>
 
 <!DOCTYPE html>
@@ -67,9 +68,12 @@ if (mysqli_affected_rows($conn) == 1) {	?>
 			</select>
             </div>
 		 <div  class=container>
+			 <br>
+			 <br>
+			 <br>
                 <label>trạng thái:</b></label><br>
                <select name="tt">
-		          <option value="2" <?php if ($arr1["trangthai"] == 1) echo "selected ='selected'" ?> > đang hoạt động</option>
+		          <option value="2" <?php if ($arr1["trangthai"] == 2) echo "selected ='selected'" ?> > đang hoạt động</option>
 		         <option value="1" <?php if ($arr1["trangthai"] == 1) echo "selected ='selected'" ?> > tạm ngừng</option>
 		      </select>
             </div>

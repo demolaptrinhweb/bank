@@ -110,8 +110,8 @@ $truyendulieu = "";
                         <p id="id"><?php echo $i . "."; ?></p>
                     </div>
                     <div class="flex-item-2">
-                        <p id="name"><?php echo $row["theme"] ; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id"]; ?></p> <br>
+                        <p id="name"><?php echo "theme : ". $row["theme"] ; ?></p>
+                        <p id="acno"><?php echo "id : " . $row["id"]; ?></p> <br>
 						<p id="acno"><?php echo "title : " . $row["title"]; ?></p>
                     </div>
                     <div class="flex-item-1">

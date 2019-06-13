@@ -39,7 +39,7 @@ $truyendulieu = "";
 
                 <form class="search_form" action="" method="get">
                     <div class="flex-item-search">
-                        <input name="search" size="30" type="text" placeholder="tìm kiếm kiểu vay" />
+                        <input name="search" size="30" type="text" placeholder="tìm kiếm phi chuyển tiền" />
                     </div>
 
                     <div class="flex-item-search-button">
@@ -109,7 +109,7 @@ $truyendulieu = "";
 						
 						<p id="max">tối thiểu :<?php echo $row["toida"] ; ?> </p>
 						<br>
-                        <p id="acno"><?php echo "Ac/No : " . $row["id_phichuyentien"]; ?></p>
+                        <p id="acno"><?php echo "id : " . $row["id_phichuyentien"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">

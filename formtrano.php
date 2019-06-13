@@ -100,7 +100,7 @@
 	    $a = $control->row_affected();
 		if ($a == 1)$demthanhcong++;
 		
-		$sql = "insert into trano values ('',now(),$payamt,'$_POST[taikhoanid]','$_POST[taikhoanvay]','$_SESSION[khachhangid]')";
+		$sql = "insert into trano values ('',now(),$payamt,'$_POST[taikhoanid]','$_POST[taikhoanvay]',$_SESSION[id_khachhang])";
 	     $resu = $control->query($sql);
 		
 		$a = $control->row_affected();

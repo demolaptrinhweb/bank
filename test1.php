@@ -5,23 +5,25 @@
     <title>CKEditor 5 Integration Example</title>
 </head>
 <body>
-    <div id="editor"></div>
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
-    <script src="/ckfinder/ckfinder.js"></script>
-    <script type="text/javascript">
-
-    ClassicEditor
-        .create( document.querySelector( '#editor' ), {
-            ckfinder: {
-                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-            },
-            toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
-        } )
-        .catch( function( error ) {
-            console.error( error );
-        } );
-
-    </script>
+ <?php
+if(!isset($_SESSION)) {
+        session_start();
+    }
+if ($_SESSION["quyen"] == 1){
+    include "validate_admin.php";
+    include "user_navbar.php";
+    include "admin_sidebar.php";
+include "DBconnect.php";
+?>
+<?php $sql = "select * from admin where uname = 'admin'";
+	  $kq = $control->query($sql);
+	  $arr = $control->fetch_arr($kq);
+	  $pass = $control->passharsh('123');
+	echo $arr["pwd"];
+	  $auth = password_verify("2",$arr["pwd"]);
+	 if($auth){
+		 echo "dung";
+	 }else echo "sai"; ?>	
+<?php }?>
 </body>
 </html>

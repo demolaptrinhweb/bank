@@ -1,8 +1,7 @@
 <?php  require("DBconnect.php")?>
 <script src="index.css"></script>
 <?php if (isset($_GET["id"]) and $_GET["id"] != "")  $sql = "select * from news where theme = 5 or theme 6 and id = $_GET[id] ";
-       else {
-		   $sql = "select * from news where theme = 2 " ;}
+      
 					      	?>
 <div id="center">
 			<div id="lefttin">

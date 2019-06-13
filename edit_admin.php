@@ -7,6 +7,7 @@ if ($_SESSION["quyen"] == 1){
     include "user_navbar.php";
     include "admin_sidebar.php";
 include "DBconnect.php";
+	include "session_hethan.php";
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,12 @@ include "DBconnect.php";
 		
 		 $id = $_POST["id"];  	
 $ten = mysqli_real_escape_string($conn,$_POST["ten"]);
-$sql = "update admin set uname = '$ten', pwd = $_POST[pass],quyen = $_POST[quyen] where id = $_POST[id]";
+$passharsh = "";	   
+ if ($_POST["pass"] != ""){
+$pass = $control->passharsh($_POST["pass"]);	
+	$passharsh = " pwd = '$pass',";
+}
+$sql = "update admin set uname = '$ten',".$passharsh." quyen = $_POST[quyen] where id = $_POST[id]";
 		   
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
@@ -58,7 +64,7 @@ if (mysqli_affected_rows($conn) == 1) {	?>
             </div>
             <div  class=container>
                 <label>pass :</b></label><br>
-                <input name="pass" size="30" type="password" value="<?php echo $arr["pwd"];?>" required  />
+                <input name="pass" size="30" type="password" value=""  />
             </div>
 		 <div  class=container>
                 <label>quyền :</b></label><br>

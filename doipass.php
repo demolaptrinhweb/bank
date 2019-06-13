@@ -15,16 +15,21 @@ require ("DBconnect.php");
 		
 		$auth = password_verify($_POST["pass"],$arr["pass"]);
 		
-	 if($auth and $_POST["email"] == $_POST["code"] and $_POST["passmoi"]==$_POST["passlai"]){	
+	 if($auth and  $_POST["passmoi"]==$_POST["passlai"]){	
 		 $passmoi = $control->passharsh($_POST["passmoi"]);
 		 $sql = "UPDATE khachhang SET pass = '$passmoi' where id_khachhang = $_SESSION[id_khachhang]";
 		$a = $control->query($sql);
 		if ($control->row_affected() == 1){
 			$mail = new guimail ($_SESSION["email"]);
-			$mail->guinodung($conn,"đỗi pass ","tài khoản của bản đã được đổi pass");
+			$mail->guinoidung($conn,"đỗi pass","tài khoản của bạn đã được đổi pass");
 			
-			header("Location: formchuyentien3.php?kq=dp");}
-																					
+			
+		  	?> <script>
+		 location.replace("formchuyentien3.php?kq=dp"); 
+</script>
+		 <?php 		
+		}
+																		
 																									
 																									
 		 }

@@ -1,78 +1,38 @@
 <?php
-    if(!isset($_SESSION)) {
-        session_start();
-    }
-
     include "validate_admin.php";
-    include "DBconnect.php";
     include "user_navbar.php";
     include "admin_sidebar.php";
-    include "session_timeout.php";
-
-    if (isset($_GET['cust_id'])) {
-        $_SESSION['cust_id'] = $_GET['cust_id'];
-    }
-
-    $sql0 = "DELETE FROM customer WHERE cust_id=".$_SESSION['cust_id'];
-    $sql1 = "DROP TABLE passbook".$_SESSION['cust_id'];
-    $sql2 = "DROP TABLE beneficiary".$_SESSION['cust_id'];
-
+include "DBconnect.php";
 ?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="action_style.css">
+<meta charset="utf-8">
+<title>Untitled Document</title>
 </head>
 
 <body>
-    <div class="flex-container">
-        <div class="flex-item">
-            <?php
-                if (($conn->query($sql0) === TRUE)) { ?>
-                    <p id="info"><?php echo "Customer Deleted Successfully !"; ?></p>
-                <?php
-                }
-                else { ?>
-                    <p id="info"><?php echo "Error: " . $sql0 . "<br>" . $conn->error . "<br>"; ?></p>
-                <?php
-                }
-            ?>
-        </div>
-
-        <div class="flex-item">
-            <?php
-                if (($conn->query($sql1) === TRUE)) { ?>
-                    <p id="info"><?php echo "Customer's Passbook Deleted Successfully !"; ?></p>
-                <?php
-                }
-                else { ?>
-                    <p id="info"><?php echo "Error: " . $sql1 . "<br>" . $conn->error . "<br>"; ?></p>
-                <?php
-                }
-            ?>
-        </div>
-
-        <div class="flex-item">
-            <?php
-                if (($conn->query($sql2) === TRUE)) { ?>
-                    <p id="info"><?php echo "Customer's Beneficiary Deleted Successfully !"; ?></p>
-                <?php
-                }
-                else { ?>
-                    <p id="info"><?php echo "Error: " . $sql2 . "<br>" . $conn->error . "<br>"; ?></p>
-                <?php
-                }
-            ?>
-        </div>
-        <?php $conn->close(); ?>
-
-        <div class="flex-item">
-            <a href="manage_customers.php" class="button">Go Back</a>
-        </div>
-
-    </div>
-
+	<?php 
+	
+	if ($_GET["id_khachhang"]){
+		$id_khachhang = $_GET["id_khachhang"];
+		   	
+$sql1 = "delete from vaytien where taikhoanid in (select taikhoanid from taikhoan where id_khachhang = $id_khachhang)";
+$sql = "delete from taikhoan where id_khachhang = $id_khachhang";
+$sql2 = "delete from khachhang where id_khachhang = $id_khachhang ";		
+		
+$kq1 = mysqli_query($conn,$sql1);			  
+$kq = mysqli_query($conn,$sql);
+$kq2 = mysqli_query($conn,$sql2);		
+if (mysqli_affected_rows($conn) == 1) {	?>	
+	<script>
+  alert("thành công");
+		 location.replace("manage_customers.php"); 
+</script>
+	 <?php  }
+	else  echo "đã có lỗi xin thử lại";
+		
+	   }
+	?>
 </body>
 </html>

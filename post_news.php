@@ -48,63 +48,38 @@ include "DBconnect.php";
 	}
 </style>
 		
-    <textarea name="nd" id="editor"></textarea>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.2/classic/ckeditor.js"></script>
-    <script>
-
-$(function(){
-let theEditor;
-
-ClassicEditor
-    .create( document.querySelector( '#editor' ) )
-       
-
-    .then( editor => {
-        theEditor = editor; // Save for later use.
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
-
-function getDataFromTheEditor() {
-    return theEditor.getData();
-}
-
-document.getElementById( 'reset' ).addEventListener( 'click', () => {
-	form_data = getDataFromTheEditor();
-
-} );
-		
-		$("#reset").click(function() {
-			theEditor.setData( '' );
-		});		
-});
-</script>
+   
+	
+	<script type="text/javascript" src="ckeditor_test2/ckeditor.js"> </script>	
+	<script type="text/javascript" src="ckfinder/ckfinder.js"> </script>		
+	<textarea name="nd" id="content"></textarea>			
+		<script>
+			 	  CKEDITOR.replace( 'content',
+		{
+			filebrowserBrowseUrl : 'hinh/ckfinder/ckfinder.html',
+			filebrowserImageBrowseUrl : 'hinh/ckfinder/ckfinder.html?type=Images',
+			filebrowserFlashBrowseUrl : 'hinh/ckfinder/ckfinder.html?type=Flash',
+			filebrowserUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+			filebrowserImageUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+			filebrowserFlashUploadUrl : 'hinh/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+		});
+		</script>	
+   
 		</div>
 			</div>	
-		
-<!--
-        </div>	
-        <div class="flex-container">
-            <div class=container>
-                <label>nội dung <o></o>:</label><br>
-                <textarea name="nd" style="height: 200px; width: 60vw;"  /></textarea>
-            </div>
-        </div>
--->
+
 	
 	
         <div class="flex-container">
             <div class=container>
-                <label>URL Hình ảnh<o></o> :</label><br>
+                <label>URL Hình ảnh(dành cho slide)<o></o> :</label><br>
                 <input name="url" size="50" type="text"  />
             </div>
         </div>
 			
         <div class="flex-container">
             <div class="container">
-                <button type="submit">Đăng bài</button><br>
+                <button type="submit" id="pay" name="pay">Đăng bài</button><br>
             </div>
 
             <div class="container">

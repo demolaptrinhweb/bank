@@ -5,8 +5,8 @@
 					  case "cn" : include("CaNhan.php");break;
 					  case "ndt": include("NhaDauTu.php");break;
 					  case "dn" : include("DoanhNghiep.php");break;
-					  case "td" : include ("TuyenDung.php");break;
-					  case "tt" : include("TinTuc.php");break;	
+					 
+					 
 					  case "bk" : include("internetbanking.php");break;	  
 				  }				  
 				else  include("Main_index.php")?>

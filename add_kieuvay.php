@@ -3,6 +3,7 @@
     include "user_navbar.php";
     include "admin_sidebar.php";
 include "DBconnect.php";
+  include "session_hethan.php";
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +64,12 @@ if (mysqli_affected_rows($conn) == 1) {	?>
             </div>
 	<div  class=container>
                 <label>trạng thái :</b></label><br>
-                <input name="tht" size="30" type="number" required step="0.01"/>
+	            
+               
+                 <select name="tht" >
+					 <option value="2"> đang hoạt động </option>
+					 <option value="1"> tạm ngừng </option>
+	             </select>
             </div>
         </div>
 

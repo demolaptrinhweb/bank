@@ -12,19 +12,19 @@ if (isset($_POST['login'])) {
 	$password = mysqli_real_escape_string($conn, $_POST['password']);
 	
 	$error_message = "dung" ;
-	$result = mysqli_query($conn, "SELECT pass,khachhangid FROM khachhang WHERE loginid = '" . $email."'" );
+	$result = mysqli_query($conn, "SELECT trangthai,pass,id_khachhang FROM khachhang WHERE loginid = '".$email."'" );
 	
 	
-	if ($row = mysqli_fetch_array($result)) {
+	if (@$row = mysqli_fetch_array($result)) {
 		
 	    $auth = password_verify($_POST["password"],$row["pass"]);
 		
-		if($auth){
-		$results = mysqli_query($conn,"SELECT * FROM khachhang where khachhangid='$row[khachhangid]'");
+		if($auth and $row["trangthai"] == 2){
+		$results = mysqli_query($conn,"SELECT * FROM khachhang where id_khachhang='$row[id_khachhang]'");
 	
      	while($arrow = mysqli_fetch_array($results,MYSQLI_ASSOC)){
 		
-		if(!isset($_SESSION["khachhangid"])) $_SESSION["khachhangid"] = $arrow["khachhangid"];
+		
 			
 		if(!isset($_SESSION["id_khachhang"])) $_SESSION["id_khachhang"] = $arrow["id_khachhang"];
 		
@@ -50,7 +50,7 @@ if (isset($_POST['login'])) {
 	  }
 		else {
 		$error_message = "sai";
-			
+		if ($row["trangthai"] != 2) $error_message = "trangthai"; 	
 	}
 	}
 		else {

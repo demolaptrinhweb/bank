@@ -3,6 +3,7 @@
     include "user_navbar.php";
     include "admin_sidebar.php";
 include "DBconnect.php";
+  include "session_hethan.php";
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +19,10 @@ include "DBconnect.php";
 	
 	
 	<?php 
-	   if (isset($_POST["submit"]) and $_POST["min"] < $_POST["min"]){
+	   if (isset($_POST["submit"]) and $_POST["min"] < $_POST["max"]){
   
 
-$sql = "INSERT INTO phichuyentien VALUES('',$_POST[min],$_POST[min],$_POST[phi])";
+$sql = "INSERT INTO phichuyentien VALUES('',$_POST[min],$_POST[max],$_POST[phi])";
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	?>	
 	<script>

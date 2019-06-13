@@ -111,7 +111,7 @@ $truyendulieu = "";
                     </div>
                     <div class="flex-item-2">
                         <p id="name"><?php echo $row["title"] ; ?></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["theme"]; ?></p>
+                        <p id="acno"><?php echo "id : " . $row["theme"]; ?></p>
                     </div>
                     <div class="flex-item-1">
 

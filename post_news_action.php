@@ -18,15 +18,16 @@
     <div class="flex-container">
         <div class="flex-item">
             <?php
+			if (isset($_POST["pay"])){
             $tt = mysqli_real_escape_string($conn, $_POST["tt"]);
             $nd = mysqli_real_escape_string($conn, $_POST["nd"]);
             $tm = mysqli_real_escape_string($conn, $_POST["tm"]);
             $url = mysqli_real_escape_string($conn, $_POST["url"]);
            
             $sql0 = "INSERT INTO `news` (`id`, `theme`, `title`, `created`, `url_hinh`, `body`) VALUES ('',$tm,'$tt',NOW(),'$url','$nd')";
-			$result = $conn->query($sql0);	
+		
 				
-				
+			
 
             ?>
 
@@ -42,7 +43,7 @@
             <?php
             }
 
-            $conn->close();
+           
             ?>
         </div>
 
@@ -51,6 +52,6 @@
         </div>
 
     </div>
-
+<?php } ?>
 </body>
 </html>

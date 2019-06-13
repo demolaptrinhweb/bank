@@ -39,7 +39,7 @@ $truyendulieu = "";
 
                 <form class="search_form" action="" method="get">
                     <div class="flex-item-search">
-                        <input name="search" size="30" type="text" placeholder="tìm kiếm kiểu vay" />
+                        <input name="search" size="30" type="text" placeholder="tìm kiếm thẻ" />
                     </div>
 
                     <div class="flex-item-search-button">
@@ -106,7 +106,7 @@ $truyendulieu = "";
                     </div>
                     <div class="flex-item-2">
 						   <p id="name"></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["thenganhangid"]; ?></p>
+                        <p id="acno"><?php echo "id : " . $row["thenganhangid"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">
@@ -209,41 +209,7 @@ $truyendulieu = "";
     }
 
 
-    $(document).ready(function() {
-        var curr_scroll;
 
-        $(window).scroll(function () {
-            curr_scroll = $(window).scrollTop();
-
-            if ($(window).scrollTop() > 120) {
-                $("#the-search-bar").addClass('search-bar-fixed');
-
-              if ($(window).width() > 855) {
-                  $("#fi-search-bar").addClass('fi-search-bar-fixed');
-              }
-            }
-
-            if ($(window).scrollTop() < 121) {
-                $("#the-search-bar").removeClass('search-bar-fixed');
-
-              if ($(window).width() > 855) {
-                  $("#fi-search-bar").removeClass('fi-search-bar-fixed');
-              }
-            }
-        });
-
-        $(window).resize(function () {
-            var class_name = $("#fi-search-bar").attr('class');
-
-            if ((class_name == "flex-item-search-bar fi-search-bar-fixed") && ($(window).width() < 856)) {
-                $("#fi-search-bar").removeClass('fi-search-bar-fixed');
-            }
-
-            if ((class_name == "flex-item-search-bar") && ($(window).width() > 855) && (curr_scroll > 120)) {
-                $("#fi-search-bar").addClass('fi-search-bar-fixed');
-            }
-        });
-    });
 
     </script>
 

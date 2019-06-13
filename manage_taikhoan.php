@@ -39,7 +39,7 @@ $truyendulieu = "";
 
                 <form class="search_form" action="" method="get">
                     <div class="flex-item-search">
-                        <input name="search" size="30" type="text" placeholder="tìm kiếm kiểu vay" />
+                        <input name="search" size="30" type="text" placeholder="tìm kiếm tài khoản" />
                     </div>
 
                     <div class="flex-item-search-button">
@@ -106,7 +106,7 @@ $truyendulieu = "";
                     </div>
                     <div class="flex-item-2">
                         <p id="name"></p>
-                        <p id="acno"><?php echo "Ac/No : " . $row["taikhoanid"]; ?></p>
+                        <p id="acno"><?php echo "id : " . $row["taikhoanid"]; ?></p>
                     </div>
                     <div class="flex-item-1">
                         <div class="dropdown">

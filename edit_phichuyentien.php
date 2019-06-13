@@ -3,6 +3,7 @@
     include "user_navbar.php";
     include "admin_sidebar.php";
 include "DBconnect.php";
+include "session_hethan.php";
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@ include "DBconnect.php";
 	
 	   if (isset($_POST["submit"]) and $_POST["min"] < $_POST["max"]){
 	   
-$sql = "update phichuyentien set toithieu = $min,toida = $max,phi = $phi where id_phichuyentien = $_POST[id]";
+$sql = "update phichuyentien set toithieu = $_POST[min],toida = $_POST[max],phi = $phi where id_phichuyentien = $_POST[id]";
 $kq = mysqli_query($conn,$sql);
 if (mysqli_affected_rows($conn) == 1) {	
 	?>	

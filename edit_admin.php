@@ -48,7 +48,7 @@ if (mysqli_affected_rows($conn) == 1) {	?>
     <form class="add_customer_form" action="" method="post">
 		<input name="id" type="hidden" value="<?php echo $id ;?>" >
         <div class="flex-container-form_header">
-            <h1 id="form_header">Chỉnh sửa admin . . .</h1>
+            <h1 id="form_header">Hãy điền thông tin vào form dưới . . .</h1>
         </div>
 
         <div class="flex-container">

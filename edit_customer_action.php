@@ -11,41 +11,37 @@
     include "admin_sidebar.php";
     include "session_hethan.php";
 
-    if (isset($_GET['id_khachhang'])) {
-        $_SESSION['id_khachhang'] = $_GET['id_khachhang'];
+    if (isset($_GET['cust_id'])) {
+        $_SESSION['cust_id'] = $_GET['cust_id'];
     }
-if (isset($_POST["submit"])) {
-    $khachid    = mysqli_real_escape_string($conn, $_POST["khachid"]);
-    $taikhoanid = mysqli_real_escape_string($conn, $_POST["taikhoanid"]);
-    $lname      = mysqli_real_escape_string($conn, $_POST["lname"]);
-    $fname      = mysqli_real_escape_string($conn, $_POST["fname"]);
-    $gioitinh   = mysqli_real_escape_string($conn, $_POST["gioitinh"]);
-    $cus_uname  = mysqli_real_escape_string($conn, $_POST["cus_uname"]);
-    $cus_pwd    = mysqli_real_escape_string($conn, $_POST["cus_pwd"]);
-    $ct_pwd     = mysqli_real_escape_string($conn, $_POST["ct_pwd"]);
-    $tt         = mysqli_real_escape_string($conn, $_POST["tt"]);
-    $day        = mysqli_real_escape_string($conn, $_POST["day"]);
-    $email      = mysqli_real_escape_string($conn, $_POST["email"]);
-    $maxtien    = mysqli_real_escape_string($conn, $_POST["maxtien"]);
-    $maxqd      = mysqli_real_escape_string($conn, $_POST["maxqd"]);
 
-    $sql0 = "UPDATE khachhang SET khachhangid= '$khachid',
-								taikhoanmacdinh= '$taikhoanid',
-								ho= '$lname',
-								ten= '$fname',
-								gioitinh= '$gioitinh',
-								loginid= '$cus_uname',
-								pass= '$cus_pwd',
-								passchuyenkhoan= '$ct_pwd',
-								trangthai= '$tt',
-								ngaytao= '$day',
-								max_chuyentien= '$maxtien',
-								max_chuyentien_quydinh= '$maxqd',
-								email=	'$email'
-								 	
+    $fname = mysqli_real_escape_string($conn, $_POST["fname"]);
+    $lname = mysqli_real_escape_string($conn, $_POST["lname"]);
+    $dob = mysqli_real_escape_string($conn, $_POST["dob"]);
+    $aadhar = mysqli_real_escape_string($conn, $_POST["aadhar"]);
+    $email = mysqli_real_escape_string($conn, $_POST["email"]);
+    $phno = mysqli_real_escape_string($conn, $_POST["phno"]);
+    $address = mysqli_real_escape_string($conn, $_POST["address"]);
+    $branch = mysqli_real_escape_string($conn, $_POST["branch"]);
+    $acno = mysqli_real_escape_string($conn, $_POST["acno"]);
+    $pin = mysqli_real_escape_string($conn, $_POST["pin"]);
+    $cus_uname = mysqli_real_escape_string($conn, $_POST["cus_uname"]);
+    $cus_pwd = mysqli_real_escape_string($conn, $_POST["cus_pwd"]);
 
-                            WHERE id_khachhang=".$_SESSION['id_khachhang'];
-}
+    $sql0 = "UPDATE customer SET first_name = '$fname',
+                                 last_name = '$lname',
+                                 dob = '$dob',
+                                 aadhar_no = '$aadhar',
+                                 email = '$email',
+                                 phone_no = '$phno',
+                                 address = '$address',
+                                 branch = '$branch',
+                                 account_no = '$acno',
+                                 pin = '$pin',
+                                 uname = '$cus_uname',
+                                 pwd = '$cus_pwd'
+                            WHERE cust_id=".$_SESSION['cust_id'];
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +68,7 @@ if (isset($_POST["submit"])) {
         <?php $conn->close(); ?>
 
         <div class="flex-item">
-            <a href="manage_customers.php" class="button">Go Back</a>
+            <a href="/manage_customers.php" class="button">Go Back</a>
         </div>
 
     </div>

@@ -59,7 +59,7 @@ if (mysqli_affected_rows($conn) == 1) {	?>
         <div class="flex-container">
             <div class=container>
                 <label>nội dung <o></o>:</label><br>
-                <textarea id="nd" name="nd" style="height: 200px; width: 60vw;"  /><?php echo $arr1["body"];?></textarea>
+                <textarea name="nd" style="height: 200px; width: 60vw;"  /><?php echo $arr1["body"];?></textarea>
             </div>
         </div>
         <div class="flex-container">
@@ -82,15 +82,6 @@ if (mysqli_affected_rows($conn) == 1) {	?>
         return confirm('Bạn có muốn viết lại từ đầu không?')
     }
     </script>
-	
-		<script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('nd')
-
-  })
-</script>
 
 </body>
 </html>

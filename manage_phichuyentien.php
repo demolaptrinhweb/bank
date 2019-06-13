@@ -119,7 +119,7 @@ $truyendulieu = "";
                             <a href="edit_phichuyentien.php?id_phichuyentien=<?php echo $row["id_phichuyentien"]; ?>">View / Edit</a>
                           
                             <a href="delete_phichuyentien.php?id_phichuyentien=<?php echo $row["id_phichuyentien"]; ?>"
-                                 onclick="return confirm('Bạn có chắc chắn muốn xoá?')">Delete</a>
+                                 onclick="return confirm('Chỗ anh em khuyên thật, bạn đéo nên làm thế, tếp tục?')">Delete</a>
                           </div>
                         </div>
                     </div>

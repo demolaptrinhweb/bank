@@ -28,6 +28,10 @@ include "DBconnect.php";
 		
 $ten = mysqli_real_escape_string($conn,$_POST["ten"]);
 $pass = mysqli_real_escape_string($conn,$_POST["pass"]);
+$sql = "select uname from admin where uname = '$ten'";
+$kq = $control->query($sql);
+$arr = $control->fetch_arr($kq);
+if (!$arr){		   
 $pass = $control->passharsh($pass);		
 $sql = "INSERT INTO admin VALUES('','$ten','$pass',$_POST[quyen])";
 $kq = mysqli_query($conn,$sql);
@@ -37,6 +41,13 @@ if (mysqli_affected_rows($conn) == 1) {	?>
 </script>
 	 <?php  }
 	   }
+	else{	?>	
+	<script>
+  alert("trùng tên đăng nhập");
+</script>
+	 <?php  }
+	   
+}
 	?>
     <form class="add_customer_form" action="" method="post">
 		
